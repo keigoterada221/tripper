@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tripper</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <!-- ヘッダー -->
+    <header>
+      <% if user_signed_in? %>
+        <%= link_to "ログアウト" %>
+        <%= link_to "アバウト" %>
+        <%= link_to "マイページ" %>
+      <% elsif admin_signed_in? %>
+        <h1>管理者画面です</h1>
+      <% else %>
+        <%= link_to "ログイン" %>
+        <%= link_to "新規登録" %>
+        <%= link_to "アバウト" %>
+      <% end %>
+    </header>
+
+    <%= yield %>
+
+    <footer>
+      <% if user_signed_in? %>
+        <%= link_to "タイムライン" %>
+        <%= link_to "いいねした投稿" %>
+        <%= link_to "通知" %>
+        <%= link_to "新規投稿" %>
+      <% elsif admin_signed_in? %>
+        <%= link_to "ユーザー一覧" %>
+        <%= link_to "投稿一覧" %>
+        <%= link_to "トップ画面" %>
+      <% else %>
+        <p>©Tripper Production by Keigo Terada</p>
+      <% end %>
+    </footer>
+  </body>
+</html>
