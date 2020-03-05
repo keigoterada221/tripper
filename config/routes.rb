@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users
   root to: "user/homes#top"
-  get "user/homes#about"
+  get "about" => "user/homes#about"
+  devise_for :users
 
   namespace :user do
     resources :users
