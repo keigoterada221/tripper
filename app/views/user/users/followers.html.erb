@@ -1,1 +1,15 @@
 <h1>フォロワー一覧</h1>
+<% @users.each do |user| %>
+
+  <%= attachment_image_tag user, :profile_image, :fill, 50, format: "jpeg", fallback: "no_image.jpg",size:50 ,class: "user_image" %>
+  <%= user.name %>
+
+  <% if user != current_user %>
+    <% if user.followed_by?(current_user) %>
+      <%= link_to "フォロー中", user_relationships_path(user.id),method: :delete %>
+    <% else %>
+      <%= link_to "フォローする", user_relationships_path(user.id),method: :post %>
+    <% end %>
+  <% end %><br>
+
+<% end %>
