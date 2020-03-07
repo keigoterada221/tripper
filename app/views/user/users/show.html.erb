@@ -1,5 +1,38 @@
-<h1>マイページ</h1>
-<div>
-<%= current_user.name %>
-<%= current_user.introduction %>
-</div>
+<% if @user.id == current_user.id %>
+  <h1>マイページ</h1>
+  <%= current_user.name %>
+  <%= link_to "#{current_user.followings.count}人",follows_user_path(current_user.id) %>
+  <%= link_to "#{current_user.followers.count}人",followers_user_path(current_user.id) %>
+  <%= current_user.introduction %>
+  <%= link_to "ユーザー情報を編集する",edit_user_path(current_user.id) %><br>
+
+  <h2>あなたの投稿一覧</h2>
+  <% current_user.posts.each do |post| %>
+    <%= post.title %>
+    <%= post.body %><br>
+  <% end %>
+
+<% else %>
+  <h1><%=@user.name%>さんのページ</h1>
+  <%= @user.name %>
+
+  <%= link_to "#{@user.followings.count}人",follows_user_path(@user.id) %>
+
+  <%= link_to "#{@user.followers.count}人",followers_user_path(@user.id) %>
+
+  <% if @user.id != current_user.id %>
+    <% if @user.followed_by?(current_user) %>
+      <%= link_to "フォロー中", user_relationships_path(@user.id),method: :delete %>
+    <% else %>
+      <%= link_to "フォローする", user_relationships_path(@user.id),method: :post %>
+    <% end %>
+  <% end %>
+
+  <%= @user.introduction %>
+
+  <h2><%= @user.name %>さんの投稿一覧</h2>
+  <% @user.posts.each do |post| %>
+    <%= post.title %>
+    <%= post.body %><br>
+  <% end %>
+<% end %>

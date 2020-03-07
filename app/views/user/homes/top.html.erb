@@ -1,1 +1,11 @@
 <h1>トップ画面</h1>
+<% @posts.each do |post| %>
+  <% if post.user == current_user %>
+  <%= attachment_image_tag post.user, :profile_image, :fill, 50, format: "jpeg", fallback: "no_image.jpg",size:50 ,class: "current_user_image" %>
+  <% else %>
+  <%= attachment_image_tag post.user, :profile_image, :fill, 50, format: "jpeg", fallback: "no_image.jpg",size:50 ,class: "user_image" %>
+  <% end %>
+  <%= link_to post.user.name,user_path(post.user_id) %>
+  <%= post.title %>
+  <%= post.body %><br>
+<% end %>

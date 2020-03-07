@@ -1,0 +1,49 @@
+<h1>ユーザー情報編集画面</h1>
+<%= form_with model: @user,url:user_path(current_user.id),method: :patch do |f| %>
+
+  <div class="field">
+    <%= f.label :name,"プロフィール画像" %><br />
+    <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, format: "jpeg", fallback: "no_image.jpg",size:40,class: "user_image" %>
+    <%= f.attachment_field :profile_image %>
+  </div>
+
+  <div class="field">
+    <%= f.label :name,"ユーザー名" %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :introduction,"自己紹介文" %><br />
+    <%= f.text_area :introduction, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :phone_number,"電話番号" %><br />
+    <%= f.text_field :phone_number, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :post_code,"郵便番号" %><br />
+    <%= f.text_field :post_code, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address_city,"市町村" %><br />
+    <%= f.text_field :address_city, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address_street,"番地" %><br />
+    <%= f.text_field :address_street, autofocus: true %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "登録情報を更新する" %>
+  </div>
+
+<% end %>

@@ -13,9 +13,10 @@
     <!-- ヘッダー -->
     <header>
       <% if user_signed_in? %>
+        <%= attachment_image_tag current_user, :profile_image, :fill, 70, format: "jpeg", fallback: "no_image.jpg",size:70 ,class: "current_user_image" %>
         <%= link_to "ログアウト",destroy_user_session_path,method: :delete %>
         <%= link_to "アバウト",about_path %>
-        <%= link_to "マイページ",user_user_path(current_user.id) %>
+        <%= link_to "マイページ",user_path(current_user.id) %>
         <%= link_to "トップへ",root_path %>
       <!-- < elsif admin_signed_in? %> -->
         <!-- <h1>管理者画面です</h1> -->
@@ -31,10 +32,10 @@
 
     <footer>
       <% if user_signed_in? %>
-        <%= link_to "タイムライン",user_posts_path %>
+        <%= link_to "タイムライン",posts_path %>
         <%= link_to "いいねした投稿" %>
         <%= link_to "通知" %>
-        <%= link_to "新規投稿",new_user_post_path %>
+        <%= link_to "新規投稿",new_post_path %>
       <!-- < elsif admin_signed_in? %> -->
         <!-- <= link_to "ユーザー一覧" %> -->
         <!-- <= link_to "投稿一覧" %> -->
