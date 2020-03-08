@@ -1,17 +1,23 @@
 Rails.application.routes.draw do
   root to: "user/homes#top"
   get "about" => "user/homes#about"
+  get "favorites" => "user/users#favorite" ,as: :favorites
   devise_for :users
   devise_for :admins
   # namespaceと違いurl,pathがそのままで使用可能
   scope module: :user do
+
     resources :users do
       resource :relationships, only: [:create,:destroy]
       # idが含まれるルーティングを作成
       get :follows,on: :member
       get :followers,on: :member
     end
-    resources :posts
+
+    resources :posts do
+      resource :favorites, only: [:create,:destroy]
+      resource :comments, only: [:create,:destroy]
+    end
   end
 
   scope module: :admin do

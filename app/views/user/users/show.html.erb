@@ -6,14 +6,29 @@
   <%= current_user.introduction %>
   <%= link_to "ユーザー情報を編集する",edit_user_path(current_user.id) %><br>
 
-  <h2>あなたの投稿一覧</h2>
+  <h2>投稿一覧</h2>
   <% current_user.posts.each do |post| %>
     <%= post.title %>
-    <%= post.body %><br>
+    <%= post.body %>
+
+    <!-- お気に入り機能 -->
+    <span id="favorite-<%= post.id %>">
+      <%= render "user/favorites/favorite",post: post %>
+    </span>
+
+   <% if post.comments.count == 0 %>
+     <i class="fas fa-comment" style="color: rgba(60,60,60,0.5);"></i>
+   <% else %>
+     <i class="fas fa-comment" style="color: rgba(60,60,60);">
+     </i>×<%= post.comments.count %>
+   <% end %><br>
   <% end %>
 
 <% else %>
-  <h1><%=@user.name%>さんのページ</h1>
+
+  <h1><%= attachment_image_tag @user, :profile_image, :fill, 50,50, format: "jpeg", fallback: "no_image.jpg",size:50 ,class: "user_image" %>
+    <%=@user.name%>さんのページ
+  </h1>
   <%= @user.name %>
 
   <%= link_to "#{@user.followings.count}人",follows_user_path(@user.id) %>
@@ -30,9 +45,21 @@
 
   <%= @user.introduction %>
 
-  <h2><%= @user.name %>さんの投稿一覧</h2>
+  <h2>投稿一覧</h2>
   <% @user.posts.each do |post| %>
     <%= post.title %>
-    <%= post.body %><br>
+    <%= post.body %>
+    <!-- お気に入り機能 -->
+    <span id="favorite-<%= post.id %>">
+      <%= render "user/favorites/favorite",post: post %>
+    </span>
+
+    <% if post.comments.count == 0 %>
+      <i class="fas fa-comment" style="color: rgba(60,60,60,0.5);"></i>
+    <% else %>
+      <i class="fas fa-comment" style="color: rgba(60,60,60);">
+      </i>×<%= post.comments.count %>
+    <% end %><br>
+
   <% end %>
 <% end %>

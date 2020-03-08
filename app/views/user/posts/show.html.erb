@@ -2,6 +2,22 @@
 <%= link_to @post.user.name,user_path(@post.user.id) %>
 <%= @post.title %>
 <%= @post.body %>
+
+<!-- お気に入り機能 -->
+<div id="favorite-<%= @post.id %>">
+  <%= render "user/favorites/favorite",post: @post %>
+</div>
+
 <% if @post.user_id == current_user.id %>
-<%= link_to "編集する",edit_post_path(@post.id) %>
+  <%= link_to "編集する",edit_post_path(@post.id) %>
+<% end %>
+
+<!-- コメント機能 -->
+<div id="comment">
+  <%= render "user/comments/comment",post: @post %>
+</div>
+
+<%= form_with model:[@post,@comment],url:post_comments_path(@post.id),method: :post,remote: true do |f| %>
+  <%= f.text_area :comment %><br>
+  <%= f.submit "コメントを投稿する" %>
 <% end %>

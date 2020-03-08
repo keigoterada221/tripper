@@ -9,9 +9,9 @@ class User::UsersController < ApplicationController
 	end
 
 	def update
-		user = current_user
-		user.update(user_params)
-		redirect_to user_user_path(current_user.id)
+		@user = current_user
+		@user.update(user_params)
+		redirect_to user_path(current_user.id)
 	end
 
 	def index
@@ -33,9 +33,13 @@ class User::UsersController < ApplicationController
 	def destroy
 	end
 
+	def favorite
+		@favorites = Favorite.where(user_id: current_user.id)
+	end
+
 	private
 	def user_params
-		params.require(:user).permit(:name,:introduction,:phone_number,:email,:post_code,:address_city,:address_street)
+		params.require(:user).permit(:name,:profile_image,:introduction,:phone_number,:email,:post_code,:address_city,:address_street)
 	end
 
 end

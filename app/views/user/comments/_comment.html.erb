@@ -1,0 +1,10 @@
+<h2><%= @post.comments.count %>件のコメント</h2>
+<% post.comments.each do |comment| %>
+  <% if comment.user_id == current_user.id %>
+    <%= attachment_image_tag comment.user, :profile_image, :fill, 40,40, format: "jpeg", fallback: "no_image.jpg",size:40 ,class: "current_user_image" %>
+  <% else %>
+    <%= attachment_image_tag comment.user, :profile_image, :fill, 40,40, format: "jpeg", fallback: "no_image.jpg",size:40 ,class: "user_image" %>
+  <% end %>
+  <%= comment.user.name %>
+  <%= comment.comment %><br>
+<% end %>
