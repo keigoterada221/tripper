@@ -2,24 +2,11 @@
 <% @favorites.each do |favorite| %>
   <%= favorite.post.user.name %>
   <%= favorite.post.title %>
-
-  <% if favorite.post.favorite_by?(current_user) %>
-    <%= link_to post_favorites_path(favorite.post.id),method: :delete do %>
-      <i class="fas fa-star" aria-hidden="true" style="color: yellow;"></i>
-      <%= favorite.post.favorites.count %>
-    <% end %>
-  <% else %>
-    <%= link_to post_favorites_path(favorite.post.id),method: :post do %>
-      <i class="far fa-star" aria-hidden="true"></i>
-      <%= favorite.post.favorites.count %>
-    <% end %>
-  <% end %>
-
-  <% if favorite.post.comments.count == 0 %>
-     <i class="fas fa-comment" style="color: rgba(60,60,60,0.5);"></i>
-   <% else %>
-     <i class="fas fa-comment" style="color: rgba(60,60,60);">
-     </i>×<%= favorite.post.comments.count %>
-   <% end %><br>
+  <!-- いいね機能 -->
+  <span id="favorite-<%= favorite.post_id %>">
+    <%= render "user/favorites/favorite",post: favorite.post %>
+  </span>
+  <!-- コメント数 -->
+  <%= render "user/comments/count",post: favorite.post %><br>
 
 <% end %>

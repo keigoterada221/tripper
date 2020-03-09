@@ -1,0 +1,11 @@
+<% users.each do |user| %>
+
+  <%= attachment_image_tag user, :profile_image, :fill, 50,50, format: "jpeg", fallback: "no_image.jpg",size:50 ,class: "user_image" %>
+  <%= user.name %>
+
+  <div id="relationship-<%= user.id %>">
+    <%= render "user/relationships/relationship",user: user %>
+  </div>
+
+
+<% end %>

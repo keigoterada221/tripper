@@ -7,22 +7,8 @@
   <%= link_to "ユーザー情報を編集する",edit_user_path(current_user.id) %><br>
 
   <h2>投稿一覧</h2>
-  <% current_user.posts.each do |post| %>
-    <%= post.title %>
-    <%= post.body %>
-
-    <!-- お気に入り機能 -->
-    <span id="favorite-<%= post.id %>">
-      <%= render "user/favorites/favorite",post: post %>
-    </span>
-
-   <% if post.comments.count == 0 %>
-     <i class="fas fa-comment" style="color: rgba(60,60,60,0.5);"></i>
-   <% else %>
-     <i class="fas fa-comment" style="color: rgba(60,60,60);">
-     </i>×<%= post.comments.count %>
-   <% end %><br>
-  <% end %>
+  <!-- 投稿一覧 -->
+  <%= render "user/posts/post_index",posts: current_user.posts %>
 
 <% else %>
 
@@ -31,35 +17,15 @@
   </h1>
   <%= @user.name %>
 
-  <%= link_to "#{@user.followings.count}人",follows_user_path(@user.id) %>
-
-  <%= link_to "#{@user.followers.count}人",followers_user_path(@user.id) %>
-
-  <% if @user.id != current_user.id %>
-    <% if @user.followed_by?(current_user) %>
-      <%= link_to "フォロー中", user_relationships_path(@user.id),method: :delete %>
-    <% else %>
-      <%= link_to "フォローする", user_relationships_path(@user.id),method: :post %>
-    <% end %>
-  <% end %>
+  <!-- フォロー/フォロワー数とボタン -->
+  <div id="relationship-<%= @user.id %>">
+    <%= render "user/relationships/relationship",user: @user %>
+  </div>
 
   <%= @user.introduction %>
 
   <h2>投稿一覧</h2>
-  <% @user.posts.each do |post| %>
-    <%= post.title %>
-    <%= post.body %>
-    <!-- お気に入り機能 -->
-    <span id="favorite-<%= post.id %>">
-      <%= render "user/favorites/favorite",post: post %>
-    </span>
+  <!-- 投稿一覧 -->
+  <%= render "user/posts/post_index",posts: @user.posts %>
 
-    <% if post.comments.count == 0 %>
-      <i class="fas fa-comment" style="color: rgba(60,60,60,0.5);"></i>
-    <% else %>
-      <i class="fas fa-comment" style="color: rgba(60,60,60);">
-      </i>×<%= post.comments.count %>
-    <% end %><br>
-
-  <% end %>
 <% end %>

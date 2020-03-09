@@ -12,6 +12,7 @@ class User::PostsController < ApplicationController
 	end
 
 	def index
+		# フォローしているユーザーと自分の投稿
 		@posts = Post.where(user_id: current_user.followings).or(Post.where(user_id: current_user.id))
 	end
 
@@ -31,10 +32,13 @@ class User::PostsController < ApplicationController
 	end
 
 	def destroy
+		post = Post.find(params[:id])
+		post.destroy
+		redirect_to user_path(current_user.id)
 	end
 
 	private
 	def post_params
-		params.require(:post).permit(:title,:body)
+		params.require(:post).permit(:image,:title,:body)
 	end
 end

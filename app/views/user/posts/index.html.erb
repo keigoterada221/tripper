@@ -1,26 +1,2 @@
 <h1>タイムライン</h1>
-<% @posts.each do |post| %>
-  <% if post.user_id == current_user.id %>
-  <%= attachment_image_tag post.user, :profile_image, :fill, 50,50, format: "jpeg", fallback: "no_image.jpg",size:50 ,class: "current_user_image" %>
-  <% else %>
-  <%= attachment_image_tag post.user, :profile_image, :fill, 50,50, format: "jpeg", fallback: "no_image.jpg",size:50 ,class: "user_image" %>
-  <% end %>
-  <%= link_to post.user.name,user_path(post.user.id) %>
-  <%= link_to post_path(post.id) do %>
-    <%= post.title %>
-    <%= post.body %>
-  <% end %>
-
-  <!-- お気に入り機能 -->
-  <span id="favorite-<%= post.id %>">
-    <%= render "user/favorites/favorite",post: post %>
-  </span>
-
-  <% if post.comments.count == 0 %>
-  <i class="fas fa-comment" style="color: rgba(60,60,60,0.5);"></i>
-  <% else %>
-  <i class="fas fa-comment" style="color: rgba(60,60,60);">
-  </i>×<%= post.comments.count %>
-  <% end %><br>
-
-<% end %>
+<%= render "user/posts/post_index",posts: @posts %>

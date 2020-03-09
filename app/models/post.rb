@@ -9,4 +9,6 @@ class Post < ApplicationRecord
 
 	has_many :comments,dependent: :destroy
 
+	attachment :image
+
 end

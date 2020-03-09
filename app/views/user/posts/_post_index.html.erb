@@ -1,0 +1,29 @@
+<% posts.each do |post| %>
+  <% if post.user_id == current_user.id %>
+    <%= attachment_image_tag post.user, :profile_image, :fill, 50,50, format: "jpeg", fallback: "no_image.jpg",size:50 ,class: "current_user_image" %>
+  <% else %>
+    <%= attachment_image_tag post.user, :profile_image, :fill, 50,50, format: "jpeg", fallback: "no_image.jpg",size:50 ,class: "user_image" %>
+  <% end %>
+
+  <%= link_to post.user.name,user_path(post.user.id) %>
+
+  <%= attachment_image_tag post, :image, :fill, 150, 150, format: "jpeg", fallback: "no_post_image.jpg",size:150,class: "image" %><br>
+  <%= link_to post_path(post.id) do %>
+    <%= post.title %>
+    <%= post.body %>
+
+    <% if post.user_id == current_user.id %>
+      <%= link_to "投稿を編集",edit_post_path(post.id) %>
+      <%= link_to "削除",post_path(post.id),method: :delete %>
+    <% end %>
+
+  <% end %>
+
+  <!-- お気に入り機能 -->
+  <span id="favorite-<%= post.id %>">
+    <%= render "user/favorites/favorite",post: post %>
+  </span>
+  <!-- コメント数 -->
+  <%= render "user/comments/count",post: post %><br>
+
+<% end %>

@@ -2,16 +2,17 @@
 <%= link_to @post.user.name,user_path(@post.user.id) %>
 <%= @post.title %>
 <%= @post.body %>
+<% if @post.user_id == current_user.id %>
+  <%= link_to "編集する",edit_post_path(@post.id) %>
+  <%= link_to "削除",post_path(@post.id),method: :delete %>
+<% end %>
 
 <!-- お気に入り機能 -->
 <div id="favorite-<%= @post.id %>">
   <%= render "user/favorites/favorite",post: @post %>
 </div>
-
-<% if @post.user_id == current_user.id %>
-  <%= link_to "編集する",edit_post_path(@post.id) %>
-<% end %>
-
+<!-- コメント数 -->
+<%= render "user/comments/count",post: @post %>
 <!-- コメント機能 -->
 <div id="comment">
   <%= render "user/comments/comment",post: @post %>
