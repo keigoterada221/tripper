@@ -8,7 +8,7 @@
 
   <h2>投稿一覧</h2>
   <!-- 投稿一覧 -->
-  <%= render "user/posts/post_index",posts: current_user.posts %>
+  <%= render @posts %>
 
 <% else %>
 
@@ -26,6 +26,6 @@
 
   <h2>投稿一覧</h2>
   <!-- 投稿一覧 -->
-  <%= render "user/posts/post_index",posts: @user.posts %>
+  <%= render partial: "user/posts/post", collection: @user.posts %>
 
 <% end %>

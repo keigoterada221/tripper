@@ -1,4 +1,3 @@
-<% posts.each do |post| %>
   <% if post.user_id == current_user.id %>
     <%= attachment_image_tag post.user, :profile_image, :fill, 50,50, format: "jpeg", fallback: "no_image.jpg",size:50 ,class: "current_user_image" %>
   <% else %>
@@ -25,5 +24,3 @@
   </span>
   <!-- コメント数 -->
   <%= render "user/comments/count",post: post %><br>
-
-<% end %>

@@ -1,6 +1,7 @@
 class User::CommentsController < ApplicationController
 	def create
 		@post = Post.find(params[:post_id])
+		@comments = @post.comments
 		comment = current_user.comments.new(comment_params)
 		comment.post_id = @post.id
 		comment.save
@@ -8,6 +9,7 @@ class User::CommentsController < ApplicationController
 
 	def destroy
 		@post = Post.find(params[:post_id])
+		@comments = @post.comments
 		comment = current_user.comments.find(params[:id])
 		comment.post_id = @post.id
 		comment.destroy

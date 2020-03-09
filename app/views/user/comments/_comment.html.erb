@@ -1,32 +1,29 @@
-<h2><%= @post.comments.count %>件のコメント</h2>
-<% post.comments.each do |comment| %>
-  <% if comment.user_id == current_user.id %>
-    <%= attachment_image_tag comment.user, :profile_image, :fill, 40,40, format: "jpeg", fallback: "no_image.jpg",size:40 ,class: "current_user_image" %>
-  <% else %>
-    <%= attachment_image_tag comment.user, :profile_image, :fill, 40,40, format: "jpeg", fallback: "no_image.jpg",size:40 ,class: "user_image" %>
-  <% end %>
-  <%= comment.user.name %>
-  <%= comment.comment %>
+<% if comment.user_id == current_user.id %>
+<%= attachment_image_tag comment.user, :profile_image, :fill, 40,40, format: "jpeg", fallback: "no_image.jpg",size:40 ,class: "current_user_image" %>
+<% else %>
+<%= attachment_image_tag comment.user, :profile_image, :fill, 40,40, format: "jpeg", fallback: "no_image.jpg",size:40 ,class: "user_image" %>
+<% end %>
+<%= comment.user.name %>
+<%= comment.comment %>
 
 
 
 <% if comment.comment_favorite_by?(current_user) %>
-  <%= link_to post_comment_comment_favorites_path(comment.post_id,comment.id),method: :delete, local: true do %>
-    <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-        <%= comment.comment_favorites.count %>
-  <% end %>
+<%= link_to post_comment_comment_favorites_path(comment.post_id,comment.id),method: :delete, local: true do %>
+<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+<%= comment.comment_favorites.count %>
+<% end %>
 <% else %>
-  <%= link_to post_comment_comment_favorites_path(comment.post_id,comment.id),method: :post, local: true do %>
-    <i class="fa fa-heart" aria-hidden="true"></i>
-        <%= comment.comment_favorites.count %>
-  <% end %>
+<%= link_to post_comment_comment_favorites_path(comment.post_id,comment.id),method: :post, local: true do %>
+<i class="fa fa-heart" aria-hidden="true"></i>
+<%= comment.comment_favorites.count %>
+<% end %>
 <% end %>
 
 
 
 
-  <% if comment.user_id == current_user.id %>
-    <%= link_to "削除",post_comment_path(@post.id,comment.id),method: :delete,"data-confirm" => "本当に消しますか？",remote: true %>
-  <% end %>
-  <br>
+<% if comment.user_id == current_user.id %>
+<%= link_to "削除",post_comment_path(@post.id,comment.id),method: :delete,"data-confirm" => "本当に消しますか？",remote: true %>
 <% end %>
+<br>
