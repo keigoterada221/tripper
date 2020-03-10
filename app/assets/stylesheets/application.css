@@ -23,27 +23,38 @@ a {
 	text-decoration: none;
 }
 
-
 header {
-	display: flex;
-	justify-content: space-around;
 	align-items: center;
+	display: flex;
+	position: -webkit-sticky;
+    position: sticky;
+    top: 0;
 	height: 100px;
+	background-color: #708090;
 }
 
-body {
-	height: 100vh;
-	position: relative;
+header div{
+	display: flex;
+	margin-right: 20px;
+}
+header div:first-child {
+    margin-right:auto;
+    margin-left: 20px;
+}
+
+main {
+
 }
 
 footer {
-	display: flex;
 	align-items: center;
+	display: flex;
 	justify-content: space-around;
-	width: 100%;
+	position: -webkit-sticky;
+    position: sticky;
+    bottom: 0;
 	height: 100px;
-	position: absolute;
-	bottom: 0;
+	background-color: #708090;
 }
 
 .current_user_image {

@@ -69,5 +69,11 @@ gem "pry-byebug"
 # 画像投稿機能
 gem "refile",require: "refile/rails", github: "manfe/refile"
 gem "refile-mini_magick"
+gem "carrierwave"
+gem "mini_magick"
 
 gem "jquery-rails"
+
+# group :production do
+#   gem "fog"
+# end

@@ -13,39 +13,67 @@
     <!-- ヘッダー -->
     <header>
       <% if user_signed_in? %>
-        <%= attachment_image_tag current_user, :profile_image, :fill, 70, 70, format: "jpeg", fallback: "no_image.jpg",size:70 ,class: "current_user_image" %>
+        <div>
+          <%= attachment_image_tag current_user, :profile_image, :fill, 70, 70, format: "jpeg", fallback: "no_image.jpg",size:70 ,class: "current_user_image" %>
+        </div>
 
 
-
-        <%= link_to "ログアウト",destroy_user_session_path,method: :delete %>
-        <%= link_to "アバウト",about_path %>
-        <%= link_to "マイページ",user_path(current_user.id) %>
-        <%= link_to "トップへ",root_path %>
+        <div>
+          <%= link_to "ログアウト",destroy_user_session_path,method: :delete %>
+        </div>
+        <div>
+          <%= link_to "アバウト",about_path %>
+        </div>
+        <div>
+          <%= link_to "マイページ",user_path(current_user.id) %>
+        </div>
+        <div>
+          <%= link_to "トップへ",root_path %>
+        </div>
       <!-- < elsif admin_signed_in? %> -->
         <!-- <h1>管理者画面です</h1> -->
       <% else %>
-        <%= link_to "ログイン",new_user_session_path %>
-        <%= link_to "新規登録",new_user_registration_path %>
-        <%= link_to "アバウト",about_path %>
-        <%= link_to "トップへ",root_path %>
+        <div>
+          <%= link_to "ログイン",new_user_session_path %>
+        </div>
+        <div>
+          <%= link_to "新規登録",new_user_registration_path %>
+        </div>
+        <div>
+          <%= link_to "アバウト",about_path %>
+        </div>
+        <div>
+          <%= link_to "トップへ",root_path %>
+        </div>
       <% end %>
     </header>
 
-    <%= yield %>
+    <main>
+      <div>
+        <%= yield %>
+      </div>
+    </main>
 
-    <footer>
-      <% if user_signed_in? %>
-        <%= link_to "タイムライン",posts_path %>
-        <%= link_to "いいねした投稿",favorites_path %>
-        <%= link_to "通知" %>
-        <%= link_to "新規投稿",new_post_path %>
-      <!-- < elsif admin_signed_in? %> -->
-        <!-- <= link_to "ユーザー一覧" %> -->
-        <!-- <= link_to "投稿一覧" %> -->
-        <!-- <= link_to "トップ画面" %> -->
-      <% else %>
-        <p>©Tripper Production by Keigo Terada</p>
-      <% end %>
-    </footer>
+      <footer >
+        <% if user_signed_in? %>
+          <%= link_to posts_path do %>
+            <i class="fas fa-home fa-3x" style="color: blue;"></i>
+          <% end %>
+          <%= link_to favorites_path do %>
+            <i class="fas fa-star fa-3x" style="color: yellow;"></i>
+          <% end %>
+          <%= link_to "通知" %>
+            <!-- <i class="far fa-envelope"></i> -->
+          <%= link_to new_post_path do %>
+            <i class="fas fa-plus-circle fa-3x"></i>
+          <% end %>
+        <!-- < elsif admin_signed_in? %> -->
+          <!-- <= link_to "ユーザー一覧" %> -->
+          <!-- <= link_to "投稿一覧" %> -->
+          <!-- <= link_to "トップ画面" %> -->
+        <% else %>
+          <p>©Tripper Production by Keigo Terada</p>
+        <% end %>
+      </footer>
   </body>
 </html>

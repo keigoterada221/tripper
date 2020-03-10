@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_09_062107) do
+ActiveRecord::Schema.define(version: 2020_03_10_083724) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -52,9 +52,9 @@ ActiveRecord::Schema.define(version: 2020_03_09_062107) do
     t.text "title"
     t.text "body"
     t.string "image_id"
-    t.string "movie_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "video"
   end
 
   create_table "relationships", force: :cascade do |t|

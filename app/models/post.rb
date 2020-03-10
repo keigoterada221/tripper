@@ -9,6 +9,9 @@ class Post < ApplicationRecord
 
 	has_many :comments,dependent: :destroy
 
-	attachment :image
+	# モデルとアップローダーの紐付け
+	mount_uploader :video, VideoUploader
+	validates :title, :body, :video, :presence => true
 
+	attachment :image
 end
