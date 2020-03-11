@@ -18,11 +18,10 @@
 	padding: 0;
 	box-sizing: border-box;
 }
-
 a {
 	text-decoration: none;
 }
-
+/*ヘッダー*/
 header {
 	align-items: center;
 	display: flex;
@@ -32,27 +31,24 @@ header {
 	height: 100px;
 	background-color: #708090;
 }
-
-header div{
-	display: flex;
+header>div{
 	margin-right: 20px;
 }
-header div:first-child {
+header>div:first-child {
     margin-right:auto;
     margin-left: 20px;
 }
+/*メイン*/
 
-main {
 
-}
-
+/*フッター*/
 footer {
 	align-items: center;
 	display: flex;
-	justify-content: space-around;
 	position: -webkit-sticky;
     position: sticky;
     bottom: 0;
+	justify-content: space-around;
 	height: 100px;
 	background-color: #708090;
 }

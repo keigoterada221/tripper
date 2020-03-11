@@ -1,31 +1,25 @@
 <% if @user.id == current_user.id %>
-  <h1>マイページ</h1>
-  <%= current_user.name %>
-  <%= link_to "#{current_user.followings.count}人",follows_user_path(current_user.id) %>
-  <%= link_to "#{current_user.followers.count}人",followers_user_path(current_user.id) %>
-  <%= current_user.introduction %>
-  <%= link_to "ユーザー情報を編集する",edit_user_path(current_user.id) %><br>
-
-  <h2>投稿一覧</h2>
-  <!-- 投稿一覧 -->
-  <%= render @posts %>
-
-<% else %>
-
-  <h1><%= attachment_image_tag @user, :profile_image, :fill, 50,50, format: "jpeg", fallback: "no_image.jpg",size:50 ,class: "user_image" %>
-    <%=@user.name%>さんのページ
-  </h1>
-  <%= @user.name %>
-
-  <!-- フォロー/フォロワー数とボタン -->
-  <div id="relationship-<%= @user.id %>">
-    <%= render "user/relationships/relationship",user: @user %>
+  <div class="user-infomation">
+    <h1>マイページ</h1>
+    <%= attachment_image_tag current_user, :profile_image, :fill, 100,100, format: "jpeg", fallback: "no_image.jpg",size:100 ,class: "current_user_image" %>
+    <!-- 名前/フォロー・フォロワー数/自己紹介文/編集ボタン -->
+    <div id="relationship-<%= current_user.id %>">
+      <%= render "user/relationships/relationship",user: current_user %>
+    </div>
   </div>
-
-  <%= @user.introduction %>
-
-  <h2>投稿一覧</h2>
   <!-- 投稿一覧 -->
-  <%= render partial: "user/posts/post", collection: @user.posts %>
-
+    <%= render @posts %>
+<% else %>
+  <div class="user-infomation">
+    <h1><%=@user.name%>さんのページ</h1>
+    <%= attachment_image_tag @user, :profile_image, :fill, 100,100, format: "jpeg", fallback: "no_image.jpg",size:100 ,class: "user_image" %>
+    <!-- 名前/フォロー・フォロワー数とボタン/自己紹介文/ -->
+    <div id="relationship-<%= @user.id %>">
+      <%= render "user/relationships/relationship",user: @user %>
+    </div>
+  </div>
+  <!-- 投稿一覧 -->
+    <div class="post-index">
+      <%= render partial: "user/posts/post", collection: @user.posts %>
+    </div>
 <% end %>

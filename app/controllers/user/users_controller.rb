@@ -2,7 +2,7 @@ class User::UsersController < ApplicationController
 
 	def show
 		@user = User.find(params[:id])
-		@posts = current_user.posts
+		@posts = current_user.posts.order(created_at: :desc)
 	end
 
 	def edit
@@ -20,12 +20,12 @@ class User::UsersController < ApplicationController
 
 	def follows
 		user = User.find(params[:id])
-		@users = user.followings
+		@users = user.followings.order(created_at: :desc)
 	end
 
 	def followers
 		user = User.find(params[:id])
-		@users = user.followers
+		@users = user.followers.order(created_at: :desc)
 	end
 
 	def withdraw

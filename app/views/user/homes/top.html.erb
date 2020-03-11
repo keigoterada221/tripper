@@ -1,2 +1,10 @@
 <h1>トップ画面</h1>
+<% if user_signed_in? %>
+ 	<div class="sort-search" >
+ 		<%= form_with url:"/",method: :get,local: true do |f| %>
+ 			<%= f.select :sort_select,[["新着順","新着順"],["いいね数順","いいね数順"],["コメント数順","コメント数順"]] %>
+ 			<%= f.submit "並び替える" %>
+ 		<% end %>
+ 	</div>
+<% end %>
 <%= render @posts %>

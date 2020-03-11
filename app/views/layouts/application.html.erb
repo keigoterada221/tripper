@@ -10,49 +10,27 @@
   </head>
 
   <body>
-    <!-- ヘッダー -->
+
+    
+  <!-- ヘッダー -->
     <header>
       <% if user_signed_in? %>
-        <div>
-          <%= attachment_image_tag current_user, :profile_image, :fill, 70, 70, format: "jpeg", fallback: "no_image.jpg",size:70 ,class: "current_user_image" %>
-        </div>
-
-
-        <div>
-          <%= link_to "ログアウト",destroy_user_session_path,method: :delete %>
-        </div>
-        <div>
-          <%= link_to "アバウト",about_path %>
-        </div>
-        <div>
-          <%= link_to "マイページ",user_path(current_user.id) %>
-        </div>
-        <div>
-          <%= link_to "トップへ",root_path %>
-        </div>
+        <div><%= attachment_image_tag current_user, :profile_image, :fill, 70, 70, format: "jpeg", fallback: "no_image.jpg",size:70 ,class: "current_user_image" %></div>
+        <div><%= link_to "ログアウト",destroy_user_session_path,method: :delete %></div>
+        <div><%= link_to "アバウト",about_path %></div>
+        <div><%= link_to "マイページ",user_path(current_user.id) %></div>
+        <div><%= link_to "トップへ",root_path %></div>
       <!-- < elsif admin_signed_in? %> -->
         <!-- <h1>管理者画面です</h1> -->
       <% else %>
-        <div>
-          <%= link_to "ログイン",new_user_session_path %>
-        </div>
-        <div>
-          <%= link_to "新規登録",new_user_registration_path %>
-        </div>
-        <div>
-          <%= link_to "アバウト",about_path %>
-        </div>
-        <div>
-          <%= link_to "トップへ",root_path %>
-        </div>
+        <div><%= link_to "ログイン",new_user_session_path %></div>
+        <div><%= link_to "新規登録",new_user_registration_path %></div>
+        <div><%= link_to "アバウト",about_path %></div>
+        <div><%= link_to "トップへ",root_path %></div>
       <% end %>
     </header>
 
-    <main>
-      <div>
-        <%= yield %>
-      </div>
-    </main>
+    <div class="content"><%= yield %></div>
 
       <footer >
         <% if user_signed_in? %>
@@ -75,5 +53,7 @@
           <p>©Tripper Production by Keigo Terada</p>
         <% end %>
       </footer>
+
+
   </body>
 </html>

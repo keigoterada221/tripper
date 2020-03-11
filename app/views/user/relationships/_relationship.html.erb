@@ -1,5 +1,6 @@
-<%= link_to "#{user.followings.count}人",follows_user_path(user.id),remote: true %>
+<%= user.name %>
 
+<%= link_to "#{user.followings.count}人",follows_user_path(user.id),remote: true %>
 <%= link_to "#{user.followers.count}人",followers_user_path(user.id),remote: true %><br>
 
 <% if user.id != current_user.id %>
@@ -8,4 +9,10 @@
 <% else %>
   <%= link_to "フォローする", user_relationships_path(user.id),method: :post,remote: true %>
     <% end %>
+<% end %>
+
+<%= user.introduction %><br>
+
+<% if user.id == current_user.id %>
+<%= link_to "ユーザー情報を編集する",edit_user_path(user.id) %><br>
 <% end %>
