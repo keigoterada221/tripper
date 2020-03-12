@@ -8,10 +8,17 @@ class Post < ApplicationRecord
 	end
 
 	has_many :comments,dependent: :destroy
-
 	# モデルとアップローダーの紐付け
 	mount_uploader :video, VideoUploader
 	validates :title, :body, :video, :presence => true
 
 	attachment :image
+
+	def self.search(search)
+		if search
+			Post.where(["title LIKE ?", "%#{search}%"])
+		else
+			Post.all
+		end
+	end
 end

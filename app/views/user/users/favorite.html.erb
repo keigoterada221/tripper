@@ -1,12 +1,14 @@
 <h1>いいねした投稿一覧</h1>
-<% @favorites.each do |favorite| %>
-  <%= favorite.post.user.name %>
-  <%= favorite.post.title %>
+<div class="post-index">
+  <% @favorites.each do |favorite| %>
+    <%= favorite.post.user.name %>
+    <%= favorite.post.title %>
   <!-- いいね機能 -->
-  <span id="favorite-<%= favorite.post_id %>">
-    <%= render "user/favorites/favorite",post: favorite.post %>
-  </span>
+    <span id="favorite-<%= favorite.post_id %>">
+      <%= render "user/favorites/favorite",post: favorite.post %>
+    </span>
   <!-- コメント数 -->
-  <%= render "user/comments/count",post: favorite.post %><br>
+    <%= render "user/comments/count",post: favorite.post %><br>
 
-<% end %>
+  <% end %>
+</div>

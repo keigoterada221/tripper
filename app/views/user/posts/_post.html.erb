@@ -8,9 +8,8 @@
 	<%= link_to post.user.name,user_path(post.user.id) %>
 
 	<!-- 投稿動画表示 -->
-	<%= video_tag post.video.url, width: "30%", height: "30%",loop: true,autoplay: true,muted: true unless post.video.blank? %>
+	<%= video_tag post.video.url, width: "30%", height: "30%",loop: true,autoplay: true,muted: true unless post.video.blank? %><br>
 
-	<%= attachment_image_tag post, :image, :fill, 150, 150, format: "jpeg", fallback: "no_post_image.jpg",size:150,class: "image" %><br>
 	<%= link_to post_path(post.id) do %>
 		<%= post.title %>
 	  	<%= post.body %>

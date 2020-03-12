@@ -8,7 +8,9 @@
     </div>
   </div>
   <!-- 投稿一覧 -->
-    <%= render @posts %>
+    <div class="post-index">
+      <%= render @posts %>
+    </div>
 <% else %>
   <div class="user-infomation">
     <h1><%=@user.name%>さんのページ</h1>

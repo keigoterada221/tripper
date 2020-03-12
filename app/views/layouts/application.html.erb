@@ -10,8 +10,6 @@
   </head>
 
   <body>
-
-    
   <!-- ヘッダー -->
     <header>
       <% if user_signed_in? %>
@@ -30,7 +28,9 @@
       <% end %>
     </header>
 
-    <div class="content"><%= yield %></div>
+    <div class="content">
+      <div class="main"><%= yield %></div>
+    </div>
 
       <footer >
         <% if user_signed_in? %>
@@ -40,10 +40,12 @@
           <%= link_to favorites_path do %>
             <i class="fas fa-star fa-3x" style="color: yellow;"></i>
           <% end %>
-          <%= link_to "通知" %>
+          <%= link_to "" do %>
+            <i class="fas fa-bell fa-3x" style="color: blue"></i>
+          <% end %>
             <!-- <i class="far fa-envelope"></i> -->
           <%= link_to new_post_path do %>
-            <i class="fas fa-plus-circle fa-3x"></i>
+            <i class="fas fa-plus-circle fa-3x"style="color: blue"></i>
           <% end %>
         <!-- < elsif admin_signed_in? %> -->
           <!-- <= link_to "ユーザー一覧" %> -->
@@ -53,7 +55,6 @@
           <p>©Tripper Production by Keigo Terada</p>
         <% end %>
       </footer>
-
 
   </body>
 </html>

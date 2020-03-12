@@ -1,17 +1,20 @@
 class User::HomesController < ApplicationController
 
 	def top
-		@posts = Post.all.order(created_at: :desc)
 		if params[:sort_select] == "新着順"
-		    @posts = Post.all.order(created_at: :desc)
+			words = Post.search(params[:word_search])
+		    @posts = words.all.order(created_at: :desc)
 		elsif params[:sort_select] == "いいね数順"
-    		@posts = Post.find(Favorite.group(:post_id).order("count(post_id)desc").limit(10).pluck(:post_id))
+			words = Post.search(params[:word_search])
+			@posts = words.sort{|a,b| b.favorites.size <=> a.favorites.size}
     	elsif params[:sort_select] == "コメント数順"
-    		@posts = Post.find(Comment.group(:post_id).order("count(post_id)desc").limit(10).pluck(:post_id))
+    		words = Post.search(params[:word_search])
+			@posts = words.sort{|a,b| b.comments.size <=> a.comments.size}
+    	else
+    		@posts = Post.all.order(created_at: :desc)
 		end
 	end
 
 	def about
 	end
-
 end

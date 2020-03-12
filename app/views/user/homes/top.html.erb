@@ -1,10 +1,15 @@
 <h1>トップ画面</h1>
 <% if user_signed_in? %>
+	<!-- 投稿並び替え機能 -->
  	<div class="sort-search" >
  		<%= form_with url:"/",method: :get,local: true do |f| %>
- 			<%= f.select :sort_select,[["新着順","新着順"],["いいね数順","いいね数順"],["コメント数順","コメント数順"]] %>
- 			<%= f.submit "並び替える" %>
+ 			<%= f.select :sort_select,[["新着順","新着順"],["いいね数順","いいね数順"],["コメント数順","コメント数順"]], {include_blank: '並び替え'} %>
+ 			<%= f.text_field :word_search, placeholder: "検索ワード入力" %>
+ 			<%= f.submit "検索する" %>
  		<% end %>
  	</div>
 <% end %>
-<%= render @posts %>
+<!-- 投稿一覧 -->
+<div >
+  <%= render @posts %>
+</div>

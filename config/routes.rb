@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root to: "user/homes#top"
   get "about" => "user/homes#about"
   get "favorites" => "user/users#favorite" ,as: :favorites
-  get "posts/search" => "user/search#posts_sort",as:"posts_sort"
+  # get "search" => "user/homes#search",as:"search"
   devise_for :users
   devise_for :admins
   # namespaceと違いurl,pathがそのままで使用可能
