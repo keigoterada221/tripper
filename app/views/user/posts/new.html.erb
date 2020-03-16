@@ -1,13 +1,18 @@
+<div class="post-new">
 <h1>新規投稿</h1>
-
-<%= form_with model:@post,url:posts_path,method: :post, local: true do |f| %>
-  <%= f.label :name,"投稿画像" %><br />
-  <%= attachment_image_tag @post, :image, :fill, 300, 300, format: "jpeg", fallback: "no_post_image.jpg",size:300,class: "image" %><br>
-  <%= f.file_field :video,accept: "video/*" %><br>
-
-  <%= f.label :title,"タイトル" %><br>
-  <%= f.text_field :title %><br>
-  <%= f.label :body,"説明文" %><br>
-  <%= f.text_area :body %><br>
-  <%= f.submit "投稿する" %>
-<% end %>
+	<%= form_with model:@post,url:posts_path,method: :post, local: true do |f| %>
+	  <%= f.label :video,"投稿動画",id: "movie-preview" %><br />
+	  <%= f.file_field :video,accept: "video/*", id: "upload-video" %><br>
+	  <%= f.label :title,"タイトル" %><br>
+	  <%= f.text_field :title %><br>
+	  <%= f.label :destination,"訪問地の住所or名称" %><br>
+	  <%= f.text_field :destination %><br>
+	  <%= f.label :body,"説明文" %><br>
+	  <%= f.text_area :body %><br>
+	  <%= f.label :prefecture_id,"訪問先の都道府県を選択してください" %><br>
+	  <%= f.collection_select :prefecture_id, Prefecture.all,:id,:name,:include_blank =>"都道府県選択" %><br>
+	  <%= f.submit "投稿する" %>
+	<% end %>
+	<!-- 動画のプレビュー機能 -->
+	<%= javascript_include_tag('video_preview.js') %>
+</div>

@@ -44,6 +44,9 @@ header>div:first-child {
 /*メイン*/
 .content {
 	display: flex;
+	width: 100%;
+	margin-bottom: 100px;
+	justify-content: center;
 }
 
 /*フッター*/
@@ -57,7 +60,9 @@ footer {
     bottom: 0;
 	background-color: #708090;
 }
-
+#map {
+	height: 500px; width: 500px; margin: 50px auto;
+}
 .current_user_image {
 	border-radius: 50%;
 	border: 5px solid rgba(180, 255, 180,0.5);
@@ -65,4 +70,8 @@ footer {
 .user_image {
 	border-radius: 50%;
 	border: 5px solid rgba(180, 180, 255,0.5);
+}
+.post-index {
+	display: flex;
+	flex-direction: column;
 }

@@ -1,25 +1,31 @@
-<h1>投稿詳細</h1>
-<%= link_to @post.user.name,user_path(@post.user.id) %>
-<%= @post.title %>
-<%= @post.body %>
-<% if @post.user_id == current_user.id %>
-  <%= link_to "編集する",edit_post_path(@post.id) %>
-  <%= link_to "削除",post_path(@post.id),method: :delete %>
-<% end %>
+<div class="post-show">
+	<h1>投稿詳細</h1>
+	<%= link_to @post.user.name,user_path(@post.user.id) %><br>
+	<%= video_tag @post.video.url, width: "80%",loop: true,autoplay: true,muted: true unless @post.video.blank? %><br>
+	<%= @post.title %>
+	<%= @post.body %>
+	<% if @post.user_id == current_user.id %>
+	  <%= link_to "編集する",edit_post_path(@post.id) %>
+	  <%= link_to "削除",post_path(@post.id),method: :delete %>
+	<% end %>
 
-<!-- お気に入り機能 -->
-<div id="favorite-<%= @post.id %>">
-  <%= render "user/favorites/favorite",post: @post %>
-</div>
-<!-- コメント数 -->
-<%= render "user/comments/count",post: @post %>
-<!-- コメント機能 -->
-<h2><%= @comments.count %>件のコメント</h2>
-<div id="comment">
-  <%= render @comments %>
-</div>
+	<!-- お気に入り機能 -->
+	<div id="favorite-<%= @post.id %>">
+	  <%= render "user/favorites/favorite",post: @post %>
+	</div>
+	<!-- コメント数 -->
+	<%= render "user/comments/count",post: @post %>
+	<!-- コメント機能 -->
+	<h2><%= @comments.count %>件のコメント</h2>
+	<div id="comment">
+	  <%= render @comments %>
+	</div>
 
-<%= form_with model:[@post,@comment],url:post_comments_path(@post.id),method: :post,remote: true do |f| %>
-  <%= f.text_area :comment %><br>
-  <%= f.submit "コメントを投稿する" %>
-<% end %>
+	<%= form_with model:[@post,@comment],url:post_comments_path(@post.id),method: :post,remote: true do |f| %>
+	  <%= f.text_area :comment %><br>
+	  <%= f.submit "コメントを投稿する" %>
+	<% end %>
+	<!-- 旅先の地図を表示 -->
+	<div id="map" data-address-id="<%= @post.destination %>"></div>
+	<%= javascript_include_tag('map.js') %>
+</div>

@@ -18,6 +18,9 @@ class User < ApplicationRecord
   def followed_by?(user)
   	passive_relationships.find_by(following_id: user.id).present?
   end
-
+  # 退会済みユーザーのログイン不可
+  def active_for_authentication?
+    super && status?
+  end
   attachment :profile_image
 end

@@ -1,30 +1,32 @@
-<div class="post-index-contents">
-	<% if post.user_id == current_user.id %>
-		<%= attachment_image_tag post.user, :profile_image, :fill, 50,50, format: "jpeg", fallback: "no_image.jpg",size:50 ,class: "current_user_image" %>
-	<% else %>
-		<%= attachment_image_tag post.user, :profile_image, :fill, 50,50, format: "jpeg", fallback: "no_image.jpg",size:50 ,class: "user_image" %>
-	<% end %>
+<div class="list-item">
+	<div class="post-info">
+		<% if post.user_id == current_user.id %>
+			<%= attachment_image_tag post.user, :profile_image, :fill, 100,100, format: "jpeg", fallback: "no_image.jpg",size:100 ,class: "current_user_image" %>
+		<% else %>
+			<%= attachment_image_tag post.user, :profile_image, :fill, 100,100, format: "jpeg", fallback: "no_image.jpg",size:100 ,class: "user_image" %>
+		<% end %>
 
-	<%= link_to post.user.name,user_path(post.user.id) %>
+		<%= link_to post.user.name,user_path(post.user.id) %>
 
+    </div>
 	<!-- 投稿動画表示 -->
-	<%= video_tag post.video.url, width: "30%", height: "30%",loop: true,autoplay: true,muted: true unless post.video.blank? %><br>
-
+	<%= video_tag post.video.url, width: "100%",loop: true,autoplay: true,muted: true unless post.video.blank? %><br>
 	<%= link_to post_path(post.id) do %>
 		<%= post.title %>
-	  	<%= post.body %>
 
-	  <% if post.user_id == current_user.id %>
-	  		<%= link_to "投稿を編集",edit_post_path(post.id) %>
-	 		<%= link_to "削除",post_path(post.id),method: :delete %>
-	  <% end %>
-
+		<% if post.user_id == current_user.id %>
+			<%= link_to "投稿を編集",edit_post_path(post.id) %>
+			<%= link_to "削除",post_path(post.id),method: :delete %>
+		<% end %>
 	<% end %>
-
-	<!-- お気に入り機能 -->
-	<span id="favorite-<%= post.id %>">
-		<%= render "user/favorites/favorite",post: post %>
-	</span>
-	<!-- コメント数 -->
-	<%= render "user/comments/count",post: post %><br>
+	<div class="favorite_comment">
+		<!-- お気に入り機能 -->
+		<span id="favorite-<%= post.id %>">
+			<%= render "user/favorites/favorite",post: post %>
+		</span>
+		<!-- コメント数 -->
+		<span class="comment-count">
+			<%= render "user/comments/count",post: post %><br>
+		</span>
+    </div>
 </div>

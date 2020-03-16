@@ -1,0 +1,9 @@
+<div>
+<h1>都道府県別投稿一覧</h1>
+<h2>
+	<% @prefecture.each do |k| %>
+	<%= k.name %>
+	<% end %>に関する投稿
+</h2>
+<%= render partial: "user/posts/post",collection: @posts %>
+</div>

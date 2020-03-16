@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   root to: "user/homes#top"
   get "about" => "user/homes#about"
-  get "favorites" => "user/users#favorite" ,as: :favorites
-  # get "search" => "user/homes#search",as:"search"
+  get "favorites" => "user/users#favorite" , as: :favorites
+  get "prefecture" => "user/homes#prefecture", as: :prefecture
   devise_for :users
   devise_for :admins
   # namespaceと違いurl,pathがそのままで使用可能
@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       # idが含まれるルーティングを作成
       get :follows,on: :member
       get :followers,on: :member
+      get :withdraw
     end
 
     resources :posts do

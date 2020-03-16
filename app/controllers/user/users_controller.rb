@@ -32,10 +32,15 @@ class User::UsersController < ApplicationController
 	end
 
 	def destroy
+		user = current_user
+		user.status = false
+		user.save
+		sign_out(user)
+		redirect_to root_path
 	end
 
 	def favorite
-		@favorites = Favorite.where(user_id: current_user.id)
+		@favorites = Favorite.where(user_id: current_user.id).order(created_at: :desc)
 	end
 
 	private
