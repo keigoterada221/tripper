@@ -44,8 +44,15 @@
           <%= link_to favorites_path do %>
             <i class="fas fa-star fa-3x" style="color: yellow;"></i>
           <% end %>
-          <%= link_to "" do %>
-            <i class="fas fa-bell fa-3x" style="color: blue"></i>
+          <%= link_to notifications_path do %>
+              <% if unchecked_notifications.any? %>
+                  <span class="fa-stack">
+                    <i class="fas fa-bell fa-3x fa-stack-2x" style="color: blue"></i>
+                     <i class="fas fa-circle n-circle fa-stack-1x"></i>
+                  </span>
+              <% else %>
+                  <i class="fas fa-bell fa-3x" style="color: blue"></i>
+              <% end %>
           <% end %>
             <!-- <i class="far fa-envelope"></i> -->
           <%= link_to new_post_path do %>

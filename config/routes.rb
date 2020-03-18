@@ -22,6 +22,8 @@ Rails.application.routes.draw do
         resource :comment_favorites, only: [:create,:destroy]
       end
     end
+
+    resources :notifications, only: [:index]
   end
 
   scope module: :admin do

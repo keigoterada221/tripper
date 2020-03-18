@@ -1,0 +1,6 @@
+
+<% if @notifications.exists? %>
+	<div class="notification"><%= render @notifications %></div>
+<% else %>
+	<%= "通知はありません" %>
+<% end %>

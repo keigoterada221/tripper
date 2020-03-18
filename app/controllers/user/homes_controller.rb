@@ -14,7 +14,7 @@ class User::HomesController < ApplicationController
 
 		if params[:sort_select] == "新着順"
 			words = Post.search(params[:word_search])
-		    @posts = words.all.order(created_at: :desc)
+		    @posts = words.all
 		elsif params[:sort_select] == "いいね数順"
 			words = Post.search(params[:word_search])
 			@posts = words.sort{|a,b| b.favorites.size <=> a.favorites.size}
@@ -23,9 +23,9 @@ class User::HomesController < ApplicationController
 			@posts = words.sort{|a,b| b.comments.size <=> a.comments.size}
     	elsif params[:sort_select] == ""
     		words = Post.search(params[:word_search])
-    		@posts = words.all.order(created_at: :desc)
+    		@posts = words.all
     	else
-    		@posts = Post.all.order(created_at: :desc)
+    		@posts = Post.all
 		end
 	end
 

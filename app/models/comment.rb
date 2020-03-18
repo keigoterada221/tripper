@@ -5,4 +5,6 @@ class Comment < ApplicationRecord
 	def comment_favorite_by?(user)
 		comment_favorites.where(user_id: user.id,post_id: post.id).exists?
     end
+    # 通知
+	has_many :notifications, dependent: :destroy
 end
