@@ -1,8 +1,12 @@
 <div class="post-new">
 <h1>新規投稿</h1>
 	<%= form_with model:@post,url:posts_path,method: :post, local: true do |f| %>
-	  <%= f.label :video,"投稿動画",id: "movie-preview" %><br />
+	<!-- 動画投稿＆プレビュー -->
+	  <%= f.label :video,"投稿動画",id: "movie-preview" %><br>
 	  <%= f.file_field :video,accept: "video/*", id: "upload-video" %><br>
+	<!-- 画像投稿＆プレビュー -->
+	  <%= f.label :image,"サムネイル",id: "image-preview" %><br>
+	  <%= f.attachment_field :image %><br>
 	  <%= f.label :title,"タイトル" %><br>
 	  <%= f.text_field :title %><br>
 	  <%= f.label :destination,"訪問地の住所or名称" %><br>

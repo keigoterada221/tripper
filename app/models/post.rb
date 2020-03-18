@@ -13,6 +13,7 @@ class Post < ApplicationRecord
 	# モデルとアップローダーの紐付け
 	mount_uploader :video, VideoUploader
 	validates :title, :body, :presence => true
+	attachment :image
 
 	# 通知
 	has_many :notifications, dependent: :destroy

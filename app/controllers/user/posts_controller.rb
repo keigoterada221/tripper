@@ -40,6 +40,6 @@ class User::PostsController < ApplicationController
 
 	private
 	def post_params
-		params.require(:post).permit(:title,:body,:video,:prefecture_id,:destination)
+		params.require(:post).permit(:title,:body,:video,:image,:prefecture_id,:destination)
 	end
 end

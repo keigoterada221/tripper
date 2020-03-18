@@ -1,6 +1,8 @@
 class User::HomesController < ApplicationController
 
 	def top
+		
+
 		# 地方リスト
 		@prefectures = Prefecture.all
 		@hokkaido = Prefecture.where(id: 1)

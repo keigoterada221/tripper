@@ -10,7 +10,7 @@
 
     </div>
 	<!-- 投稿動画表示 -->
-	<%= video_tag post.video.url, width: "100%",loop: true,autoplay: true,muted: true unless post.video.blank? %><br>
+	<%= video_tag post.video.url, width: "100%",loop: true,muted: true,controls: true,poster: attachment_url(post, :image, :fill, 1100, 600, format: "jpg") unless post.video.blank? %><br>
 	<%= link_to post_path(post.id) do %>
 		<%= post.title %>
 

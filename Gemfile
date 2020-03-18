@@ -73,6 +73,7 @@ gem "carrierwave"
 gem "mini_magick"
 gem "jquery-rails"
 gem "dotenv-rails"
+gem "carrierwave-video"
 
 # group :production do
 #   gem "fog"
