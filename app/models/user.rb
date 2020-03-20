@@ -4,6 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  # デフォルトで新着順に並ぶようにする
+  default_scope -> { order(created_at: :desc) }
+
   has_many :posts,dependent: :destroy
   has_many :favorites,dependent: :destroy
   has_many :comments,dependent: :destroy
@@ -32,10 +35,15 @@ class User < ApplicationRecord
       notification.save
     end
   end
-
   # 退会済みユーザーのログイン不可
   def active_for_authentication?
     super && status?
+  end
+  # 名前検索機能
+  def self.usersearch(search)
+    if search
+      self.where(["name LIKE ?", "%#{search}%"])
+    end
   end
   attachment :profile_image
 end

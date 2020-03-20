@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-
+# 都道府県データ
 require 'csv'
 require 'zip'
 DLURL           = "http://www.post.japanpost.jp/zipcode/dl/kogaki/zip/ken_all.zip"
@@ -31,6 +31,10 @@ end
 # 保存後に削除
 File.unlink savePath
 
+  Admin.create!(
+    email: ENV['ADMIN_EMAIL'],
+    password: ENV['ADMIN_PASSWORD'],
+    )
 
 [
   [ '山田', '1231111', '宝塚市','安倉', 'a@a', 'aaaaaa', '09011112222'],

@@ -1,0 +1,5 @@
+<% if user.status.present? %>
+	<%= button_to "有効会員",admin_user_path(user.id),method: :patch, remote: true, params: {user_status: "有効会員"} %>
+<% else %>
+	<%= button_to "退会済み",admin_user_path(user.id),method: :patch, remote: true, params: {user_status: "退会済み"} %>
+<% end %>

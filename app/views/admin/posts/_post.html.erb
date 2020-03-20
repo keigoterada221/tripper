@@ -1,0 +1,15 @@
+ <!-- 投稿動画表示 -->
+<% posts.each do |post| %>
+    <%= link_to admin_post_path(post.id) do %>
+    	<%= post.user.name %>
+        <%= post.title %>
+    <% end %>
+    <%= video_tag post.video.url, width: "600px",loop: true,muted: true,controls: true,poster: attachment_url(post, :image, :fill, 600, 600, format: "jpg") unless post.video.blank? %><br>
+    <div>
+        <i class="fas fa-star fa-2x" aria-hidden="true" style="color: yellow;"></i>×
+        <%= post.favorites.count %>
+        <i class="fas fa-comment fa-2x" style="color: rgba(60,60,60);"></i>×
+        <%= post.comments.count %>
+        <%= link_to "削除",admin_post_path(post.id),method: :delete %>
+    </div>
+<% end %>

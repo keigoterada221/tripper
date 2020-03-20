@@ -2,7 +2,7 @@
 <h1>いいねした投稿一覧</h1>
   <% @favorites.each do |favorite| %>
     <!-- 投稿動画表示 -->
-    <%= video_tag favorite.post.video.url, width: "80%",loop: true,autoplay: true,muted: true unless favorite.post.video.blank? %><br>
+    <%= video_tag favorite.post.video.url, width: "1100px",loop: true,muted: true,controls: true,poster: attachment_url(favorite.post, :image, :fill, 1100, 600, format: "jpg") unless favorite.post.video.blank? %><br>
     <%= favorite.post.user.name %>
     <%= favorite.post.title %>
   <!-- いいね機能 -->

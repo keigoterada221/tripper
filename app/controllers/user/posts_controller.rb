@@ -13,13 +13,13 @@ class User::PostsController < ApplicationController
 
 	def index
 		# フォローしているユーザーと自分の投稿
-			@posts = Post.where(user_id: current_user.followings).or(Post.where(user_id: current_user.id))
+		@posts = Post.where(user_id: current_user.followings).or(Post.where(user_id: current_user.id))
 	end
 
 	def show
 		@post = Post.find(params[:id])
 		@comment = Comment.new
-		@comments = @post.comments.order(created_at: :desc)
+		@comments = @post.comments.sort{|a,b| b.comment_favorites.size <=> a.comment_favorites.size}
 	end
 
 	def edit

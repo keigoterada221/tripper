@@ -10,21 +10,24 @@
     <script src="https://kit.fontawesome.com/168debbf27.js" crossorigin="anonymous"></script>
     <!-- GoogleAPI -->
     <script src="http://maps.google.com/maps/api/js?key=<%= ENV['GOOGLEMAP_KEY'] %>&callback=getLatLng" async defer></script>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
   <!-- ヘッダー -->
     <header>
-      <% if user_signed_in? %>
+      <!-- 管理者 -->
+      <% if admin_signed_in? %>
+        <div>管理者</div>
+        <div><%= link_to "退出",destroy_admin_session_path,method: :delete %></div>
+      <!-- ログインユーザー -->
+      <% elsif user_signed_in? %>
         <div><%= attachment_image_tag current_user, :profile_image, :fill, 70, 70, format: "jpeg", fallback: "no_image.jpg",size:70 ,class: "current_user_image" %></div>
         <div><%= link_to "ログアウト",destroy_user_session_path,method: :delete %></div>
         <div><%= link_to "アバウト",about_path %></div>
         <div><%= link_to "マイページ",user_path(current_user.id) %></div>
         <div><%= link_to "トップへ",root_path %></div>
-      <!-- < elsif admin_signed_in? %> -->
-        <!-- <h1>管理者画面です</h1> -->
       <% else %>
         <div>ようこそ！ゲストユーザー様</div>
         <div><%= link_to "ログイン",new_user_session_path %></div>
@@ -58,12 +61,12 @@
           <%= link_to new_post_path do %>
             <i class="fas fa-plus-circle fa-3x"style="color: blue"></i>
           <% end %>
-        <!-- < elsif admin_signed_in? %> -->
-          <!-- <= link_to "ユーザー一覧" %> -->
-          <!-- <= link_to "投稿一覧" %> -->
-          <!-- <= link_to "トップ画面" %> -->
+        <% elsif admin_signed_in? %>
+            <%= link_to "ユーザー一覧",admin_users_path %>
+            <%= link_to "投稿一覧",admin_posts_path %>
+            <%= link_to "トップ画面",admin_top_path %>
         <% else %>
-          <p>©Tripper Production by Keigo Terada</p>
+            <p>©Tripper Production by Keigo Terada</p>
         <% end %>
       </footer>
 

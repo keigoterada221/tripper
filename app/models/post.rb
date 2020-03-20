@@ -54,7 +54,7 @@ class Post < ApplicationRecord
 	# ワード検索機能
 	def self.search(search)
 		if search
-			Post.where(["title LIKE ? OR body LIKE ?", "%#{search}%", "%#{search}%"])
+			self.where(["title LIKE ? OR body LIKE ?", "%#{search}%", "%#{search}%"])
 		end
 	end
 end
