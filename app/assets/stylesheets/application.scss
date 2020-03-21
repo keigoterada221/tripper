@@ -10,8 +10,6 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
  */
 * {
 	margin: 0;
@@ -21,44 +19,50 @@
 a {
 	text-decoration: none;
 }
-html {
-	position: relative;
+body {
+	background-color: #212121 !important;
+	color: #e0e0e0 !important;
+}
+input[type=checkbox] {
+  transform: scale(2.0);
+  margin: 5px;
+}
+.container {
+	max-width: 90% !important;
+	margin-bottom: 100px;
+}
+.navbar {
+	text-align: center;
 }
 /*ヘッダー*/
 header {
-	align-items: center;
-	display: flex;
 	height: 100px;
-    top: 0px;
-	position: -webkit-sticky;
-    position: sticky;
-	background-color: #708090;
+	background-color: #28385E;
 }
-header > div{
-	margin-right: 20px;
+header h1 {
+	font-family: 'Liu Jian Mao Cao', cursive;
+	font-size: 60px;
+	position: absolute;
+	top: 5px;
+	right: 0;
+	left: 0;
+	margin: 0 auto;
+	color: #DDDDDD;
 }
-header>div:first-child {
-    margin-right:auto;
-    margin-left: 20px;
+ul {
+	list-style: none;
 }
-/*メイン*/
-.content {
-	display: flex;
-	width: 100%;
-	margin-bottom: 100px;
-	justify-content: center;
+li {
+	list-style: none;
 }
-
 /*フッター*/
 footer {
-	align-items: center;
-	display: flex;
-	justify-content: space-around;
-    width: 100%;
 	height: 100px;
-	position: fixed;
-    bottom: 0;
-	background-color: #708090;
+	padding: 20px 100px;
+	background-color: #28385E;
+}
+.footer-text {
+	margin: 0 auto;
 }
 .n-circle {
   position: absolute;
@@ -76,8 +80,4 @@ footer {
 .user_image {
 	border-radius: 50%;
 	border: 5px solid rgba(180, 180, 255,0.5);
-}
-.post-index {
-	display: flex;
-	flex-direction: column;
 }

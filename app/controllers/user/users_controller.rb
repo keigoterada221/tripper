@@ -20,12 +20,12 @@ class User::UsersController < ApplicationController
 
 	def follows
 		user = User.find(params[:id])
-		@users = user.followings.order(created_at: :desc)
+		@users = user.followings.where(status: true)
 	end
 
 	def followers
 		user = User.find(params[:id])
-		@users = user.followers.order(created_at: :desc)
+		@users = user.followers.where(status: true)
 	end
 
 	def withdraw

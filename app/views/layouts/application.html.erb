@@ -1,74 +1,106 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Tripper</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <!-- JQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-    <!-- FontAwesome -->
-    <script src="https://kit.fontawesome.com/168debbf27.js" crossorigin="anonymous"></script>
-    <!-- GoogleAPI -->
-    <script src="http://maps.google.com/maps/api/js?key=<%= ENV['GOOGLEMAP_KEY'] %>&callback=getLatLng" async defer></script>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+    <head>
+        <title>Tripper</title>
+        <%= csrf_meta_tags %>
+        <%= csp_meta_tag %>
+        <!-- JQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+        <!-- FontAwesome -->
+        <script src="https://kit.fontawesome.com/168debbf27.js" crossorigin="anonymous"></script>
+        <!-- GoogleAPI -->
+        <script src="http://maps.google.com/maps/api/js?key=<%= ENV['GOOGLEMAP_KEY'] %>&callback=getLatLng" async defer></script>
+        <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+        <!-- bootstrap4導入(CDN) -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <!-- Googlefont -->
+        <style>@import url('https://fonts.googleapis.com/css?family=Liu+Jian+Mao+Cao&display=swap');</style>
+        <!-- FontAwesomeアニメーション -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.2.1/font-awesome-animation.css" type="text/css" media="all" />
+    </head>
 
-  <body>
-  <!-- ヘッダー -->
-    <header>
-      <!-- 管理者 -->
-      <% if admin_signed_in? %>
-        <div>管理者</div>
-        <div><%= link_to "退出",destroy_admin_session_path,method: :delete %></div>
-      <!-- ログインユーザー -->
-      <% elsif user_signed_in? %>
-        <div><%= attachment_image_tag current_user, :profile_image, :fill, 70, 70, format: "jpeg", fallback: "no_image.jpg",size:70 ,class: "current_user_image" %></div>
-        <div><%= link_to "ログアウト",destroy_user_session_path,method: :delete %></div>
-        <div><%= link_to "アバウト",about_path %></div>
-        <div><%= link_to "マイページ",user_path(current_user.id) %></div>
-        <div><%= link_to "トップへ",root_path %></div>
-      <% else %>
-        <div>ようこそ！ゲストユーザー様</div>
-        <div><%= link_to "ログイン",new_user_session_path %></div>
-        <div><%= link_to "新規登録",new_user_registration_path %></div>
-        <div><%= link_to "アバウト",about_path %></div>
-        <div><%= link_to "トップへ",root_path %></div>
-      <% end %>
-    </header>
+    <body>
+        <div class="back">
+        <!-- ヘッダー -->
+            <header class="sticky-top">
+              <!-- 管理者 -->
+                <div class="navbar">
+                    <% if admin_signed_in? %>
+                      <h2>管理者</h2>
+                      <%= link_to "退出",destroy_admin_session_path,method: :delete %>
+                    <!-- ログインユーザー -->
+                    <% elsif user_signed_in? %>
+                      <%= attachment_image_tag current_user, :profile_image, :fill, 70, 70, format: "jpeg", fallback: "no_image.jpg",size:70 ,class: "current_user_image" %>
+                      <%= link_to root_path do %>
+                          <h1>Tripper</h1>
+                      <% end %>
+                      <li class="nav-item dropdown">
+                          <a class="btn btn-secondary dropdown-toggle" href="#" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="margin-right: 50px;">メニュー</a>
+                          <div class="dropdown-menu">
+                              <%= link_to "ログアウト",destroy_user_session_path,method: :delete, class: "dropdown-item" %>
+                              <%= link_to "アバウト",about_path, class: "dropdown-item" %>
+                              <%= link_to "マイページ",user_path(current_user.id), class: "dropdown-item" %>
+                              <%= link_to "トップへ",root_path, class: "dropdown-item" %>
+                          </div>
+                      </li>
+                    <% else %>
+                      <h2>ようこそ！ゲストユーザー様</h2>
+                          <%= link_to root_path do %>
+                              <h1>Tripper</h1>
+                          <% end %>
+                      <li class="nav-item dropdown">
+                          <a class="btn btn-secondary dropdown-toggle" href="#" data-toggle="dropdown" style="margin-right: 50px;">メニュー</a>
+                          <div class="dropdown-menu">
+                              <%= link_to "ログイン",new_user_session_path, class: "dropdown-item" %>
+                              <%= link_to "新規登録",new_user_registration_path, class: "dropdown-item" %>
+                              <%= link_to "アバウト",about_path, class: "dropdown-item" %>
+                              <%= link_to "トップへ",root_path, class: "dropdown-item" %>
+                          </div>
+                    </li>
+                    <% end %>
+                </div>
+            </header>
 
-    <div class="content"><%= yield %></div>
+            <div class="container"><%= yield %></div>
 
-      <footer >
-        <% if user_signed_in? %>
-          <%= link_to posts_path do %>
-            <i class="fas fa-home fa-3x" style="color: blue;"></i>
-          <% end %>
-          <%= link_to favorites_path do %>
-            <i class="fas fa-star fa-3x" style="color: yellow;"></i>
-          <% end %>
-          <%= link_to notifications_path do %>
-              <% if unchecked_notifications.any? %>
-                  <span class="fa-stack">
-                    <i class="fas fa-bell fa-3x fa-stack-2x" style="color: blue"></i>
-                     <i class="fas fa-circle n-circle fa-stack-1x"></i>
-                  </span>
-              <% else %>
-                  <i class="fas fa-bell fa-3x" style="color: blue"></i>
-              <% end %>
-          <% end %>
-            <!-- <i class="far fa-envelope"></i> -->
-          <%= link_to new_post_path do %>
-            <i class="fas fa-plus-circle fa-3x"style="color: blue"></i>
-          <% end %>
-        <% elsif admin_signed_in? %>
-            <%= link_to "ユーザー一覧",admin_users_path %>
-            <%= link_to "投稿一覧",admin_posts_path %>
-            <%= link_to "トップ画面",admin_top_path %>
-        <% else %>
-            <p>©Tripper Production by Keigo Terada</p>
-        <% end %>
-      </footer>
-
-  </body>
+            <footer class="fixed-bottom">
+                <div class="navbar">
+                    <% if user_signed_in? %>
+                        <%= link_to posts_path,class: "nav-item" do %>
+                          <i class="fas fa-home fa-3x faa-vertical animated-hover" style="color: #CCCCCC;;"></i>
+                        <% end %>
+                        <%= link_to favorites_path,class: "nav-item" do %>
+                          <i class="fas fa-star fa-3x faa-shake animated-hover" style="color: #CCCCCC;;"></i>
+                        <% end %>
+                        <%= link_to notifications_path,class: "nav-item" do %>
+                            <% if unchecked_notifications.any? %>
+                                <span class="fa-stack">
+                                    <i class="fas fa-bell fa-3x fa-stack-2x faa-ring animated" style="color: #CCCCCC;"></i>
+                                    <i class="fas fa-circle n-circle fa-stack-1x"></i>
+                                </span>
+                            <% else %>
+                                <i class="fas fa-bell fa-3x faa-ring animated-hover" style="color: #CCCCCC;"></i>
+                            <% end %>
+                        <% end %>
+                        <!-- <i class="far fa-envelope"></i> -->
+                        <%= link_to new_post_path,class: "nav-item" do %>
+                            <i class="fas fa-plus-circle fa-3x faa-spin animated-hover"style="color: #CCCCCC;"></i>
+                        <% end %>
+                    <% elsif admin_signed_in? %>
+                        <%= link_to "ユーザー一覧",admin_users_path %>
+                        <%= link_to "投稿一覧",admin_posts_path %>
+                        <%= link_to "トップ画面",admin_top_path %>
+                    <% else %>
+                        <p class="footer-text">©Tripper Production by Keigo Terada</p>
+                    <% end %>
+                </div>
+            </footer>
+            <!-- bootstrap4導入(CDN) -->
+            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        </div>
+    </body>
 </html>

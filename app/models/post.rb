@@ -2,18 +2,19 @@ class Post < ApplicationRecord
 	# デフォルトで新着順に並ぶようにする
 	default_scope -> { order(created_at: :desc) }
 	belongs_to :user
+	has_many :comments,dependent: :destroy
+	belongs_to :prefecture
+
+	validates :title, :body, :presence => true
+	attachment :image
+
 	has_many :favorites,dependent: :destroy
 	def favorite_by?(user)
 		# お気に入りの中にuser_id存在していたらtrue
 		favorites.where(user_id: user.id).exists?
 	end
-
-	has_many :comments,dependent: :destroy
-	belongs_to :prefecture
 	# モデルとアップローダーの紐付け
 	mount_uploader :video, VideoUploader
-	validates :title, :body, :presence => true
-	attachment :image
 
 	# 通知
 	has_many :notifications, dependent: :destroy

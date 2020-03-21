@@ -1,21 +1,51 @@
-<div>
-	<h1>トップ画面</h1>
-		<!-- 都道府県検索ボックス -->
-		<%= render "user/homes/prefecture_box",prefectures: @prefectures %>
+<h1>トップ画面</h1>
+<!-- 都道府県検索ボックス -->
+<%= render "user/homes/prefecture_box",prefectures: @prefectures %>
 
-		<% if user_signed_in? %>
-			<!-- 投稿並び替え機能 -->
-		 	<div class="sort-search" >
-		 		<%= form_with url:"/",method: :get,local: true do |f| %>
-		 			<%= f.select :sort_select,[["新着順","新着順"],["いいね数順","いいね数順"],["コメント数順","コメント数順"]], {include_blank: '並び替え'} %>
-		 			<%= f.text_field :word_search, placeholder: "検索ワード入力" %>
-		 			<%= f.submit "検索する" %>
-		 		<% end %>
-		 	</div>
-			<!-- 投稿一覧 -->
-			<div><%= render @posts %></div>
-		<% else %>
-			<!-- 非ログインユーザー用 -->
-			<div><%= render partial: "user/posts/guest_post", collection: @posts, as: "post" %></div>
+<% if user_signed_in? %>
+<!-- 投稿並び替え機能 -->
+	<div class="sort-search" >
+		<%= form_with url:"/",method: :get,local: true do |f| %>
+			<div class="btn-group">
+				<%= f.select :sort_select,[["新着順","新着順"],["いいね数順","いいね数順"],["コメント数順","コメント数順"]], {include_blank: '並び替え'} %>
+				<%= f.text_field :word_search, placeholder: "検索ワード入力", class: "form-control", :style=>"width: 200px;" %>
+				<%= f.submit "検索する",class: "btn btn-info" %>
+			</div>
 		<% end %>
+	</div>
+<% end %>
+
+
+
+<div class="row">
+	<% @posts.each do |post| %>
+		<div class="col-xl-6">
+			<% if user_signed_in? %>
+				<% if post.user_id == current_user.id %>
+					<%= attachment_image_tag post.user, :profile_image, :fill, 50,50, format: "jpeg", fallback: "no_image.jpg",size:50 ,class: "current_user_image" %>
+				<% else %>
+					<%= attachment_image_tag post.user, :profile_image, :fill, 50,50, format: "jpeg", fallback: "no_image.jpg",size:50 ,class: "user_image" %>
+				<% end %>
+
+				<%= link_to post.user.name,user_path(post.user.id) %>
+			<% end %>
+			<!-- 投稿動画表示 -->
+			<%= video_tag post.video.url, width: "100%",loop: true,muted: true,controls: true,poster: attachment_url(post, :image, :fill, 500, 500, format: "jpg") unless post.video.blank? %><br>
+			<%= link_to post_path(post.id) do %>
+				<%= post.title %>
+			<% end %>
+			<div class="favorite_comment">
+				<% if user_signed_in? %>
+					<!-- お気に入り機能 -->
+					<span id="favorite-<%= post.id %>">
+						<%= render "user/favorites/favorite",post: post %>
+					</span>
+					<!-- コメント数 -->
+					<span class="comment-count">
+						<%= render "user/comments/count",post: post %><br>
+					</span>
+				<% end %>
+		    </div>
+   	 	</div>
+    <% end %>
 </div>

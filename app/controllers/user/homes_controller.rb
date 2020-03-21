@@ -17,7 +17,8 @@ class User::HomesController < ApplicationController
 
 	def prefecture
 		@prefecture = Prefecture.where(id: params[:prefecture_code])
-		@posts = Post.where(prefecture_id: params[:prefecture_code])
+      	users = User.where(status: true)
+		@posts = Post.where(prefecture_id: params[:prefecture_code],user_id: users)
 	end
 
 	def about
