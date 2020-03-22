@@ -1,22 +1,30 @@
-<div class="post-new">
-<h1>新規投稿</h1>
-	<%= form_with model:@post,url:posts_path,method: :post, local: true do |f| %>
-	<!-- 動画投稿＆プレビュー -->
-	  <%= f.label :video,"投稿動画",id: "movie-preview" %><br>
-	  <%= f.file_field :video,accept: "video/*", id: "upload-video" %><br>
-	<!-- 画像投稿＆プレビュー -->
-	  <%= f.label :image,"サムネイル",id: "image-preview" %><br>
-	  <%= f.attachment_field :image %><br>
-	  <%= f.label :title,"タイトル" %><br>
-	  <%= f.text_field :title %><br>
-	  <%= f.label :destination,"訪問地の住所or名称" %><br>
-	  <%= f.text_field :destination %><br>
-	  <%= f.label :body,"説明文" %><br>
-	  <%= f.text_area :body %><br>
-	  <%= f.label :prefecture_id,"訪問先の都道府県を選択してください" %><br>
-	  <%= f.collection_select :prefecture_id, Prefecture.all,:id,:name,:include_blank =>"都道府県選択" %><br>
-	  <%= f.submit "投稿する" %>
-	<% end %>
-	<!-- 動画のプレビュー機能 -->
-	<%= javascript_include_tag('video_preview.js') %>
+<div class="row">
+	<h1 class="col-lg-12 mt-5 mb-4">新規投稿</h1>
+	<div class="col-lg-12" style="text-align: center;">
+		<%= form_with model:@post,url:posts_path,method: :post, local: true do |f| %>
+			<!-- 動画投稿＆プレビュー -->
+		  	<%= f.label :video,"投稿する動画を選択",id: "movie-preview",class: "mt-1 mx-auto" %><br>
+		  	<%= f.file_field :video,accept: "video/*", id: "upload-video" %><br>
+			<!-- 画像投稿＆プレビュー -->
+		  	<%= f.label :image,"サムネイルにする画像を選択",id: "image-preview",class: "mt-4 mx-auto" %><br>
+		  	<%= f.attachment_field :image %><br>
+		  	<div class="form-group w-50 mx-auto">
+				<%= f.label :title,"タイトル",class: "mt-4" %><br>
+				<%= f.text_field :title,class: "form-control" %><br>
+		    </div>
+		    <div class="form-group w-50 mx-auto">
+			    <%= f.label :destination,"訪問地の住所or名称" %><br>
+			    <%= f.text_field :destination,class: "form-control" %><br>
+		    </div>
+		    <div class="form-group w-50 mx-auto">
+			    <%= f.label :body,"説明文",class: "mt-4" %><br>
+			    <%= f.text_area :body,class: "form-control" %><br>
+		    </div>
+		    <%= f.label :prefecture_id,"訪問先の都道府県を選択してください",class: "mt-4 mx-auto" %><br>
+		    <%= f.collection_select :prefecture_id, Prefecture.all,:id,:name,:include_blank =>"都道府県選択" %><br>
+		    <%= f.submit "投稿する",class: "btn btn-outline-light mt-5 w-50" %>
+		<% end %>
+		<!-- 動画のプレビュー機能 -->
+		<%= javascript_include_tag('video_preview.js') %>
+	</div>
 </div>

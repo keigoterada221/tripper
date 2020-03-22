@@ -24,20 +24,25 @@ before_action :configure_permitted_parameters, if: :devise_controller?
   # 投稿並び替え
   def post_sort
       if params[:sort_select] == "新着順"
-          words = Post.search(params[:word_search])
-          @posts = words.all
+          users = User.where(status: true)
+          @posts = Post.search(params[:word_search]).where(user_id: users)
       elsif params[:sort_select] == "いいね数順"
-          words = Post.search(params[:word_search])
-          @posts = words.sort{|a,b| b.favorites.size <=> a.favorites.size}
+          users = User.where(status: true)
+          @posts = Post.where(user_id: users).search(params[:word_search]).sort{|a,b| b.favorites.size <=> a.favorites.size}
       elsif params[:sort_select] == "コメント数順"
-          words = Post.search(params[:word_search])
-          @posts = words.sort{|a,b| b.comments.size <=> a.comments.size}
+          users = User.where(status: true)
+          @posts = Post.where(user_id: users).search(params[:word_search]).sort{|a,b| b.comments.size <=> a.comments.size}
       elsif params[:sort_select] == ""
-          words = Post.search(params[:word_search])
-          @posts = words.all
+          users = User.where(status: true)
+          @posts = Post.search(params[:word_search]).where(user_id: users)
       else
-          @posts = Post.all
+          users = User.where(status: true)
+          @posts = Post.where(user_id: users)
       end
+  end
+
+  def true_users
+      users = User.where(status: true)
   end
 
   protected

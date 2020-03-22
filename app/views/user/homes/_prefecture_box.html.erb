@@ -1,6 +1,6 @@
 <div class="prefecture-box">
     <table>
-        <h2>エリア選択</h2>
+        <h2 class="my-3">エリア選択</h2>
     	<!-- 北海道地方 -->
         <td>
             <input type="checkbox" value="北海道地方" id="hokkaido-ck">
@@ -42,13 +42,13 @@
             <label>九州地方</label>
         </td>
     </table>
-    <h2>都道府県選択</h2>
-	<ul class="prefecture-list">
+    <h2 class="my-3">都道府県選択</h2>
+	<ul class="prefecture-list mb-4">
 	   <%= form_with url:"/prefecture",method: :get,local: true do |p| %>
 	       <li><%= p.collection_check_boxes :prefecture_code, prefectures, :id, :name,:style => "font-size: 40px;" %></li>
 	       <div class="btn-group">
-               <%= p.submit "選択した都道府県で絞り込む",class: "btn btn-default border-right" %>
-               <input type="button" value="全選択をリセット" id="reset-ck" class="btn btn-default">
+               <%= p.submit "選択した都道府県で絞り込む",class: "btn btn-outline-light" %>
+               <input type="button" value="全選択をリセット" id="reset-ck" class="btn btn-outline-light border-left">
            </div>
 	   <% end %>
        <!-- 選択をリセット -->

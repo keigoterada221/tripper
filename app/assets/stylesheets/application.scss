@@ -19,6 +19,9 @@
 a {
 	text-decoration: none;
 }
+p.break{
+  word-wrap: break-word;
+}
 body {
 	background-color: #212121 !important;
 	color: #e0e0e0 !important;
@@ -69,6 +72,9 @@ footer {
   padding-left: 1rem;
   padding-top: 0rem;
   color: #efa04c;
+}
+video[poster]{
+  object-fit: fill;
 }
 #map {
 	height: 500px; width: 500px; margin: 50px auto;

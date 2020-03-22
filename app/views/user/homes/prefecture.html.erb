@@ -1,9 +1,18 @@
-<div>
-<h1>都道府県別投稿一覧</h1>
-<h2>
-	<% @prefecture.each do |k| %>
-	<%= k.name %>
+<h1 class="mt-5 mb-4">都道府県別投稿一覧</h1>
+<h2 class="mb-3 ml-5">
+	<% @prefectures.each do |prefecture| %>
+	<%= prefecture.name %>
 	<% end %>に関する投稿
 </h2>
+<% if user_signed_in? %>
+   <!-- 投稿並び替え機能 -->
+	<div class="sort-search ml-5" >
+		<%= form_with url:"/prefecture",method: :get,local: true do |f| %>
+			<div class="btn-group mb-4">
+				<%= f.select :sort_select,[["新着順","新着順"],["いいね数順","いいね数順"],["コメント数順","コメント数順"]], {include_blank: '並び替え'} %>
+				<%= f.submit "並び替える",class: "btn btn-outline-info" %>
+			</div>
+		<% end %>
+	</div>
+<% end %>
 <%= render partial: "user/posts/post",collection: @posts %>
-</div>

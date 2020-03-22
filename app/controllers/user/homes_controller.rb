@@ -16,9 +16,18 @@ class User::HomesController < ApplicationController
 	end
 
 	def prefecture
-		@prefecture = Prefecture.where(id: params[:prefecture_code])
-      	users = User.where(status: true)
-		@posts = Post.where(prefecture_id: params[:prefecture_code],user_id: users)
+		@prefectures = Prefecture.where(id: params[:prefecture_code])
+	    if params[:sort_select] == "新着順"
+            @posts = Post.where(user_id: true_users)
+        elsif params[:sort_select] == "いいね数順"
+            @posts = Post.where(user_id: true_users).sort{|a,b| b.favorites.size <=> a.favorites.size}
+        elsif params[:sort_select] == "コメント数順"
+            @posts = Post.where(user_id: true_users).sort{|a,b| b.comments.size <=> a.comments.size}
+        elsif params[:sort_select] == ""
+            @posts = Post.where(user_id: true_users)
+        else
+            @posts = Post.where(prefecture_id: params[:prefecture_code],user_id: true_users)
+        end
 	end
 
 	def about

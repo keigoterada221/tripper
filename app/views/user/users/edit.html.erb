@@ -1,50 +1,35 @@
-<h1>ユーザー情報編集画面</h1>
+<h1 class="pt-5 mb-5">ユーザー情報編集画面</h1>
 <%= form_with model: @user,url:user_path(current_user.id),method: :patch, local: true do |f| %>
 
-  <div class="field">
-    <%= f.label :name,"プロフィール画像" %><br />
-    <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: "jpeg", fallback: "no_image.jpg",size:100,class: "user_image" %>
-    <%= f.attachment_field :profile_image %>
-  </div>
+    <div class="field">
+        <%= f.label :name,"プロフィール画像" %><br>
+        <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: "jpeg", fallback: "no_image.jpg",size:100,class: "user_image" %>
+        <%= f.attachment_field :profile_image %>
+    </div>
 
-  <div class="field">
-    <%= f.label :name,"ユーザー名" %><br />
-    <%= f.text_field :name, autofocus: true %>
-  </div>
+    <div class="form-group pt-4 w-50">
+        <%= f.label :name,"ユーザー名" %><br>
+        <%= f.text_field :name, autofocus: true,class: "form-control" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :introduction,"自己紹介文" %><br />
-    <%= f.text_area :introduction, autofocus: true %>
-  </div>
+    <div class="form-group pt-4 w-50">
+        <%= f.label :introduction,"自己紹介文" %><br>
+        <%= f.text_area :introduction, autofocus: true,class: "form-control" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :phone_number,"電話番号" %><br />
-    <%= f.text_field :phone_number, autofocus: true %>
-  </div>
+    <div class="form-group pt-4 w-50">
+        <%= f.label :phone_number,"電話番号" %><br>
+        <%= f.text_field :phone_number, autofocus: true,class: "form-control" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+    <div class="form-group pt-4 w-50">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true,class: "form-control", autocomplete: "email" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :post_code,"郵便番号" %><br />
-    <%= f.text_field :post_code, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :address_city,"市町村" %><br />
-    <%= f.text_field :address_city, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :address_street,"番地" %><br />
-    <%= f.text_field :address_street, autofocus: true %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "登録情報を更新する" %>
-  </div>
+    <div class="actions">
+        <%= f.submit "登録情報を更新する",class: "btn btn-outline-success mt-3" %>
+    </div>
 <% end %>
 
-<div><%= link_to "退会画面へ",user_withdraw_path(@user.id) %></div>
+<div><%= link_to "退会画面へ",user_withdraw_path(@user.id),class: "btn btn-outline-danger mt-3" %></div>

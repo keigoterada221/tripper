@@ -1,32 +1,32 @@
-<div class="list-item">
-	<div class="post-info">
+<div class="row">
+	<div class="col-lg-10 mb-4 mx-auto">
 		<% if post.user_id == current_user.id %>
 			<%= attachment_image_tag post.user, :profile_image, :fill, 100,100, format: "jpeg", fallback: "no_image.jpg",size:100 ,class: "current_user_image" %>
 		<% else %>
 			<%= attachment_image_tag post.user, :profile_image, :fill, 100,100, format: "jpeg", fallback: "no_image.jpg",size:100 ,class: "user_image" %>
 		<% end %>
-
 		<%= link_to post.user.name,user_path(post.user.id) %>
-
     </div>
 	<!-- 投稿動画表示 -->
-	<%= video_tag post.video.url, width: "1100px",loop: true,muted: true,controls: true,poster: attachment_url(post, :image, :fill, 1100, 600, format: "jpg") unless post.video.blank? %><br>
-	<%= link_to post_path(post.id) do %>
-		<%= post.title %>
+	<div class="col-lg-10 mb-3 mx-auto">
+		<%= video_tag post.video.url, class: "rounded", width: "100%",loop: true,muted: true,controls: true,poster: attachment_url(post, :image, format: "jpg") unless post.video.blank? %>
+	</div>
+	<div class="col-lg-10 mb-5 mx-auto">
+		<%= link_to post_path(post.id) do %>
+			<%= post.title %>
 
-		<% if post.user_id == current_user.id%>
-			<%= link_to "投稿を編集",edit_post_path(post.id) %>
-			<%= link_to "削除",post_path(post.id),method: :delete %>
+			<% if post.user_id == current_user.id%>
+				<%= link_to "投稿を編集",edit_post_path(post.id),class: "btn btn-outline-light ml-5" %>
+				<%= link_to "削除",post_path(post.id),method: :delete,class: "btn btn-outline-danger" %>
+			<% end %>
 		<% end %>
-	<% end %>
-	<div class="favorite_comment">
-		<!-- お気に入り機能 -->
-		<span id="favorite-<%= post.id %>">
-			<%= render "user/favorites/favorite",post: post %>
-		</span>
-		<!-- コメント数 -->
-		<span class="comment-count">
-			<%= render "user/comments/count",post: post %><br>
-		</span>
-    </div>
+			<!-- コメント数 -->
+			<span class="comment-count float-right">
+				<%= render "user/comments/count",post: post %><br>
+			</span>
+			<!-- お気に入り機能 -->
+			<span id="favorite-<%= post.id %>" class="float-right">
+				<%= render "user/favorites/favorite",post: post %>
+			</span>
+	</div>
 </div>
