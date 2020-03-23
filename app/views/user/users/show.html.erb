@@ -1,5 +1,5 @@
 <% if @user.id == current_user.id %>
-    <h1>マイページ</h1>
+    <h1 class="mt-5">マイページ</h1>
     <div class="row">
         <%= attachment_image_tag current_user, :profile_image, :fill, 100,100, format: "jpeg", fallback: "no_image.jpg",size:100 ,class: "current_user_image" %>
       <!-- 名前/フォロー・フォロワー数/自己紹介文/編集ボタン -->
@@ -17,7 +17,7 @@
 
 <% else %>
 
-    <h1><%=@user.name%>さんのページ</h1>
+    <h1 class="mt-5"><%=@user.name%>さんのページ</h1>
     <div class="row">
         <%= attachment_image_tag @user, :profile_image, :fill, 100,100, format: "jpeg", fallback: "no_image.jpg",size:100 ,class: "user_image" %>
       <!-- 名前/フォロー・フォロワー数とボタン/自己紹介文/ -->

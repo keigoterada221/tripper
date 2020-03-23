@@ -28,53 +28,51 @@
               <!-- 管理者 -->
                 <div class="navbar">
                     <% if admin_signed_in? %>
-                      <h2>管理者</h2>
-                      <%= link_to "退出",destroy_admin_session_path,method: :delete %>
+                        <h2>管理者</h2>
+                        <%= link_to "退出",destroy_admin_session_path,method: :delete,class: "btn btn-danger" %>
                     <!-- ログインユーザー -->
                     <% elsif user_signed_in? %>
-                      <%= attachment_image_tag current_user, :profile_image, :fill, 70, 70, format: "jpeg", fallback: "no_image.jpg",size:70 ,class: "current_user_image" %>
-                      <%= link_to root_path do %>
-                          <h1>Tripper</h1>
-                      <% end %>
-                      <li class="nav-item dropdown">
-                          <a class="btn btn-secondary dropdown-toggle" href="#" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="margin-right: 50px;">メニュー</a>
-                          <div class="dropdown-menu">
-                              <%= link_to "ログアウト",destroy_user_session_path,method: :delete, class: "dropdown-item" %>
-                              <%= link_to "アバウト",about_path, class: "dropdown-item" %>
-                              <%= link_to "マイページ",user_path(current_user.id), class: "dropdown-item" %>
-                              <%= link_to "トップへ",root_path, class: "dropdown-item" %>
-                          </div>
-                      </li>
+                        <%= attachment_image_tag current_user, :profile_image, :fill, 70, 70, format: "jpeg", fallback: "no_image.jpg",size:70 ,class: "current_user_image ml-5 mt-2" %>
+                        <h1><%= link_to "Tripper", root_path %></h1>
+                        <li class="nav-item dropdown">
+                            <a class="btn btn-secondary dropdown-toggle" href="#" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="margin-right: 50px;">メニュー</a>
+                            <div class="dropdown-menu">
+                                <%= link_to "ログアウト",destroy_user_session_path,method: :delete, class: "dropdown-item" %>
+                                <%= link_to "アバウト",about_path, class: "dropdown-item" %>
+                                <%= link_to "マイページ",user_path(current_user.id), class: "dropdown-item" %>
+                                <%= link_to "トップへ",root_path, class: "dropdown-item" %>
+                            </div>
+                        </li>
                     <% else %>
-                      <h2>ようこそ！ゲストユーザー様</h2>
-                          <%= link_to root_path do %>
-                              <h1>Tripper</h1>
-                          <% end %>
-                      <li class="nav-item dropdown">
-                          <a class="btn btn-secondary dropdown-toggle" href="#" data-toggle="dropdown" style="margin-right: 50px;">メニュー</a>
-                          <div class="dropdown-menu">
-                              <%= link_to "ログイン",new_user_session_path, class: "dropdown-item" %>
-                              <%= link_to "新規登録",new_user_registration_path, class: "dropdown-item" %>
-                              <%= link_to "アバウト",about_path, class: "dropdown-item" %>
-                              <%= link_to "トップへ",root_path, class: "dropdown-item" %>
-                          </div>
-                    </li>
+                        <h2>ようこそ！ゲストユーザー様</h2>
+                            <h1><%= link_to "Tripper", root_path %></h1>
+                        <li class="nav-item dropdown">
+                            <a class="btn btn-secondary dropdown-toggle" href="#" data-toggle="dropdown" style="margin-right: 50px;">メニュー</a>
+                            <div class="dropdown-menu">
+                                <%= link_to "ログイン",new_user_session_path, class: "dropdown-item" %>
+                                <%= link_to "新規登録",new_user_registration_path, class: "dropdown-item" %>
+                                <%= link_to "アバウト",about_path, class: "dropdown-item" %>
+                                <%= link_to "トップへ",root_path, class: "dropdown-item" %>
+                            </div>
+                        </li>
                     <% end %>
                 </div>
             </header>
 
+            <%= render "layouts/message" %>
+
             <div class="container"><%= yield %></div>
 
             <footer class="fixed-bottom">
-                <div class="navbar">
+                <div class="row">
                     <% if user_signed_in? %>
-                        <%= link_to posts_path,class: "nav-item" do %>
-                          <i class="fas fa-home fa-3x faa-vertical animated-hover" style="color: #CCCCCC;;"></i>
+                        <%= link_to posts_path,class: "col-lg-3 text-center" do %>
+                            <i class="fas fa-home fa-3x faa-vertical animated-hover" style="color: #CCCCCC;;"></i>
                         <% end %>
-                        <%= link_to favorites_path,class: "nav-item" do %>
-                          <i class="fas fa-star fa-3x faa-shake animated-hover" style="color: #CCCCCC;;"></i>
+                        <%= link_to favorites_path,class: "col-lg-3 text-center" do %>
+                            <i class="fas fa-star fa-3x faa-shake animated-hover" style="color: #CCCCCC;;"></i>
                         <% end %>
-                        <%= link_to notifications_path,class: "nav-item" do %>
+                        <%= link_to notifications_path,class: "col-lg-3 text-center" do %>
                             <% if unchecked_notifications.any? %>
                                 <span class="fa-stack">
                                     <i class="fas fa-bell fa-3x fa-stack-2x faa-ring animated" style="color: #CCCCCC;"></i>
@@ -85,13 +83,13 @@
                             <% end %>
                         <% end %>
                         <!-- <i class="far fa-envelope"></i> -->
-                        <%= link_to new_post_path,class: "nav-item" do %>
+                        <%= link_to new_post_path,class: "col-lg-3 text-center" do %>
                             <i class="fas fa-plus-circle fa-3x faa-spin animated-hover"style="color: #CCCCCC;"></i>
                         <% end %>
                     <% elsif admin_signed_in? %>
-                        <%= link_to "ユーザー一覧",admin_users_path %>
-                        <%= link_to "投稿一覧",admin_posts_path %>
-                        <%= link_to "トップ画面",admin_top_path %>
+                        <%= link_to "ユーザー一覧",admin_users_path,class: "col-lg-4 text-center" %>
+                        <%= link_to "投稿一覧",admin_posts_path,class: "col-lg-4 text-center" %>
+                        <%= link_to "トップ画面",admin_top_path,class: "col-lg-4 text-center" %>
                     <% else %>
                         <p class="footer-text">©Tripper Production by Keigo Terada</p>
                     <% end %>

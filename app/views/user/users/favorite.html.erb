@@ -1,13 +1,14 @@
 <h1 class="mt-5 mb-4">いいねした投稿一覧</h1>
 <% @favorites.each do |favorite| %>
     <div class="row">
-        <div class="col-lg-10 mb-4 mx-auto">
+        <div class="col-lg-10 mb-2 mx-auto">
             <% if favorite.post.user_id == current_user.id %>
                 <%= attachment_image_tag favorite.post.user, :profile_image, :fill, 100,100, format: "jpeg", fallback: "no_image.jpg",size:100 ,class: "current_user_image" %>
             <% else %>
                 <%= attachment_image_tag favorite.post.user, :profile_image, :fill, 100,100, format: "jpeg", fallback: "no_image.jpg",size:100 ,class: "user_image" %>
             <% end %>
             <%= link_to favorite.post.user.name,user_path(favorite.post.user.id) %>
+            <p class="mt-2"><%= favorite.post.created_at.strftime("%Y/%m/%d") %>の投稿</p>
         </div>
         <div class="col-lg-10 mb-3 mx-auto">
             <!-- 投稿動画表示 -->

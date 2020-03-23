@@ -1,14 +1,21 @@
-<% if comment.user_id == current_user.id %>
-<%= attachment_image_tag comment.user, :profile_image, :fill, 40,40, format: "jpeg", fallback: "no_image.jpg",size:40 ,class: "current_user_image" %>
-<% else %>
-<%= attachment_image_tag comment.user, :profile_image, :fill, 40,40, format: "jpeg", fallback: "no_image.jpg",size:40 ,class: "user_image" %>
-<% end %>
-<%= comment.user.name %>
-<%= comment.comment %>
-<!-- コメントへのいいね機能 -->
-<div id="comment_favorite-<%= comment.id %>"><%= render "user/comment_favorites/comment_favorite",comment: comment %></div>
-
-<% if comment.user_id == current_user.id %>
-<%= link_to "削除",post_comment_path(@post.id,comment.id),method: :delete,"data-confirm" => "本当に消しますか？",remote: true %>
-<% end %>
-<br>
+<div class="row">
+	<table class="table">
+		<td>
+			<% if comment.user_id == current_user.id %>
+				<%= attachment_image_tag comment.user, :profile_image, :fill, 40,40, format: "jpeg", fallback: "no_image.jpg",size:40 ,class: "current_user_image" %>
+			<% else %>
+				<%= attachment_image_tag comment.user, :profile_image, :fill, 40,40, format: "jpeg", fallback: "no_image.jpg",size:40 ,class: "user_image" %>
+			<% end %>
+			<%= comment.user.name %>
+			<%= comment.comment %>
+			<!-- コメントへのいいね機能 -->
+			<div id="comment_favorite-<%= comment.id %>" class="text-right"><%= render "user/comment_favorites/comment_favorite",comment: comment %>
+			<% if comment.user_id == current_user.id %>
+				<%= link_to post_comment_path(@post.id,comment.id),method: :delete,"data-confirm" => "本当に消しますか？",remote: true do %>
+					<i class="far fa-trash-alt fa-2x" style="color: #a0a0a0;"></i>
+				<% end %>
+			<% end %><br>
+			</div>
+		</td>
+	</table>
+</div>

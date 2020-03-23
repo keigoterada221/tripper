@@ -19,9 +19,6 @@
 a {
 	text-decoration: none;
 }
-p.break{
-  word-wrap: break-word;
-}
 body {
 	background-color: #212121 !important;
 	color: #e0e0e0 !important;
@@ -52,6 +49,9 @@ header h1 {
 	margin: 0 auto;
 	color: #DDDDDD;
 }
+h1 a {
+	color: #DDDDDD;
+}
 ul {
 	list-style: none;
 }
@@ -75,9 +75,6 @@ footer {
 }
 video[poster]{
   object-fit: fill;
-}
-#map {
-	height: 500px; width: 500px; margin: 50px auto;
 }
 .current_user_image {
 	border-radius: 50%;

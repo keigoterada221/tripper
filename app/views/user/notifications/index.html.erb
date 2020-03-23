@@ -1,6 +1,8 @@
-
-<% if @notifications.exists? %>
-	<div class="notification"><%= render @notifications %></div>
-<% else %>
-	<%= "通知はありません" %>
-<% end %>
+<div class="row">
+	<% if @notifications.exists? %>
+		<h1 class="col-lg-12 mt-5 mb-5 text-center">通知</h1>
+		<%= render @notifications %>
+	<% else %>
+		<%= "通知はありません" %>
+	<% end %>
+</div>

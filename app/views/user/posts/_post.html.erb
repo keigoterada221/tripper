@@ -1,11 +1,12 @@
 <div class="row">
-	<div class="col-lg-10 mb-4 mx-auto">
+	<div class="col-lg-10 mb-2 mx-auto">
 		<% if post.user_id == current_user.id %>
-			<%= attachment_image_tag post.user, :profile_image, :fill, 100,100, format: "jpeg", fallback: "no_image.jpg",size:100 ,class: "current_user_image" %>
+			<%= attachment_image_tag post.user, :profile_image, :fill, 100,100, format: "jpeg", fallback: "no_image.jpg",size:100 ,class: "current_user_image mt-4" %>
 		<% else %>
-			<%= attachment_image_tag post.user, :profile_image, :fill, 100,100, format: "jpeg", fallback: "no_image.jpg",size:100 ,class: "user_image" %>
+			<%= attachment_image_tag post.user, :profile_image, :fill, 100,100, format: "jpeg", fallback: "no_image.jpg",size:100 ,class: "user_image mt-4" %>
 		<% end %>
 		<%= link_to post.user.name,user_path(post.user.id) %>
+		<p class="mt-2"><%= post.created_at.strftime("%Y/%m/%d") %>の投稿</p>
     </div>
 	<!-- 投稿動画表示 -->
 	<div class="col-lg-10 mb-3 mx-auto">
@@ -17,16 +18,16 @@
 
 			<% if post.user_id == current_user.id%>
 				<%= link_to "投稿を編集",edit_post_path(post.id),class: "btn btn-outline-light ml-5" %>
-				<%= link_to "削除",post_path(post.id),method: :delete,class: "btn btn-outline-danger" %>
+				<%= link_to "削除する",post_path(post.id),method: :delete,class: "btn btn-outline-danger" %>
 			<% end %>
 		<% end %>
-			<!-- コメント数 -->
-			<span class="comment-count float-right">
-				<%= render "user/comments/count",post: post %><br>
-			</span>
-			<!-- お気に入り機能 -->
-			<span id="favorite-<%= post.id %>" class="float-right">
+		<!-- コメント数 -->
+		<span class="comment-count float-right">
+			<%= render "user/comments/count",post: post %><br>
+		</span>
+		<!-- お気に入り機能 -->
+		<span id="favorite-<%= post.id %>" class="float-right">
 				<%= render "user/favorites/favorite",post: post %>
-			</span>
+	   	</span>
 	</div>
 </div>

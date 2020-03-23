@@ -1,15 +1,20 @@
- <!-- 投稿動画表示 -->
-<% posts.each do |post| %>
-    <%= link_to admin_post_path(post.id) do %>
-    	<%= post.user.name %>
-        <%= post.title %>
+<div class="row">
+    <% posts.each do |post| %>
+        <!-- 三列で表示 + プロフィール画像なし -->
+        <div class="col-lg-4 mb-5">
+            <!-- 投稿動画表示 -->
+            <%= video_tag post.video.url, class: "rounded", width: "100%",loop: true,muted: true,controls: true,poster: attachment_url(post, :image, :fill, 500, 500, format: "jpg") unless post.video.blank? %><br>
+            <%= link_to admin_post_path(post.id) do %>
+                <h4><%= post.title %></h4>
+            <% end %>
+            <%= link_to "削除",admin_post_path(post.id),method: :delete,class: "btn btn-outline-danger btn-sm" %>
+            <div class="float-right">
+                <i class="fas fa-star fa-2x" aria-hidden="true" style="color: #ffff33;"></i>
+                <%= post.favorites.count %>
+                <i class="fas fa-comment fa-2x ml-2" style="color: rgba(192,192,192);"></i>
+                ×<%= post.comments.count %>
+            </div>
+        </div>
     <% end %>
-    <%= video_tag post.video.url, width: "600px",loop: true,muted: true,controls: true,poster: attachment_url(post, :image, :fill, 600, 600, format: "jpg") unless post.video.blank? %><br>
-    <div>
-        <i class="fas fa-star fa-2x" aria-hidden="true" style="color: yellow;"></i>×
-        <%= post.favorites.count %>
-        <i class="fas fa-comment fa-2x" style="color: rgba(60,60,60);"></i>×
-        <%= post.comments.count %>
-        <%= link_to "削除",admin_post_path(post.id),method: :delete %>
-    </div>
-<% end %>
+</div>
+
