@@ -32,10 +32,12 @@
                         <%= link_to "退出",destroy_admin_session_path,method: :delete,class: "btn btn-danger" %>
                     <!-- ログインユーザー -->
                     <% elsif user_signed_in? %>
-                        <%= attachment_image_tag current_user, :profile_image, :fill, 70, 70, format: "jpeg", fallback: "no_image.jpg",size:70 ,class: "current_user_image ml-5 mt-2" %>
+                        <%= link_to user_path(current_user.id) do %>
+                            <%= attachment_image_tag current_user, :profile_image, :fill, 70, 70, format: "jpeg", fallback: "no_image.jpg",size:70 ,class: "current_user_image ml-5 mt-2" %>
+                        <% end %>
                         <h1><%= link_to "Tripper", root_path %></h1>
                         <li class="nav-item dropdown">
-                            <a class="btn btn-secondary dropdown-toggle" href="#" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="margin-right: 50px;">メニュー</a>
+                            <div class="btn btn-secondary dropdown-toggle" href="#" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="margin-right: 50px;">メニュー</div>
                             <div class="dropdown-menu">
                                 <%= link_to "ログアウト",destroy_user_session_path,method: :delete, class: "dropdown-item" %>
                                 <%= link_to "アバウト",about_path, class: "dropdown-item" %>
@@ -44,8 +46,11 @@
                             </div>
                         </li>
                     <% else %>
-                        <h2>ようこそ！ゲストユーザー様</h2>
-                            <h1><%= link_to "Tripper", root_path %></h1>
+                        <div>
+                            <h2>ようこそ！ゲストユーザー様</h2>
+                            <p>ログインしてより多くの機能を使おう！</p>
+                        </div>
+                            <h1 class="w-25"><%= link_to "Tripper", root_path %></h1>
                         <li class="nav-item dropdown">
                             <a class="btn btn-secondary dropdown-toggle" href="#" data-toggle="dropdown" style="margin-right: 50px;">メニュー</a>
                             <div class="dropdown-menu">

@@ -1,18 +1,14 @@
-<h1 class="pt-5 mb-4">トップ画面</h1>
 <!-- 都道府県検索ボックス -->
 <%= render "user/homes/prefecture_box",prefectures: @prefectures %>
-
-<% if user_signed_in? %>
 <!-- 投稿並び替え機能 -->
-	<div class="sort-search" >
-		<%= form_with url:"/",method: :get,local: true do |f| %>
-			<div class="btn-group mb-4">
-				<%= f.select :sort_select,[["新着順","新着順"],["いいね数順","いいね数順"],["コメント数順","コメント数順"]], {include_blank: '並び替え'} %>
-				<%= f.text_field :word_search, placeholder: "検索ワード入力", class: "form-control", :style=>"width: 200px;" %>
-				<%= f.submit "検索する",class: "btn btn-outline-info" %>
-			</div>
-		<% end %>
-	</div>
-<% end %>
-
+<div class="sort-search" >
+	<%= form_with url:"/",method: :get,local: true do |f| %>
+		<div class="btn-group mb-4">
+			<%= f.select :sort_select,[["新着順","新着順"],["いいね数順","いいね数順"],["コメント数順","コメント数順"]], {include_blank: '並び替え'} %>
+			<%= f.text_field :word_search, placeholder: "検索ワード入力", class: "form-control", :style=>"width: 200px;" %>
+			<%= f.submit "検索する",class: "btn btn-outline-info" %>
+		</div>
+	<% end %>
+</div>
+<!-- 投稿一覧 -->
 <%= render "user/posts/post2",posts: @posts %>

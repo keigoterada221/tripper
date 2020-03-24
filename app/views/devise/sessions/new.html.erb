@@ -1,27 +1,14 @@
-<div class="sign_in">
-    <h2>Log in</h2>
-<!--     <%= flash[:alert] %> -->
+<h1 class="mt-5 w-50 mx-auto text-center">ログイン画面</h1>
+ <div id="sign">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="field">
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-      </div>
+        <%= f.label :email %><br>
 
-      <div class="field">
-        <%= f.label :password %><br />
-        <%= f.password_field :password, autocomplete: "current-password" %>
-      </div>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "メールアドレス" %>
+        <%= f.label :password %><br>
 
-      <% if devise_mapping.rememberable? %>
-        <div class="field">
-          <%= f.check_box :remember_me %>
-          <%= f.label :remember_me %>
-        </div>
-      <% end %>
+        <%= f.password_field :password, autocomplete: "current-password",placeholder: "6桁以上" %>
 
-      <div class="actions">
-        <%= f.submit "ログイン", class: "btn btn-primary" %>
-      </div>
+        <%= f.submit "ログイン" %>
     <% end %>
 
     <%= render "devise/shared/links" %>

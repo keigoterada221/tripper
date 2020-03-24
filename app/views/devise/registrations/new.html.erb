@@ -1,40 +1,27 @@
-<div class="sign-up">
-    <h2>Sign up</h2>
-
+<h1 class="mt-5 w-50 mx-auto text-center">新規登録画面</h1>
+<div id="sign">
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
-
-      <div class="field">
+        <%= render "devise/shared/error_messages", resource: resource %>
+        <!-- 名前 -->
         <%= f.label :name,"ユーザー名" %><br />
         <%= f.text_field :name, autofocus: true %>
-      </div>
-
-      <div class="field">
+        <!-- 電話番号 -->
         <%= f.label :phone_number,"電話番号" %><br />
         <%= f.text_field :phone_number, autofocus: true %>
-      </div>
-
-      <div class="field">
+        <!-- メールアドレス -->
         <%= f.label :email %><br />
         <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-      </div>
-      
-      <div class="field">
+        <!-- パスワード -->
         <%= f.label :password %>
         <% if @minimum_password_length %>
         <em>(<%= @minimum_password_length %> characters minimum)</em>
         <% end %><br />
         <%= f.password_field :password, autocomplete: "new-password" %>
-      </div>
-
-      <div class="field">
+        <!-- パスワード確認 -->
         <%= f.label :password_confirmation %><br />
         <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-      </div>
 
-      <div class="actions">
         <%= f.submit "新規登録" %>
-      </div>
     <% end %>
 
     <%= render "devise/shared/links" %>

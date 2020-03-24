@@ -1,5 +1,7 @@
 class User::HomesController < ApplicationController
 
+	before_action :authenticate_user!,only: [:prefecture]
+
 	def top
 		# 地方リスト
 		@prefectures = Prefecture.all
