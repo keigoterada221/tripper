@@ -22,4 +22,5 @@
 // フラッシュメッセージのフェードアウト
 $(function(){
   setTimeout("$('#flash').fadeOut('slow')", 2000)
+  setTimeout("$('#validation').fadeOut('slow')", 2000)
 })
