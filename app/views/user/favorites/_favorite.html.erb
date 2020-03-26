@@ -1,13 +1,18 @@
 <% if user_signed_in?||admin_signed_in? %>
 	<% if post.favorite_by?(current_user) %>
 	  	<%= link_to post_favorites_path(post),method: :delete, remote: true do %>
-	    	<i class="fas fa-star fa-2x" aria-hidden="true" style="color: #ffff33;"></i>
+	    	<i class="fa fa-heart fa-2x" aria-hidden="true" style="color: #ff4242;"></i>
 	 	<% end %>
 	    ×<%= post.favorites.count %>
 	<% else %>
 	  	<%= link_to post_favorites_path(post),method: :post, remote: true do %>
-	    	<i class="far fa-star fa-2x" aria-hidden="true" style="color: #ffffd6;"></i>
+	    	<i class="far fa-heart fa-2x" aria-hidden="true" style="color: #ff4242;"></i>
 	  	<% end %>
 	    ×<%= post.favorites.count %>
 	<% end %>
+<% else %>
+	<div class="float-right">
+        <i class="fa fa-heart fa-2x" aria-hidden="true" style="color: #ff4242;"></i>
+        ×<%= post.favorites.count %>
+    </div>
 <% end %>

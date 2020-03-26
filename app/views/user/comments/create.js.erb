@@ -1,2 +1,4 @@
 $("#comment").html('<%= j(render @comments) %>');
+$("#comment_flash").html('<%= j(render "layouts/message") %>');
+$("#comment_flash").fadeOut(2000);
 $("textarea").val("");

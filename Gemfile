@@ -53,6 +53,8 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem "better_errors"
   gem "binding_of_caller"
+  # N+1問題
+  gem "bullet"
 end
 
 group :test do
@@ -77,6 +79,9 @@ gem "jquery-rails"
 gem "dotenv-rails"
 gem "carrierwave-video"
 gem "rails-i18n"
+gem "kaminari"
+gem "bootstrap", "~> 4.1.1"
+gem "jquery-rails"
 
 # group :production do
 #   gem "fog"

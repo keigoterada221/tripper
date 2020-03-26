@@ -1,21 +1,18 @@
 <div class="row">
 	<table class="table">
 		<td>
-			<% if comment.user_id == current_user.id %>
-				<%= attachment_image_tag comment.user, :profile_image, :fill, 40,40, format: "jpeg", fallback: "no_image.jpg",size:40 ,class: "current_user_image" %>
-			<% else %>
-				<%= attachment_image_tag comment.user, :profile_image, :fill, 40,40, format: "jpeg", fallback: "no_image.jpg",size:40 ,class: "user_image" %>
-			<% end %>
-			<%= comment.user.name %>
+			<%= attachment_image_tag comment.user, :profile_image, :fill, 40,40, format: "jpeg", fallback: "no_image.jpg",size:40 ,class: "user_image" %>
+			<%= comment.user.name %><br>
 			<%= comment.comment %>
 			<!-- コメントへのいいね機能 -->
-			<div id="comment_favorite-<%= comment.id %>" class="text-right"><%= render "user/comment_favorites/comment_favorite",comment: comment %>
+			<span id="comment_favorite-<%= comment.id %>" class="text-right float-right"><%= render "user/comment_favorites/comment_favorite",comment: comment %></span>
+			<span>
 			<% if comment.user_id == current_user.id %>
 				<%= link_to post_comment_path(@post.id,comment.id),method: :delete,"data-confirm" => "本当に消しますか？",remote: true do %>
-					<i class="far fa-trash-alt fa-2x" style="color: #a0a0a0;"></i>
+					<i class="far fa-trash-alt" style="color: #a0a0a0;"></i>
 				<% end %>
 			<% end %><br>
-			</div>
+			</span>
 		</td>
 	</table>
 </div>

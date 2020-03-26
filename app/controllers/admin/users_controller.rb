@@ -1,4 +1,5 @@
 class Admin::UsersController < ApplicationController
+	before_action :authenticate_admin!
 	def index
 		if params[:name_search] == nil
 			@users = User.all
@@ -24,6 +25,6 @@ class Admin::UsersController < ApplicationController
 	def destroy
 		user = User.find(params[:id])
 		user.destroy
-		redirect_to request.referer
+		redirect_to admin_users_path
 	end
 end

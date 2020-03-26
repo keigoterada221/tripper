@@ -14,7 +14,7 @@
 				<% when "favorite" then %>
 					<%= link_to "あなたの投稿", notification.post, style: "font-weight: bold;" %>
 					<%= "を" %>
-					<i class="fas fa-star" aria-hidden="true" style="color: #ffff33;"></i>
+					<i class="fa fa-heart" aria-hidden="true" style="color: #ff4242;"></i>
 					<%= "お気に入りリストに追加しました" %>
 				<% when "comment" then %>
 					<% if notification.post.user_id == visited.id %>

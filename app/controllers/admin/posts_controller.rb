@@ -1,4 +1,5 @@
 class Admin::PostsController < ApplicationController
+	before_action :authenticate_admin!
 	def index
 		users = User.where(status: true)
 		@posts = Post.where(user_id: users)

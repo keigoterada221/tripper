@@ -16,94 +16,24 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <!-- Googlefont -->
-        <style>@import url('https://fonts.googleapis.com/css?family=Liu+Jian+Mao+Cao&display=swap');</style>
+        <style>@import url('https://fonts.googleapis.com/css?family=Liu+Jian+Mao+Cao|Noto+Serif+JP&display=swap');</style>
         <!-- FontAwesomeアニメーション -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.2.1/font-awesome-animation.css" type="text/css" media="all" />
     </head>
 
     <body>
         <div class="back">
-        <!-- ヘッダー -->
-            <header class="sticky-top">
-              <!-- 管理者 -->
-                <div class="navbar">
-                    <% if admin_signed_in? %>
-                        <h2>管理者</h2>
-                        <%= link_to "退出",destroy_admin_session_path,method: :delete,class: "btn btn-danger" %>
-                    <!-- ログインユーザー -->
-                    <% elsif user_signed_in? %>
-                        <%= link_to user_path(current_user.id) do %>
-                            <%= attachment_image_tag current_user, :profile_image, :fill, 70, 70, format: "jpeg", fallback: "no_image.jpg",size:70 ,class: "current_user_image ml-5 mt-2" %>
-                        <% end %>
-                        <h1><%= link_to "Tripper", root_path %></h1>
-                        <li class="nav-item dropdown">
-                            <div class="btn btn-secondary dropdown-toggle" href="#" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="margin-right: 50px;">メニュー</div>
-                            <div class="dropdown-menu">
-                                <%= link_to "ログアウト",destroy_user_session_path,method: :delete, class: "dropdown-item" %>
-                                <%= link_to "アバウト",about_path, class: "dropdown-item" %>
-                                <%= link_to "マイページ",user_path(current_user.id), class: "dropdown-item" %>
-                                <%= link_to "トップへ",root_path, class: "dropdown-item" %>
-                            </div>
-                        </li>
-                    <% else %>
-                        <div>
-                            <h2>ようこそ！ゲストユーザー様</h2>
-                            <p>ログインしてより多くの機能を使おう！</p>
-                        </div>
-                            <h1 class="w-25"><%= link_to "Tripper", root_path %></h1>
-                        <li class="nav-item dropdown">
-                            <a class="btn btn-secondary dropdown-toggle" href="#" data-toggle="dropdown" style="margin-right: 50px;">メニュー</a>
-                            <div class="dropdown-menu">
-                                <%= link_to "ログイン",new_user_session_path, class: "dropdown-item" %>
-                                <%= link_to "新規登録",new_user_registration_path, class: "dropdown-item" %>
-                                <%= link_to "アバウト",about_path, class: "dropdown-item" %>
-                                <%= link_to "トップへ",root_path, class: "dropdown-item" %>
-                            </div>
-                        </li>
-                    <% end %>
-                </div>
-            </header>
-
-            <%= render "layouts/message" %>
-
+            <!-- ヘッダー -->
+            <%= render "layouts/header" %>
+            <!-- メッセージ -->
+            <div id="flash"><%= render "layouts/message" %></div>
+            <!-- メイン部分 -->
             <div class="container"><%= yield %></div>
-
-            <footer class="fixed-bottom">
-                <div class="row">
-                    <% if user_signed_in? %>
-                        <%= link_to posts_path,class: "col-lg-3 text-center" do %>
-                            <i class="fas fa-home fa-3x faa-vertical animated-hover" style="color: #CCCCCC;;"></i>
-                        <% end %>
-                        <%= link_to favorites_path,class: "col-lg-3 text-center" do %>
-                            <i class="fas fa-star fa-3x faa-shake animated-hover" style="color: #CCCCCC;;"></i>
-                        <% end %>
-                        <%= link_to notifications_path,class: "col-lg-3 text-center" do %>
-                            <% if unchecked_notifications.any? %>
-                                <span class="fa-stack">
-                                    <i class="fas fa-bell fa-3x fa-stack-2x faa-ring animated" style="color: #CCCCCC;"></i>
-                                    <i class="fas fa-circle n-circle fa-stack-1x"></i>
-                                </span>
-                            <% else %>
-                                <i class="fas fa-bell fa-3x faa-ring animated-hover" style="color: #CCCCCC;"></i>
-                            <% end %>
-                        <% end %>
-                        <!-- <i class="far fa-envelope"></i> -->
-                        <%= link_to new_post_path,class: "col-lg-3 text-center" do %>
-                            <i class="fas fa-plus-circle fa-3x faa-spin animated-hover"style="color: #CCCCCC;"></i>
-                        <% end %>
-                    <% elsif admin_signed_in? %>
-                        <%= link_to "ユーザー一覧",admin_users_path,class: "col-lg-4 text-center" %>
-                        <%= link_to "投稿一覧",admin_posts_path,class: "col-lg-4 text-center" %>
-                        <%= link_to "トップ画面",admin_top_path,class: "col-lg-4 text-center" %>
-                    <% else %>
-                        <p class="footer-text">©Tripper Production by Keigo Terada</p>
-                    <% end %>
-                </div>
-            </footer>
+            <style> body {font-family: 'Noto Serif JP', serif;}</style>
+            <!-- フッター -->
+            <%= render "layouts/footer" %>
             <!-- bootstrap4導入(CDN) -->
-            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+            <%#= render "layouts/bootstrap-cdn" %>
         </div>
     </body>
 </html>

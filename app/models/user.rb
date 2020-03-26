@@ -7,6 +7,10 @@ class User < ApplicationRecord
   # デフォルトで新着順に並ぶようにする
   default_scope -> { order(created_at: :desc) }
 
+  validates :name,:phone_number, :presence => true
+  validates :introduction, length: { maximum: 80 }
+  paginates_per 7
+
   has_many :posts,dependent: :destroy
   has_many :favorites,dependent: :destroy
   has_many :comments,dependent: :destroy
@@ -40,9 +44,11 @@ class User < ApplicationRecord
     super && status?
   end
   # 名前検索機能
-  def self.usersearch(search)
+  def self.users_search(search)
     if search
-      self.where(["name LIKE ?", "%#{search}%"])
+      self.where(["name LIKE ?", "%#{search}%"]).where(status: true)
+    else
+      self.where(status: true)
     end
   end
   attachment :profile_image

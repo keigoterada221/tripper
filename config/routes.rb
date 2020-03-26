@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       get "about" => "user/homes#about"
       get "favorites" => "user/users#favorite" , as: :favorites
       get "prefecture" => "user/homes#prefecture", as: :prefecture
+      get "user_search" => "user/users#user_search", as: :user_search
       # Devise skip: :allで不要なURLを表示させない
       devise_for :users
       devise_for :admins, skip: :all

@@ -1,6 +1,7 @@
 <h1 class="mt-5 w-50 mx-auto text-center">ログイン画面</h1>
  <div id="sign">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    	<%= render "devise/shared/error_messages", resource: resource %>
         <%= f.label :email %><br>
 
         <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "メールアドレス" %>

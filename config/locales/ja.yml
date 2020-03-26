@@ -9,10 +9,16 @@ ja:
           email: Eメール
           encrypted_password: パスワード
 
-
         user:
+          name: ユーザー名
           email: Eメール
           password: パスワード
+
+        post:
+          video: 動画
+          title: タイトル
+          body: 説明欄
+          prefecture_id: 都道府県
 
 
   datetime:

@@ -1,11 +1,14 @@
-<p class="mr-3">投稿<%= user.posts.count %>件</p>
-<p class="mr-3">フォロー中<%= link_to "#{user.followings.where(status: true).count}人",follows_user_path(user.id),local: true %></p>
-<p class="mr-3">フォロワー<%= link_to "#{user.followers.where(status: true).count}人",followers_user_path(user.id),local: true %></p>
-
+<span class="col-lg-6 text-center">
+	<span class="mr-3">投稿<%= user.posts.count %>件</span>
+	<span class="mr-3">フォロー中<%= link_to "#{user.followings.where(status: true).count}人",follows_user_path(user.id),local: true %></span>
+	<span class="mr-3">フォロワー<%= link_to "#{user.followers.where(status: true).count}人",followers_user_path(user.id),local: true %></span>
+</span>
+<span class="col-lg-4">
 <% if user.id != current_user.id %>
 	<% if user.followed_by?(current_user) %>
-    	<p><%= link_to "フォロー中", user_relationships_path(user.id),method: :delete,remote: true,class: "btn btn-outline-primary" %></p>
+    	<span><%= link_to "フォロー中", user_relationships_path(user.id),method: :delete,remote: true,class: "btn btn-outline-primary" %></span>
 <% else %>
-  	<%= link_to "フォローする", user_relationships_path(user.id),method: :post,remote: true,class: "btn btn-outline-light" %>
+  		<span><%= link_to "フォローする", user_relationships_path(user.id),method: :post,remote: true,class: "btn btn-outline-light" %></span>
     <% end %>
 <% end %>
+</span>

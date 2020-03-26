@@ -8,12 +8,12 @@
                 <h4><%= post.title %></h4>
             <% end %>
             <%= link_to "削除",admin_post_path(post.id),method: :delete,class: "btn btn-outline-danger btn-sm" %>
-            <div class="float-right">
-                <i class="fas fa-star fa-2x" aria-hidden="true" style="color: #ffff33;"></i>
-                <%= post.favorites.count %>
-                <i class="fas fa-comment fa-2x ml-2" style="color: rgba(192,192,192);"></i>
+            <span>
+                <i class="fas fa-heart" aria-hidden="true" style="color: #ff4242;"></i>
+                ×<%= post.favorites.count %>
+                <i class="fas fa-comment ml-2" style="color: rgba(192,192,192);"></i>
                 ×<%= post.comments.count %>
-            </div>
+            </span>
         </div>
     <% end %>
 </div>

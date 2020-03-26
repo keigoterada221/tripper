@@ -3,33 +3,27 @@
     <%= attachment_image_tag @user, :profile_image, :fill, 100,100, format: "jpeg", fallback: "no_image.jpg",size:100 ,class: "user_image" %>
 
     <h1>ユーザー情報編集</h1>
-    <%= form_with model: @user,url:user_path(@user.id),method: :patch, local: true do |f| %>
-
-      <div class="field">
-        <%= f.label :name,"ユーザー名" %><br />
-        <%= f.text_field :name, autofocus: true %>
-      </div>
-
-      <div class="field">
-        <%= f.label :introduction,"自己紹介文" %><br />
-        <%= f.text_area :introduction, autofocus: true %>
-      </div>
-
-      <div class="field">
-        <%= f.label :phone_number,"電話番号" %><br />
-        <%= f.text_field :phone_number, autofocus: true %>
-      </div>
-
-      <div class="field">
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-      </div>
-
-      <div class="actions">
-        <%= f.submit "登録情報を更新" %>
-      </div>
-    <% end %>
-    <td><%= link_to "ユーザーを削除する",admin_user_path(@user.id) %></td>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>ユーザーネーム</th>
+                <td><%= @user.name %></td>
+            </tr>
+            <tr>
+                <th>自己紹介</th>
+                <td><%= @user.introduction %></td>
+            </tr>
+            <tr>
+                <th>電話番号</th>
+                <td><%= @user.phone_number %></td>
+            </tr>
+            <tr>
+                <th>メールアドレス</th>
+                <td><%= @user.email %></td>
+            </tr>
+        </tbody>
+    </table>
+    <%= link_to "ユーザーを削除する",admin_user_path(@user.id),method: :delete,class: "btn btn-danger mt-3 mb-3" %>
 </div>
   <!-- 投稿一覧 -->
 <div class="post-index">

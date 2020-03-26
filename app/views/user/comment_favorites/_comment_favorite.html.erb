@@ -1,11 +1,11 @@
 <% if comment.comment_favorite_by?(current_user) %>
 	<%= link_to post_comment_comment_favorites_path(comment.post_id,comment.id),method: :delete, remote: true do %>
-		<i class="fa fa-heart fa-2x" aria-hidden="true" style="color: #ff4242;"></i>
+		<i class="fas fa-thumbs-up" aria-hidden="true" style="color: #ffffff;"></i>
 		<% end %>
 		×<%= comment.comment_favorites.count %>
 <% else %>
 	<%= link_to post_comment_comment_favorites_path(comment.post_id,comment.id),method: :post, remote: true do %>
-		<i class="fa fa-heart fa-2x" aria-hidden="true" style="color: #ffffd6;"></i>
+		<i class="far fa-thumbs-up" aria-hidden="true" style="color: #ffffff;"></i>
 	<% end %>
 	×<%= comment.comment_favorites.count %>
 <% end %>

@@ -24,20 +24,17 @@ before_action :configure_permitted_parameters, if: :devise_controller?
   # 投稿並び替え
   def post_sort
       if params[:sort_select] == "新着順"
-          users = User.where(status: true)
-          @posts = Post.search(params[:word_search]).where(user_id: users)
+          @posts = Post.search(params[:word_search]).where(user_id: true_users).includes([:user,:prefecture]).page(params[:page])
       elsif params[:sort_select] == "いいね数順"
-          users = User.where(status: true)
-          @posts = Post.where(user_id: users).search(params[:word_search]).sort{|a,b| b.favorites.size <=> a.favorites.size}
+          # @posts = Post.where(user_id: true_users).search(params[:word_search]).sort{|a,b| b.favorites.size <=> a.favorites.size}
+          @posts = Kaminari.paginate_array(Post.where(user_id: true_users).includes([:user,:prefecture]).search(params[:word_search]).sort{|a,b| b.favorites.size <=> a.favorites.size}).page(params[:page])
       elsif params[:sort_select] == "コメント数順"
-          users = User.where(status: true)
-          @posts = Post.where(user_id: users).search(params[:word_search]).sort{|a,b| b.comments.size <=> a.comments.size}
+          # @posts = Post.where(user_id: true_users).search(params[:word_search]).sort{|a,b| b.comments.size <=> a.comments.size}
+          @posts = Kaminari.paginate_array(Post.where(user_id: true_users).includes([:user,:prefecture]).search(params[:word_search]).sort{|a,b| b.comments.size <=> a.comments.size}).page(params[:page])
       elsif params[:sort_select] == ""
-          users = User.where(status: true)
-          @posts = Post.search(params[:word_search]).where(user_id: users)
+          @posts = Post.search(params[:word_search]).where(user_id: true_users).includes([:user,:prefecture]).page(params[:page])
       else
-          users = User.where(status: true)
-          @posts = Post.where(user_id: users)
+          @posts = Post.where(user_id: true_users).includes([:user,:prefecture]).page(params[:page])
       end
   end
 
@@ -48,6 +45,6 @@ before_action :configure_permitted_parameters, if: :devise_controller?
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys:[:name,:phone_number,:email,:post_code,:prefecture_code,:address_city,:address_street])
+    devise_parameter_sanitizer.permit(:sign_up, keys:[:name,:phone_number,:email])
   end
 end

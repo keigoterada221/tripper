@@ -1,0 +1,4 @@
+<%= attachment_image_tag post.user, :profile_image, :fill, 70,70, format: "jpeg", fallback: "no_image.jpg",size:70,class: "user_image mb-2"  %>
+<span class="align-bottom pt-5">
+	<%= link_to post.user.name,user_path(post.user_id),style: "font-size: 1.5rem;" %>
+</span>

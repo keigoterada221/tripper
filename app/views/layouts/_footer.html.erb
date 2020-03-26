@@ -1,0 +1,32 @@
+<footer class="fixed-bottom">
+    <div class="row">
+        <% if user_signed_in? %>
+            <%= link_to posts_path,class: "col text-center" do %>
+                <i class="fas fa-home fa-3x faa-vertical animated-hover" style="color: #CCCCCC;;"></i>
+            <% end %>
+            <%= link_to favorites_path,class: "col text-center" do %>
+                <i class="fas fa-heart fa-3x faa-shake animated-hover" style="color: #CCCCCC;;"></i>
+            <% end %>
+            <%= link_to notifications_path,class: "col text-center" do %>
+                <% if unchecked_notifications.any? %>
+                    <span class="fa-stack">
+                        <i class="fas fa-bell fa-3x fa-stack-2x faa-ring animated" style="color: #CCCCCC;"></i>
+                        <i class="fas fa-circle n-circle fa-stack-1x"></i>
+                    </span>
+                <% else %>
+                    <i class="fas fa-bell fa-3x faa-ring animated-hover" style="color: #CCCCCC;"></i>
+                <% end %>
+            <% end %>
+            <!-- <i class="far fa-envelope"></i> -->
+            <%= link_to new_post_path,class: "col text-center" do %>
+                <i class="fas fa-plus-circle fa-3x faa-spin animated-hover"style="color: #CCCCCC;"></i>
+            <% end %>
+        <% elsif admin_signed_in? %>
+            <%= link_to "ユーザー一覧",admin_users_path,class: "col-lg-4 text-center" %>
+            <%= link_to "投稿一覧",admin_posts_path,class: "col-lg-4 text-center" %>
+            <%= link_to "トップ画面",admin_top_path,class: "col-lg-4 text-center" %>
+        <% else %>
+            <p class="footer-text">©Tripper Production by Keigo Terada</p>
+        <% end %>
+    </div>
+</footer>

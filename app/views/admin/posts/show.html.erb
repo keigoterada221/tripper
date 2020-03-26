@@ -5,7 +5,7 @@
 	<%= @post.title %>
 	<%= @post.body %>
 	<%= link_to "削除",post_path(@post.id),method: :delete %>
-	<i class="fas fa-star fa-2x" aria-hidden="true" style="color: yellow;"></i>×
+	<i class="fas fa-heart" aria-hidden="true" style="color: #ff4242;"></i>×
     <%= @post.favorites.count %>
 	<!-- コメント数 -->
 	<%= render "user/comments/count",post: @post %>

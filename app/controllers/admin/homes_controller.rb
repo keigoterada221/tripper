@@ -1,4 +1,5 @@
 class Admin::HomesController < ApplicationController
+	before_action :authenticate_admin!
 	def top
 		if params[:period_select] == "today"
 			@title = "本日のデータ"
