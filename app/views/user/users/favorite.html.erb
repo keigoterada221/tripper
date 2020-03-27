@@ -1,6 +1,8 @@
 <h1 class="mt-5 mb-4 w-50 mx-auto text-center">いいねした投稿一覧</h1>
 <div class="row mx-auto pt-3 mb-3">
     <% @favorites.each do |favorite| %>
+        <!-- 退会ユーザーの投稿は表示しない -->
+        <% if favorite.post.user.status == true %>
             <div class="col-lg-4 mb-1 pt-3 pb-3" style="border: 5px outset #516C8D; width: 100%;">
                 <div class="row">
                     <div class="col-lg-12 mb-2 mx-auto">
@@ -9,7 +11,7 @@
                     </div>
                     <div class="col-lg-12 mb-3 mx-auto">
                         <!-- 投稿動画表示 -->
-                        <%= video_tag favorite.post.video.url, width: "100%",loop: true,muted: true,controls: true,poster: attachment_url(favorite.post, :image, format: "jpg") unless favorite.post.video.blank? %><br>
+                        <%= video_tag favorite.post.video.url, width: "100%",loop: true,controls: true,poster: attachment_url(favorite.post, :image, format: "jpg") unless favorite.post.video.blank? %><br>
                     </div>
                     <div class="col-lg-12 mb-5 mx-auto">
                         <!-- 都道府県・コメント数・いいね機能など -->
@@ -17,5 +19,6 @@
                     </div>
                 </div>
             </div>
+        <% end %>
     <% end %>
 </div>

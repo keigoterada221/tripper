@@ -1,2 +1,2 @@
-$("#search_users").append('<%= j(render partial: "user/users/user",collection: @users) %>');
+$("#follower_users").append('<%= j(render partial: "user/users/user",collection: @users) %>');
 $("#view_more").replaceWith("<%= j(link_to_next_page(@users, 'さらに読み込む', remote: true, id: 'view_more',class: 'btn btn-outline-light w-100 mt-3 mb-3')) %>");

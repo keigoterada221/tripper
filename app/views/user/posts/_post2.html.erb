@@ -4,7 +4,7 @@
         <div class="col-lg-4 mb-1 pt-3 pb-3" style="border: 5px outset #516C8D;">
             <%= render "user/posts/post-top",post: post %>
             <!-- 投稿動画表示 -->
-            <%= video_tag post.video.url, class: "rounded", width: "100%",loop: true,muted: true,controls: true,poster: attachment_url(post, :image, :fill, 500, 500, format: "jpg") unless post.video.blank? %><br>
+            <%= video_tag post.video.url, class: "rounded", width: "100%",loop: true,controls: true,poster: attachment_url(post, :image, :fill, 500, 500, format: "jpg") unless post.video.blank? %><br>
             <div class="favorite_comment">
                 <!-- 都道府県・コメント数・いいね機能 -->
                 <%= render "user/posts/post-under",post: post %>

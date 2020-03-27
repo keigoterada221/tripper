@@ -1,5 +1,7 @@
 <!-- 都道府県検索ボックス -->
-<%= render "user/homes/prefecture_box",prefectures: @prefectures %>
+<div id="search_button" class="btn btn-outline-light mt-3 mb-3">都道府県で絞り込む</div>
+<div class="prefecture_lists"><%= render "user/homes/prefecture_box",prefectures: @prefectures %></div>
+<%= javascript_include_tag("prefecture_search.js") %>
 <!-- 投稿並び替え機能 -->
 <div class="sort-search" >
 	<%= form_with url:"/",method: :get,local: true do |f| %>

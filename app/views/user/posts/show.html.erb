@@ -12,7 +12,7 @@
 			<div class="col-lg-3">
 				<div id="comment"><%= render @comments %></div>
 			</div>
-			<div class="col-lg-4 ml-5">
+			<div class="col-lg-4 mx-auto">
 				<!-- コメントのフラッシュメーセージをここに表示 -->
 				<div id="comment_flash"></div>
 				<h3>コメント送信フォーム</h3>
@@ -21,11 +21,13 @@
 			    	<%= f.submit "コメントを投稿する",class: "btn btn-outline-light w-100" %>
 				<% end %>
 			</div>
-			<div class="col-lg-4">
+			<div class="col-lg-4 mt-3 mx-auto">
 				<!-- 旅先の地図を表示 -->
 				<h3>撮影地の地図</h3>
-				<div id="map" data-address-id="<%= @post.destination %>" style="width: 100%; height: 300px;"></div>
-				<%= javascript_include_tag('map.js') %>
+				<!-- GoogleAPI -->
+       			<%= javascript_include_tag('map.js') %>
+				<div id="map" data-address-id="<%= @post.destination %>" class="mb-3" style="width: 300px; height: 300px;"></div>
+        		<script src="http://maps.google.com/maps/api/js?key=<%= ENV['GOOGLEMAP_KEY'] %>&callback=getLatLng" async defer></script>
 			</div>
 		</div>
 	</div>

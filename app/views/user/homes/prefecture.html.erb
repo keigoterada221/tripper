@@ -13,7 +13,6 @@
 			    <!-- prefecture_code[]で配列として渡すことが可能 -->
 				<%= f.hidden_field "prefecture_code[]", :value => prefecture %>
 				<% end %>
-				<%# binding.pry %>
 				<%= f.select :sort_select,[["新着順","新着順"],["いいね数順","いいね数順"],["コメント数順","コメント数順"]], {include_blank: '並び替え'} %>
 				<%= f.submit "並び替える",class: "btn btn-outline-info" %>
 			</div>

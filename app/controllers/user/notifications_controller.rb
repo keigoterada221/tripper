@@ -5,6 +5,6 @@ class User::NotificationsController < ApplicationController
 			# update_attributesメソッドで複数のモデルを同時更新
 			notification.update_attributes(checked: true)
 		end
-		@notifications = notifications.where.not(visitor_id: current_user.id).page(params[:page]).includes([:visitor,:visited,:post,:comment])
+		@notifications = notifications.where(visitor_id: true_users).where.not(visitor_id: current_user.id).page(params[:page]).includes([:visitor,:visited,:post,:comment])
 	end
 end

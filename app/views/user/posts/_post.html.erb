@@ -5,7 +5,7 @@
     </div>
 	<!-- 投稿動画表示 -->
 	<div class="col-lg-12 mb-3 mx-auto">
-		<%= video_tag post.video.url, class: "rounded", width: "100%",loop: true,muted: true,controls: true,poster: attachment_url(post, :image, format: "jpg") unless post.video.blank? %>
+		<%= video_tag post.video.url, class: "rounded", width: "100%",loop: true,controls: true,poster: attachment_url(post, :image, format: "jpg") unless post.video.blank? %>
 	</div>
 	<div class="col-lg-12 mb-5 mx-auto">
         <!-- 都道府県・コメント数・いいね機能など -->

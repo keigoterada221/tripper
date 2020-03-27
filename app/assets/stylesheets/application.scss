@@ -31,6 +31,10 @@
    background-color: #212121 !important;
    color: #e0e0e0 !important;
  }
+ body {
+  height: 100%;
+  width: 100%;
+ }
  input[type=checkbox] {
    transform: scale(2.0);
    margin: 5px;
@@ -46,6 +50,7 @@
 header {
 	height: 100px;
 	background-color: #28385E;
+  position: relative;
 }
 header h1 {
 	font-family: 'Liu Jian Mao Cao', cursive;
@@ -89,7 +94,6 @@ video[poster]{
 	border-radius: 50%;
 	border: 5px solid rgba(180, 180, 255,0.5);
 }
-
 // ログイン画面用
 #sign input {
   border: none;

@@ -1,6 +1,5 @@
-<div class="follows row">
-	<div class="col-lg-7 mx-auto">
-		<h1 class="text-center mt-5">フォロー中ユーザー一覧</h1>
-		<%= render @users %>
-	</div>
+<div class="follows row w-75 mx-auto">
+	<h1 class="w-50 mx-auto text-center mt-5 mb-4">フォロー中ユーザー一覧</h1>
+	<div id="follow_users" class="col-lg-12 mx-auto"><%= render @users %></div>
+	<div class="more col-lg-12 mx-auto"><%= link_to_next_page @users, 'さらに読み込む', remote: true, id: 'view_more',class: "btn btn-outline-light w-100 mt-3 mb-3" %></div>
 </div>

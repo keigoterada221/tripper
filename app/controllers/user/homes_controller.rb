@@ -20,13 +20,13 @@ class User::HomesController < ApplicationController
 	def prefecture
 		@prefectures = Prefecture.where(id: params[:prefecture_code])
 	    if params[:sort_select] == "新着順"
-            @posts = Post.where(user_id: true_users).includes([:user,:prefecture])
+            @posts = Post.where(prefecture_id: params[:prefecture_code],user_id: true_users).includes([:user,:prefecture])
         elsif params[:sort_select] == "いいね数順"
-            @posts = Post.where(user_id: true_users).includes([:user,:prefecture]).sort{|a,b| b.favorites.size <=> a.favorites.size}
+            @posts = Post.where(prefecture_id: params[:prefecture_code],user_id: true_users).includes([:user,:prefecture]).sort{|a,b| b.favorites.size <=> a.favorites.size}
         elsif params[:sort_select] == "コメント数順"
-            @posts = Post.where(user_id: true_users).includes([:user,:prefecture]).sort{|a,b| b.comments.size <=> a.comments.size}
+            @posts = Post.where(prefecture_id: params[:prefecture_code],user_id: true_users).includes([:user,:prefecture]).sort{|a,b| b.comments.size <=> a.comments.size}
         elsif params[:sort_select] == ""
-            @posts = Post.where(user_id: true_users).includes([:user,:prefecture])
+            @posts = Post.where(prefecture_id: params[:prefecture_code],user_id: true_users).includes([:user,:prefecture])
         else
             @posts = Post.where(prefecture_id: params[:prefecture_code],user_id: true_users).includes([:user,:prefecture])
         end

@@ -1,7 +1,8 @@
 class User::UsersController < ApplicationController
 
 	before_action :authenticate_user!
-	before_action :correct_user,{only:[:edit,:update]}
+	before_action :correct_user,{only:[:edit,:update,:destroy]}
+	before_action :status_true_only,{only:[:show]}
 
 	def show
 		@user = User.find(params[:id])
@@ -34,12 +35,12 @@ class User::UsersController < ApplicationController
 
 	def follows
 		user = User.find(params[:id])
-		@users = user.followings.where(status: true)
+		@users = user.followings.where(status: true).page(params[:page])
 	end
 
 	def followers
 		user = User.find(params[:id])
-		@users = user.followers.where(status: true)
+		@users = user.followers.where(status: true).page(params[:page])
 	end
 
 	def user_search
@@ -64,5 +65,12 @@ class User::UsersController < ApplicationController
 	   if current_user.id != params[:id].to_i
 	      redirect_to root_path, alert: "アクセスできません"
 	   end
+    end
+    # 退会ユーザーへのアクセス不可
+    def status_true_only
+    	user = User.find(params[:id])
+    	if user.status == false
+    		redirect_to root_path, alert: "アクセスできません"
+    	end
     end
 end

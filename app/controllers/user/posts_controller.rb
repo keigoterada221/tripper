@@ -19,13 +19,13 @@ class User::PostsController < ApplicationController
 
 	def index
 		# フォローしているユーザーと自分の投稿
-		@posts = Post.where(user_id: current_user.followings).or(Post.where(user_id: current_user.id)).includes([:user,:prefecture]).page(params[:page])
+		@posts = Post.where(user_id: current_user.followings).or(Post.where(user_id: current_user.id)).or(Post.where(user_id: true_users)).includes([:user,:prefecture]).page(params[:page])
 	end
 
 	def show
 		@post = Post.find(params[:id])
 		@comment = Comment.new
-		@comments = @post.comments.includes([:user]).sort{|a,b| b.comment_favorites.size <=> a.comment_favorites.size}
+		@comments = @post.comments.where(user_id: true_users).includes([:user]).sort{|a,b| b.comment_favorites.size <=> a.comment_favorites.size}
 	end
 
 	def edit

@@ -1,11 +1,12 @@
 <table class="table">
-<tr>
-	<th class="row pb-1">
-		<div class="col-lg-2 pt-1"><%= attachment_image_tag user, :profile_image, :fill, 50,50, format: "jpeg", fallback: "no_image.jpg",size:50 ,class: "user_image" %>
-		<%= user.name %></div>
-		<div id="relationship-<%= user.id %>" class="col-lg-10 pt-3">
-				<div class="row"><%= render "user/relationships/relationship",user: user %></div>
-		</div>
-	</th>
-</tr>
+	<tr>
+		<th class="row pb-3 pl-5">
+			<div class="col-lg-2 pt-1 pl-1"><%= attachment_image_tag user, :profile_image, :fill, 50,50, format: "jpeg", fallback: "no_image.jpg",size:50 ,class: "user_image" %>
+				<%= link_to user.name,user_path(user.id) %>
+			</div>
+			<div id="relationship-<%= user.id %>" class="col-lg-10 pt-3">
+				<div class="row pl-4"><%= render "user/relationships/relationship",user: user %></div>
+			</div>
+		</th>
+	</tr>
 </table>

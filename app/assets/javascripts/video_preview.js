@@ -18,8 +18,7 @@ $(function() {
 	      			width: "100%",
 	      			class: "preview-video",
 	      			autoplay: "autoplay",
-	      			loop: "loop",
-	      			muted: "true"
+	      			loop: "loop"
 	      		}));
 	      	};
 	      })(file);
