@@ -22,9 +22,6 @@ class User::UsersController < ApplicationController
 		end
 	end
 
-	def index
-	end
-
 	def destroy
 		user = current_user
 		user.status = false

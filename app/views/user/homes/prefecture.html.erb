@@ -10,8 +10,8 @@
 		<%= form_with url:"/prefecture",method: :get,local: true do |f| %>
 			<div class="btn-group mb-4">
 			    <% @prefectures.ids.each do |prefecture| %>
-			    <!-- prefecture_code[]で配列として渡すことが可能 -->
-				<%= f.hidden_field "prefecture_code[]", :value => prefecture %>
+				    <!-- prefecture_code[]で配列として渡すことが可能 -->
+					<%= f.hidden_field "prefecture_code[]", :value => prefecture %>
 				<% end %>
 				<%= f.select :sort_select,[["新着順","新着順"],["いいね数順","いいね数順"],["コメント数順","コメント数順"]], {include_blank: '並び替え'} %>
 				<%= f.submit "並び替える",class: "btn btn-outline-info" %>

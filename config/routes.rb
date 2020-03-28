@@ -15,7 +15,7 @@ Rails.application.routes.draw do
         end
   # namespaceと違いurl,pathがそのままで使用可能
     scope module: :user do
-        resources :users do
+        resources :users, only: [:show,:edit,:update,:destroy] do
             resource :relationships, only: [:create,:destroy]
             # idが含まれるルーティングを作成
             get :follows,on: :member
