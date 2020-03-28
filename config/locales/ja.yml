@@ -20,6 +20,7 @@ ja:
           title: タイトル
           body: 説明欄
           prefecture_id: 都道府県
+          destination: 訪問地の住所or名称
 
 
   datetime:

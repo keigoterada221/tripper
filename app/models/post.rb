@@ -9,6 +9,7 @@ class Post < ApplicationRecord
 	validates :prefecture_id, :presence => true, presence: { message: "は必ず選択してください" }
 	validates :title, :presence => true, length: { maximum: 20 }
 	validates :body, :presence => true, length: { maximum: 100 }
+	validates :destination, :presence => true
 
 	attachment :image
 	paginates_per 9

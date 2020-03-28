@@ -37,40 +37,50 @@ File.unlink savePath
     )
 
 [
-  [ '山田', '1231111', '宝塚市','安倉', 'a@a', 'aaaaaa', '09011112222'],
-  [ '渡辺',  '1232222', '伊丹市','荒牧', 'b@b', 'bbbbbb', '09033334444'],
-  [ '田中',  '1233333', '尼崎市','難波', 'c@c', 'cccccc', '09055556666'],
-  [ '鈴木', '1234444', '西宮市','緑ヶ丘', 'd@d', 'dddddd', '09077778888']
-].each do |a, b, c, d, e, f, g|
+  [ '寺田圭吾', '09011111111', 'a@a', 'aaaaaa'],
+  [ 'ゴー！', '09022222222', 'b@b', 'bbbbbb'],
+  [ 'マイキー', '09033333333', 'c@c', 'cccccc'],
+  [ '日向翔陽', '09044444444', 'd@d', 'dddddd'],
+  [ '青井葦人', '09055555555', 'e@e', 'eeeeee'],
+  [ '飛信隊の信', '09066666666', 'f@f', 'ffffff'],
+  [ '土方歳三', '09077777777', 'g@g', 'gggggg'],
+  [ '井上尚弥', '09088888888', 'h@h', 'hhhhhh'],
+  [ '那須川天心', '09099999999', 'i@i', 'iiiiii'],
+  [ '錦織圭', '09010101010', 'j@j', 'jjjjjj']
+].each do |a, b, c, d|
   User.create!(
     [
       {
       name: a,
-      post_code: b,
-      address_city: c,
-      address_street: d,
-      email: e,
-      password: f,
-      phone_number: g,
+      phone_number: b,
+      email: c,
+      password: d,
       }
     ]
   )
 end
 
 [
-  ['1','琵琶湖の花火','すごく綺麗','app/assets/videos/city.mp4','27'],
-  ['2','淀川の花火','音がでかかった','app/assets/videos/hanabi.mp4','28'],
-  ['3','みなと神戸の花火','賑わってた','app/assets/videos/kannrannsya.mp4','29'],
-  ['4','田舎の花火','最高だーーーー','app/assets/videos/soul.mp4','30']
-].each do |a, b, c, d, e|
+  ['1','綺麗な街並み','海外のようでした！','千葉県','app/assets/videos/city.mp4','12'],
+  ['2','淀川の花火','すごく賑わっていました！','大阪府淀川','app/assets/videos/hanabi.mp4','27'],
+  ['3','趣のある観覧車','とても大きくて驚いた','宝塚市','app/assets/videos/kannrannsya.mp4','28'],
+  ['4','綺麗な動画が撮れました！','シャッタースピードを落として撮りました','那覇市','app/assets/videos/soul.mp4','47'],
+  ['5','五重塔','京都は何度行っても飽きません','河原町','app/assets/videos/kyoto.mp4','26'],
+  ['6','大鳥居','下を潜りました！皆さんも是非！','厳島神社','app/assets/videos/miyazima.mp4','34'],
+  ['7','満開の桜','お花見最高！','香川県','app/assets/videos/sakura.mp4','37'],
+  ['8','満点の星空','空一面に広がった星を皆さんも是非！','美星町','app/assets/videos/star.mp4','33'],
+  ['9','スキューバダイビング','やはり海は素晴らしい','沖縄県','app/assets/videos/sea.mp4','47'],
+  ['10','福岡旅行','福岡の旅をまとめました','福岡県','app/assets/videos/kaigai.mp4','40']
+].each do |a, b, c, d, e, f|
   Post.create!(
     [
       {
       user_id: a,
       title: b,
       body: c,
-      video: File.open(d),
-      prefecture_id: e,
+      destination: d,
+      video: File.open(e),
+      prefecture_id: f,
       }
     ]
   )
