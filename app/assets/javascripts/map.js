@@ -13,7 +13,7 @@ function getLatLng() {
   var geocoder = new google.maps.Geocoder();
   var destination = $("#map").data("address-id");
   geocoder.geocode({
-    address: `${destination}`
+    address: '+destination+'
   }, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
       for (var i in results) {
