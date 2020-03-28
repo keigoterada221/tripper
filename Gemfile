@@ -83,6 +83,6 @@ gem "kaminari"
 gem "bootstrap", "~> 4.1.1"
 gem "jquery-rails"
 
-# group :production do
-#   gem "fog"
-# end
+group :production do
+  gem "mysql2"
+end
