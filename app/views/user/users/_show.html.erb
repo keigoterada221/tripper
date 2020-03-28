@@ -1,5 +1,5 @@
 <div class="row">
-    <%= attachment_image_tag user, :profile_image, :fill, 100,100, format: "jpeg", fallback: "no_image.jpg",size:100 ,class: "user_image" %>
+    <%= attachment_image_tag user, :profile_image, :size 100, format: "jpeg", fallback: "no_image.jpg",size:100 ,class: "user_image" %>
   <!-- 名前/フォロー・フォロワー数とボタン/自己紹介文/ -->
     <div id="relationship-<%= user.id %>" class="row pt-5 pl-5 w-75">
         <%= render "user/relationships/relationship",user: user %>

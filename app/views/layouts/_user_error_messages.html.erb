@@ -1,5 +1,5 @@
 <% if @user.errors.any? %>
-  <div class="alert alert-warning w-50 mx-auto">
+  <div class="alert alert-warning mx-auto">
     <ul>
       <% @user.errors.full_messages.each do |message| %>
         <li><%= message %></li>

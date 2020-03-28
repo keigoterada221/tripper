@@ -16,7 +16,7 @@
 		</tr>
 		<tr>
 			<td>ユーザー合計</td>
-			<td><%= link_to @members.count + @withdrawals.count %>人</td>
+			<td><%= @members.count + @withdrawals.count %>人</td>
 		</tr>
 	</table>
 	<table>
@@ -37,7 +37,7 @@
 						<%= link_to "退会済み" %>
 					<% end %>
 				</td>
-				<td><%= link_to "削除",admin_user_path(user.id) %></td>
+				<td><%= link_to "削除",admin_user_path(user.id),"data-confirm" => "#{user.name}さんを削除しますか？",class: "btn btn-danger mt-3" %></td>
 			</tr>
 		<% end %>
 	</table>

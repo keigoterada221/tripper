@@ -19,7 +19,7 @@ class User::PostsController < ApplicationController
 
 	def index
 		# フォローしているユーザーと自分の投稿
-		@posts = Post.where(user_id: current_user.followings).or(Post.where(user_id: current_user.id)).or(Post.where(user_id: true_users)).includes([:user,:prefecture]).page(params[:page])
+		@posts = Post.where(user_id: current_user.followings).where(user_id: true_users).or(Post.where(user_id: current_user.id)).includes([:user,:prefecture]).page(params[:page])
 	end
 
 	def show

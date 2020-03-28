@@ -2,7 +2,7 @@ class Admin::PostsController < ApplicationController
 	before_action :authenticate_admin!
 	def index
 		users = User.where(status: true)
-		@posts = Post.where(user_id: users)
+		@posts = Post.where(user_id: users).page(params[:page])
 		# 投稿並び替えメソッド(application_controller)
 		post_sort
 	end
@@ -13,6 +13,6 @@ class Admin::PostsController < ApplicationController
 	end
 	def show
 		@post = Post.find(params[:id])
-		@comments = @post.comments.sort{|a,b| b.comment_favorites.size <=> a.comment_favorites.size}
+		@comments = @post.comments.includes([:user]).sort{|a,b| b.comment_favorites.size <=> a.comment_favorites.size}
 	end
 end

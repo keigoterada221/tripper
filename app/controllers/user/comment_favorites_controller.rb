@@ -1,5 +1,7 @@
 class User::CommentFavoritesController < ApplicationController
 
+	before_action :authenticate_user!
+
 	def create
 		post = Post.find(params[:post_id])
 		@comment = Comment.find(params[:comment_id])

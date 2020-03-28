@@ -24,7 +24,7 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :following
   # フォロー済みかどうかを判定
   def followed_by?(user)
-  	passive_relationships.find_by(following_id: user.id).present?
+      passive_relationships.find_by(following_id: user.id).present?
   end
 # 通知
   # 自分からの通知
@@ -33,23 +33,25 @@ class User < ApplicationRecord
   has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy
   # フォロー通知
   def create_notification_follow(current_user)
-    followed = Notification.where(["visitor_id = ? and visited_id = ? and action = ?",current_user.id, id, "follow"])
-    if followed.blank?
-      notification = current_user.active_notifications.new(visited_id: id, action: "follow")
-      notification.save
-    end
+      followed = Notification.where(["visitor_id = ? and visited_id = ? and action = ?",current_user.id, id, "follow"])
+      if followed.blank?
+          notification = current_user.active_notifications.new(visited_id: id, action: "follow")
+          notification.save
+      end
   end
   # 退会済みユーザーのログイン不可
   def active_for_authentication?
-    super && status?
+      super && status?
   end
   # 名前検索機能
   def self.users_search(search)
-    if search
-      self.where(["name LIKE ?", "%#{search}%"]).where(status: true)
-    else
-      self.where(status: true)
-    end
+      if search
+          self.where(["name LIKE ?", "%#{search}%"]).where(status: true)
+      else
+          self.where(status: true)
+      end
   end
+
+
   attachment :profile_image
 end

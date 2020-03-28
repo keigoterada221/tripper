@@ -23,8 +23,11 @@
             </li>
         <% else %>
             <div>
-                <h2>ようこそ！ゲストユーザー様</h2>
-                <p>ログインしてより多くの機能を使おう！</p>
+                <h2>ようこそゲストユーザー様</h2>
+                <%= link_to new_user_session_path do %>
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>ログインして旅先を動画でシェアしよう!!</span>
+                <% end %>
             </div>
                 <h1 class="w-25"><%= link_to "Tripper", root_path %></h1>
             <li class="nav-item dropdown">
@@ -32,7 +35,7 @@
                 <div class="dropdown-menu">
                     <%= link_to "ログイン",new_user_session_path, class: "dropdown-item" %>
                     <%= link_to "新規登録",new_user_registration_path, class: "dropdown-item" %>
-                    <%= link_to "アバウト",about_path, class: "dropdown-item" %>
+                    <%= link_to "Tripperについて",about_path, class: "dropdown-item" %>
                     <%= link_to "トップへ",root_path, class: "dropdown-item" %>
                 </div>
             </li>

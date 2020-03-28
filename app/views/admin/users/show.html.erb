@@ -1,9 +1,9 @@
-<div class="user-infomation">
-    <h1><%=@user.name%>さんのページ</h1>
-    <%= attachment_image_tag @user, :profile_image, :fill, 100,100, format: "jpeg", fallback: "no_image.jpg",size:100 ,class: "user_image" %>
+<div class="row">
+    <%= attachment_image_tag @user, :profile_image, size:70, format: "jpeg", fallback: "no_image.jpg",size:50 ,class: "user_image mt-4" %>
+    <h1 class="col-lg-8 mt-4"><%=@user.name%>さんのページ</h1>
 
-    <h1>ユーザー情報編集</h1>
-    <table class="table">
+    <h2 class="col-lg-8 mt-3 mb-4">ユーザー情報編集</h2>
+    <table class="col-lg-7 mx-auto">
         <tbody>
             <tr>
                 <th>ユーザーネーム</th>
@@ -23,11 +23,9 @@
             </tr>
         </tbody>
     </table>
-    <%= link_to "ユーザーを削除する",admin_user_path(@user.id),method: :delete,class: "btn btn-danger mt-3 mb-3" %>
-</div>
-  <!-- 投稿一覧 -->
-<div class="post-index">
-    <div class="post-index">
+    <p><%= link_to "ユーザーを削除する",admin_user_path(@user.id),method: :delete,"data-confirm" => "#{@user.name}さんを削除しますか？",class: "btn btn-danger mt-3" %></p>
+    <!-- 投稿一覧 -->
+    <div class="col-lg-10 mx-auto">
         <%= render "admin/posts/post",posts: @user.posts %>
     </div>
 </div>

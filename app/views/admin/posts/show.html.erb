@@ -1,10 +1,10 @@
 <div class="post-show">
 	<h1>投稿詳細</h1>
-	<%= link_to @post.user.name,user_path(@post.user.id) %><br>
+	<%= link_to @post.user.name,admin_user_path(@post.user.id) %><br>
 	<%= video_tag @post.video.url,width: "500px",loop: true,muted: true,controls: true,poster: attachment_url(@post, :image, :fill, 500, 500, format: "jpg") unless @post.video.blank? %><br>
 	<%= @post.title %>
 	<%= @post.body %>
-	<%= link_to "削除",post_path(@post.id),method: :delete %>
+	<%= link_to "削除",admin_post_path(@post.id),"data-confirm" => "タイトル『#{post.title}』の投稿を削除しますか？",method: :delete %>
 	<i class="fas fa-heart" aria-hidden="true" style="color: #ff4242;"></i>×
     <%= @post.favorites.count %>
 	<!-- コメント数 -->

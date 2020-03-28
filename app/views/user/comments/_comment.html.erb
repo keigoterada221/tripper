@@ -8,7 +8,7 @@
 			<span id="comment_favorite-<%= comment.id %>" class="text-right float-right"><%= render "user/comment_favorites/comment_favorite",comment: comment %></span>
 			<span>
 			<% if comment.user_id == current_user.id %>
-				<%= link_to post_comment_path(@post.id,comment.id),method: :delete,"data-confirm" => "本当に消しますか？",remote: true do %>
+				<%= link_to post_comment_path(@post.id,comment.id),method: :delete,"data-confirm" => "コメントを削除しますか？",remote: true do %>
 					<i class="far fa-trash-alt" style="color: #a0a0a0;"></i>
 				<% end %>
 			<% end %><br>

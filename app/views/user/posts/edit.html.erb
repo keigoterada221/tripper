@@ -13,7 +13,7 @@
 					<%= f.label :body,"説明文" %>
 					<%= f.text_area :body,class: "form-control w-100" %>
 					<%= f.submit "編集を保存",class: "btn btn-outline-success mt-3 w-100" %>
-					<%= link_to "削除する",post_path(@post.id),method: :delete,class: "btn btn-outline-danger mt-3 w-100" %>
+					<%= link_to "削除する",post_path(@post.id),method: :delete,"data-confirm" => "この投稿を削除しますか？",class: "btn btn-outline-danger mt-3 w-100" %>
 				</div>
 			</div>
 		<% end %>
