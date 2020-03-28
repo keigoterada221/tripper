@@ -1,0 +1,28 @@
+<div class="post-show">
+	<h1>投稿詳細</h1>
+	<%= link_to @post.user.name,admin_user_path(@post.user.id) %><br>
+	<%= video_tag @post.video.url,width: "500px",loop: true,muted: true,controls: true,poster: attachment_url(@post, :image, :fill, 500, 500, format: "jpg") unless @post.video.blank? %><br>
+	<%= @post.title %>
+	<%= @post.body %>
+	<%= link_to "削除",admin_post_path(@post.id),"data-confirm" => "タイトル『#{post.title}』の投稿を削除しますか？",method: :delete %>
+	<i class="fas fa-heart" aria-hidden="true" style="color: #ff4242;"></i>×
+    <%= @post.favorites.count %>
+	<!-- コメント数 -->
+	<%= render "user/comments/count",post: @post %>
+	<!-- コメント機能 -->
+	<h2><%= @comments.count %>件のコメント</h2>
+	<div>
+		<% @comments.each do |comment| %>
+			<p>
+				<%= link_to admin_user_path(comment.user_id) do %>
+					<%= attachment_image_tag comment.user, :profile_image, :fill, 40,40, format: "jpeg", fallback: "no_image.jpg",size:40 ,class: "user_image" %>
+					<%= comment.user.name %>
+				<% end %>
+			    <%= comment.comment %>
+			<!-- コメントへのいいね機能 -->
+				<i class="fa fa-heart fa-2x" aria-hidden="true" style="color: red;"></i>
+				<%= comment.comment_favorites.count %>
+			</p>
+		<% end %>
+	</div>
+</div>

@@ -1,5 +1,8 @@
-<h1>マイページ</h1>
-<div>
-<%= current_user.name %>
-<%= current_user.introduction %>
-</div>
+<% if @user.id == current_user.id %>
+    <h1 class="mt-5">マイページ</h1>
+    <%= link_to "ユーザー情報を編集する",edit_user_path(current_user.id),class: "btn btn-outline-light mt-3 mb-3" %>
+    <%= render "user/users/show",user: current_user, posts: @posts %>
+<% else %>
+    <h1 class="mt-5"><%=@user.name%>さんのページ</h1>
+    <%= render "user/users/show",user: @user, posts: @posts %>
+<% end %>

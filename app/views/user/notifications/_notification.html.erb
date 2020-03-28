@@ -1,0 +1,36 @@
+<% visitor = notification.visitor %>
+<% visited = notification.visited %>
+<div class="col-lg-7 mx-auto">
+	<table class="table">
+		<tr style="height: 70px;">
+			<th class="pt-4">
+				<%= link_to visitor.name,user_path(visitor.id), style: "font-weight: bold;" %>
+				<%= "さんが" %>
+				<% case notification.action %>
+					<% when "follow" then %>
+						<%= "あなたを" %>
+						<i class="far fa-user"></i>
+						<%="フォローしました" %>
+					<% when "favorite" then %>
+						<%= link_to "あなたの投稿", notification.post, style: "font-weight: bold;" %>
+						<%= "を" %>
+						<i class="fa fa-heart" aria-hidden="true" style="color: #ff4242;"></i>
+						<%= "お気に入りリストに追加しました" %>
+					<% when "comment" then %>
+						<% if notification.post.user_id == visited.id %>
+							<%= link_to "あなたの投稿", notification.post, style: "font-weight: bold;" %>
+						<% else %>
+							<%= link_to post_path(notification.post.id) do %>
+								<%= notification.post.user.name + "さんの投稿" %>
+							<% end %>
+						<% end %>
+						<%= "に" %>
+						<i class="fas fa-comment" style="color: rgba(192,192,192);"></i>
+						<%= "コメントしました" %><br>
+						<span>『<%= notification.comment.comment %>』</span>
+				<% end %>
+			</th>
+			<th class="text-right pt-4"><%= time_ago_in_words(notification.created_at).upcase %>前</th>
+		</tr>
+	</table>
+</div>

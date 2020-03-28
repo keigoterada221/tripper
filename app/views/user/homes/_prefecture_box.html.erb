@@ -1,0 +1,57 @@
+<div class="prefecture-box">
+    <table>
+        <h2 class="my-3">エリア選択</h2>
+    	<!-- 北海道地方 -->
+        <td>
+            <input type="checkbox" value="北海道地方" id="hokkaido-ck">
+            <label>北海道地方</label>
+        </td>
+        <!-- 東北地方 -->
+        <td>
+            <input type="checkbox" value="東北地方" id="tohoku-ck">
+            <label>東北地方</label>
+        </td>
+        <!-- 関東地方 -->
+        <td>
+            <input type="checkbox" value="関東地方" id="kanto-ck">
+            <label>関東地方</label>
+        </td>
+        <!-- 中部地方 -->
+        <td>
+            <input type="checkbox" value="中部地方" id="chubu-ck">
+            <label>中部地方</label>
+        </td>
+        <!-- 近畿地方 -->
+        <td>
+            <input type="checkbox" value="近畿地方" id="kinki-ck">
+            <label>近畿地方</label>
+        </td>
+        <!-- 中国地方 -->
+        <td>
+            <input type="checkbox" value="中国地方" id="chugoku-ck">
+            <label>中国地方</label>
+        </td>
+        <!-- 四国地方 -->
+        <td>
+            <input type="checkbox" value="四国地方" id="shikoku-ck">
+            <label>四国地方</label>
+        </td>
+        <!-- 九州地方 -->
+        <td>
+            <input type="checkbox" value="九州地方" id="kyusyu-ck">
+            <label>九州地方</label>
+        </td>
+    </table>
+    <h2 class="my-3">都道府県選択</h2>
+	<ul class="prefecture-list mb-4">
+	   <%= form_with url:"/prefecture",method: :get,local: true do |p| %>
+	       <li><%= p.collection_check_boxes :prefecture_code, prefectures, :id, :name,:style => "font-size: 40px;" %></li>
+	       <div class="btn-group">
+               <%= p.submit "選択した都道府県で絞り込む",class: "btn btn-outline-light" %>
+               <input type="button" value="全選択をリセット" id="reset-ck" class="btn btn-outline-light border-left">
+           </div>
+	   <% end %>
+       <!-- 選択をリセット -->
+	</ul>
+</div>
+<%= javascript_include_tag('prefecture.js') %>

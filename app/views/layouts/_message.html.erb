@@ -1,0 +1,7 @@
+<% unless notice.nil? %>
+    <p id="notice" class="alert alert-primary text-center mx-auto"><%= notice %></p>
+<% end %>
+<% unless alert.nil? %>
+    <p id="alert" class="alert alert-warning text-center mx-auto"><%= alert %></p>
+<% end %>
+<style> .alert{z-index: 2; position: fixed; top: 100px; left: 25%; width: 50%; line-height: 70px;} </style>

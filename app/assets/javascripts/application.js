@@ -13,4 +13,15 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+//= require jquery
+//= require jquery3
+//= require popper
+//= require bootstrap-sprockets
 //= require_tree .
+
+// フラッシュメッセージのフェードアウト
+$(function(){
+  setTimeout("$('#flash').fadeOut('slow')", 2000)
+  setTimeout("$('#validation').fadeOut('slow')", 2000)
+  setTimeout("$('.alert').fadeOut('slow')", 2000)
+})

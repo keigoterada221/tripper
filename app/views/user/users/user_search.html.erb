@@ -1,0 +1,22 @@
+<h1 class="w-50 mx-auto text-center mt-5 mb-4">ユーザー検索画面</h1>
+<%  %>
+<div class="w-50 mx-auto text-center">
+	<%= form_with url:"/user_search",method: :get,local: true do |f| %>
+		<div class="btn-group mb-4">
+			<%= f.text_field :user_name_search, placeholder: "ユーザーネーム入力", class: "form-control", :style=>"width: 200px;" %>
+			<%= f.submit "検索する",class: "btn btn-outline-info" %>
+		</div>
+	<% end %>
+</div>
+<div class="w-75 mx-auto text-center">
+	<div class="row">
+		<% if @users.exists? %>
+			<div id="search_users" class="col-lg-12 mx-auto"><%= render partial: "user/users/user",collection: @users %></div>
+			<div class="more col-lg-8 mx-auto">
+				<%= link_to_next_page @users, 'さらに読み込む', remote: true, id: 'view_more',class: "btn btn-outline-light w-100 mt-3 mb-3" %>
+			</div>
+		<% else %>
+			<p class="w-50 mx-auto text-center">検索結果がありません</p>
+		<% end %>
+	</div>
+</div>

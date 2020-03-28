@@ -1,0 +1,11 @@
+<% if comment.comment_favorite_by?(current_user) %>
+	<%= link_to post_comment_comment_favorites_path(comment.post_id,comment.id),method: :delete, remote: true do %>
+		<i class="fas fa-thumbs-up faa-wrench animated-hover" aria-hidden="true" style="color: #ffffff;"></i>
+	<% end %>
+	×<%= comment.comment_favorites.count %>
+<% else %>
+	<%= link_to post_comment_comment_favorites_path(comment.post_id,comment.id),method: :post, remote: true do %>
+		<i class="far fa-thumbs-up faa-wrench animated-hover" aria-hidden="true" style="color: #ffffff;"></i>
+	<% end %>
+	×<%= comment.comment_favorites.count %>
+<% end %>

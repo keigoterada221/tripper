@@ -1,47 +1,37 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Tripper</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+    <head>
+        <title>Tripper</title>
+        <%= csrf_meta_tags %>
+        <%= csp_meta_tag %>
+        <!-- JQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+        <!-- FontAwesome -->
+        <script src="https://kit.fontawesome.com/168debbf27.js" crossorigin="anonymous"></script>
+        <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+        <!-- bootstrap4導入(CDN) -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <!-- Googlefont -->
+        <style>@import url('https://fonts.googleapis.com/css?family=Liu+Jian+Mao+Cao|Noto+Serif+JP&display=swap');</style>
+        <!-- FontAwesomeアニメーション -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.2.1/font-awesome-animation.css" type="text/css" media="all" />
+    </head>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-
-  <body>
-    <!-- ヘッダー -->
-    <header>
-      <% if user_signed_in? %>
-        <%= link_to "ログアウト",destroy_user_session_path,method: :delete %>
-        <%= link_to "アバウト",about_path %>
-        <%= link_to "マイページ",user_user_path(current_user.id) %>
-        <%= link_to "トップへ",root_path %>
-      <!-- < elsif admin_signed_in? %> -->
-        <!-- <h1>管理者画面です</h1> -->
-      <% else %>
-        <%= link_to "ログイン",new_user_session_path %>
-        <%= link_to "新規登録",new_user_registration_path %>
-        <%= link_to "アバウト",about_path %>
-        <%= link_to "トップへ",root_path %>
-      <% end %>
-    </header>
-
-    <%= yield %>
-
-    <footer>
-      <% if user_signed_in? %>
-        <%= link_to "タイムライン",user_posts_path %>
-        <%= link_to "いいねした投稿" %>
-        <%= link_to "通知" %>
-        <%= link_to "新規投稿",new_user_post_path %>
-      <!-- < elsif admin_signed_in? %> -->
-        <!-- <= link_to "ユーザー一覧" %> -->
-        <!-- <= link_to "投稿一覧" %> -->
-        <!-- <= link_to "トップ画面" %> -->
-      <% else %>
-        <p>©Tripper Production by Keigo Terada</p>
-      <% end %>
-    </footer>
-  </body>
+    <body>
+        <div class="back">
+            <!-- ヘッダー -->
+            <%= render "layouts/header" %>
+            <!-- メッセージ -->
+            <div id="flash"><%= render "layouts/message" %></div>
+            <!-- メイン部分 -->
+            <div class="container"><%= yield %></div>
+            <style> body {font-family: 'Noto Serif JP', serif;}</style>
+            <!-- フッター -->
+            <%= render "layouts/footer" %>
+            <!-- bootstrap4導入(CDN) -->
+            <%#= render "layouts/bootstrap-cdn" %>
+        </div>
+    </body>
 </html>

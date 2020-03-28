@@ -1,9 +1,31 @@
-<h1>新規投稿</h1>
-
-<%= form_with model:@post,url:user_posts_path do |f| %>
-  <%= f.label :title,"タイトル" %><br>
-  <%= f.text_field :title %><br>
-  <%= f.label :body,"説明文" %><br>
-  <%= f.text_area :body %><br>
-  <%= f.submit "投稿する" %>
-<% end %>
+<div class="row">
+	<h1 class="col-lg-12 text-center mt-5 mb-4">投稿</h1>
+	<div class="col-lg-12" style="text-align: center;">
+		<%= form_with model:@post,url:posts_path,method: :post, local: true do |f| %>
+			<div id="validation"><%= render "layouts/post_error_messages", model: f.object %></div>
+			<!-- 動画投稿＆プレビュー -->
+		  	<%= f.label :video,"投稿する動画を選択",id: "movie-preview",class: "mt-1 mx-auto" %><br>
+		  	<%= f.file_field :video,accept: "video/*", id: "upload-video" %><br>
+			<!-- 画像投稿＆プレビュー -->
+		  	<%= f.label :image,"サムネイルにする画像を選択",id: "image-preview",class: "mt-4 mx-auto" %><br>
+		  	<%= f.attachment_field :image %><br>
+		  	<div class="form-group w-25 mx-auto">
+				<%= f.label :title,"タイトル",class: "mt-4" %><br>
+				<%= f.text_field :title,class: "form-control",placeholder: "20文字以内で入力してください" %><br>
+		    </div>
+		    <div class="form-group w-25 mx-auto">
+			    <%= f.label :destination,"訪問地の住所or名称" %><br>
+			    <%= f.text_field :destination,class: "form-control",placeholder: "入力内容を地図に表示します" %><br>
+		    </div>
+		    <div class="form-group w-25 mx-auto">
+			    <%= f.label :body,"説明文",class: "mt-4" %><br>
+			    <%= f.text_area :body,class: "form-control",placeholder: "100文字以内で入力してください",size: "100x5" %><br>
+		    </div>
+		    <%= f.label "訪問先の都道府県を選択してください",class: "mt-4 mx-auto" %><br>
+		    <%= f.collection_select :prefecture_id, Prefecture.all,:id,:name,selected: 13 %><br>
+		    <%= f.submit "投稿する",class: "btn btn-outline-light mt-5 mb-5 w-25" %>
+		<% end %>
+	</div>
+</div>
+<!-- 動画のプレビュー機能 -->
+<%= javascript_include_tag('video_preview.js') %>

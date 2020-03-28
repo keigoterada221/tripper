@@ -1,0 +1,27 @@
+<div class="user-index">
+	<h1>ユーザー一覧</h1>
+	<div class="sort-search" >
+		<%= form_with url:"/admin/users",method: :get,local: true do |f| %>
+			<%= f.text_field :name_search, placeholder: "検索ワード入力" %>
+			<%= f.submit "検索する" %>
+		<% end %>
+	</div>
+	<table>
+		<tr>
+			<th>会員ID</th>
+			<th>ユーザーネーム</th>
+			<th>ステータス</th>
+			<th></th>
+		</tr>
+		<% @users.each do |user| %>
+			<tr>
+				<td><%= user.id %></td>
+				<td><%= link_to user.name,admin_user_path(user.id) %></td>
+				<td id="status-<%= user.id %>">
+					<%= render "admin/users/status",user: user %>
+				</td>
+				<td><%= link_to "削除",admin_user_path(user.id),method: :delete,"data-confirm" => "#{user.name}さんを削除しますか？",class: "btn btn-danger" %></td>
+			</tr>
+		<% end %>
+	</table>
+</div>

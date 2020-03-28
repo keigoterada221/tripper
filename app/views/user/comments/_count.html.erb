@@ -1,0 +1,10 @@
+<% if post.comments.count == 0 %>
+	<%= link_to post_path(post.id) do %>
+    	<i class="fas fa-comment fa-2x ml-2" style="color: rgba(192,192,192,0.5);"></i>
+    <% end %>
+<% else %>
+	<%= link_to post_path(post.id) do %>
+    	<i class="fas fa-comment fa-2x ml-2" style="color: rgba(192,192,192);"></i>
+    <% end %>
+    ×<%= post.comments.count %>
+<% end %>

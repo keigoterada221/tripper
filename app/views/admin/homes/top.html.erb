@@ -1,0 +1,44 @@
+<div class="admin-top">
+	<h1>管理者　トップ画面</h1>
+	<%= form_with url:"top",method: :get,local: true do |f| %>
+		<%= f.select :period_select,[["本日","today"],["今週","week"],["今月","month"],["今年","year"],["全期間","all"]], {include_blank: "期間を選択"} %>
+		<%= f.submit "検索" %>
+	<% end %>
+	<h2><%= @title %></h2>
+	<table>
+		<tr>
+			<td>入会者数</td>
+			<td><%= @members.count %>人</td>
+		</tr>
+		<tr>
+			<td>退会者数</td>
+			<td><%= @withdrawals.count %>人</td>
+		</tr>
+		<tr>
+			<td>ユーザー合計</td>
+			<td><%= @members.count + @withdrawals.count %>人</td>
+		</tr>
+	</table>
+	<table>
+		<tr>
+			<th>会員ID</th>
+			<th>ユーザーネーム</th>
+			<th>ステータス</th>
+			<th></th>
+		</tr>
+		<% @users.each do |user| %>
+			<tr>
+				<td><%= user.id %></td>
+				<td><%= link_to user.name,admin_user_path(user.id) %></td>
+				<td>
+					<% if user.status.present? %>
+						<%= link_to "有効会員"%>
+					<% else %>
+						<%= link_to "退会済み" %>
+					<% end %>
+				</td>
+				<td><%= link_to "削除",admin_user_path(user.id),"data-confirm" => "#{user.name}さんを削除しますか？",class: "btn btn-danger mt-3" %></td>
+			</tr>
+		<% end %>
+	</table>
+</div>
