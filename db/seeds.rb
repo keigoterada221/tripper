@@ -6,30 +6,30 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# # 都道府県データ
-# require 'csv'
-# require 'zip'
-# DLURL           = "http://www.post.japanpost.jp/zipcode/dl/kogaki/zip/ken_all.zip"
-# SAVEDIR         = "db/"
-# CSVROW_PREFNAME = 6
+# 都道府県データ
+require 'csv'
+require 'zip'
+DLURL           = "http://www.post.japanpost.jp/zipcode/dl/kogaki/zip/ken_all.zip"
+SAVEDIR         = "db/"
+CSVROW_PREFNAME = 6
 
-# savePath = ""
-# # 都道府県のCSVダウンロード、解答し保存
-# open(URI.escape(DLURL)) do |file|
-#   ::Zip::File.open_buffer(file.read) do |zf|
-#     zf.each do |entry|
-#       savePath = SAVEDIR + entry.name
-#       zf.extract(entry, savePath) { true }
-#     end
-#   end
-# end
-# # 都道府県のCSVを読み込んでDBに保存
-# CSV.foreach(savePath, encoding: "Shift_JIS:UTF-8") do |row|
-#   prefName = row[CSVROW_PREFNAME]
-#   Prefecture.find_or_create_by(:name => prefName)
-# end
-# # 保存後に削除
-# File.unlink savePath
+savePath = ""
+# 都道府県のCSVダウンロード、解答し保存
+open(URI.escape(DLURL)) do |file|
+  ::Zip::File.open_buffer(file.read) do |zf|
+    zf.each do |entry|
+      savePath = SAVEDIR + entry.name
+      zf.extract(entry, savePath) { true }
+    end
+  end
+end
+# 都道府県のCSVを読み込んでDBに保存
+CSV.foreach(savePath, encoding: "Shift_JIS:UTF-8MB4") do |row|
+  prefName = row[CSVROW_PREFNAME]
+  Prefecture.find_or_create_by(:name => prefName)
+end
+# 保存後に削除
+File.unlink savePath
 
   Admin.create!(
     email: ENV['ADMIN_EMAIL'],
