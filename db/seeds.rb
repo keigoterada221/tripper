@@ -24,7 +24,7 @@ open(URI.escape(DLURL)) do |file|
   end
 end
 # 都道府県のCSVを読み込んでDBに保存
-CSV.foreach(savePath, encoding: "Shift_JIS:UTF-8MB4") do |row|
+CSV.foreach(savePath, encoding: "Shift_JIS:UTF-8") do |row|
   prefName = row[CSVROW_PREFNAME]
   Prefecture.find_or_create_by(:name => prefName)
 end
