@@ -84,5 +84,6 @@ gem "bootstrap", "~> 4.1.1"
 gem "jquery-rails"
 
 group :production do
+  gem "rubyzip"
   gem "mysql2"
 end
