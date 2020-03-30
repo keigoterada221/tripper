@@ -345,6 +345,7 @@ DEPENDENCIES
   rails-i18n
   refile!
   refile-mini_magick
+  rubyzip
   sass-rails (~> 5.0)
   selenium-webdriver
   spring

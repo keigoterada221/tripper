@@ -8,7 +8,7 @@
         <!-- ログインユーザー -->
         <% elsif user_signed_in? %>
             <%= link_to user_path(current_user.id) do %>
-                <%= attachment_image_tag current_user, :profile_image, :fill, 70, 70, format: "jpeg", fallback: "no_image.jpg",size:70 ,class: "user_image ml-5 mt-2" %>
+                <%= attachment_image_tag current_user, :profile_image, size: 70, format: "jpeg", fallback: "no_image.jpg",size:70 ,class: "user_image ml-5 mt-2" %>
             <% end %>
             <h1><%= link_to "Tripper", root_path %></h1>
             <li class="nav-item dropdown">

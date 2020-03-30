@@ -4,7 +4,7 @@
         <div class="col-lg-4 mb2 mt-3" style="border: 5px outset #516C8D;">
             <!-- 投稿動画表示 -->
             <%= link_to admin_user_path(post.user_id) do %>
-                <%= attachment_image_tag post.user, :profile_image, :fill, 40,40, format: "jpeg", fallback: "no_image.jpg",size:40 ,class: "user_image mt-2 mb-2" %>
+                <%= attachment_image_tag post.user, :profile_image, size:40, format: "jpeg", fallback: "no_image.jpg",size:40 ,class: "user_image mt-2 mb-2" %>
                 <%= post.user.name %>
             <% end %>
             <%= video_tag post.video.url, class: "rounded", width: "100%",loop: true,muted: true,controls: true,poster: attachment_url(post, :image, :fill, 500, 500, format: "jpg") unless post.video.blank? %><br>
