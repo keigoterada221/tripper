@@ -5,7 +5,7 @@
             <div id="validation"><%= render "layouts/user_error_messages", model: f.object %></div>
             <div class="field">
                 <%= f.label :name,"プロフィール画像" %><br>
-                <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: "jpeg", fallback: "no_image.jpg",size:100,class: "user_image" %>
+                <%= attachment_image_tag @user, :profile_image, size: 100, format: "jpeg", fallback: "no_image.jpg",size:100,class: "user_image" %>
                 <%= f.attachment_field :profile_image %>
             </div>
 

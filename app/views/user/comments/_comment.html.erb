@@ -1,7 +1,7 @@
 <div class="row">
 	<table class="table">
 		<td>
-			<%= attachment_image_tag comment.user, :profile_image, :fill, 40,40, format: "jpeg", fallback: "no_image.jpg",size:40 ,class: "user_image" %>
+			<%= attachment_image_tag comment.user, :profile_image, size: 40, format: "jpeg", fallback: "no_image.jpg",size:40 ,class: "user_image" %>
 			<%= comment.user.name %><br>
 			<%= comment.comment %>
 			<!-- コメントへのいいね機能 -->
