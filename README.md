@@ -1,25 +1,23 @@
-# Name（リポジトリ/プロジェクト/OSSなどの名前）
+# Tripper
  
-分かりやすくてカッコイイ名前をつける（今回は"hoge"という名前をつける）
+Tripperは旅行先で撮影した動画をシェアする、動画投稿サイトです。
  
-"hoge"が何かを簡潔に紹介する
- 
-# DEMO
+# 使い方
  
 "hoge"の魅力が直感的に伝えわるデモ動画や図解を載せる
  
-# Features
+# セールスポイント
  
 "hoge"のセールスポイントや差別化などを説明する
  
-# Requirement
+# 必要なライブラリ
  
 "hoge"を動かすのに必要なライブラリなどを列挙する
  
 * huga 3.5.2
 * hogehuga 1.0.2
  
-# Installation
+# インストール方法
  
 Requirementで列挙したライブラリなどのインストール方法を説明する
  
@@ -27,7 +25,7 @@ Requirementで列挙したライブラリなどのインストール方法を説
 pip install huga_package
 ```
  
-# Usage
+# デモの実行方法
  
 DEMOの実行方法など、"hoge"の基本的な使い方を説明する
  
@@ -37,17 +35,16 @@ cd examples
 python demo.py
 ```
  
-# Note
+# 注意点
  
 注意点などがあれば書く
  
-# Author
+# 著者
  
 作成情報を列挙する
  
-* 作成者
-* 所属
-* E-mail
+* 寺田 圭吾
+* DMM WEBCAMP 難波校 2020年1月生　
  
 # License
 ライセンスを明示する
