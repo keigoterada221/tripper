@@ -3,53 +3,49 @@
 # Tripper
  
 Tripperは旅行先で撮影した動画をシェアする、動画投稿サイトです。
+
+* Tripper URL http://46.51.225.173/
+
+お試しログイン用アカウント　
+
+* メールアドレス test@test
  
-# 使い方
- 
-"hoge"の魅力が直感的に伝えわるデモ動画や図解を載せる
+* パスワード　tettest
+
+# 使い方 
+
  
 # セールスポイント
  
-投稿に対してユーザーからのいいねやコメント機能をつけることで、
+旅行先を探す際にサイトを利用して行き先を決めた時に、思っていたのと違う！サイトのランキングは本当なのかな？と思ったことがあると思います。
+Tripperでは、そのような悩みを減らすために、ユーザー地震が投稿し、その投稿に対して他のユーザーからの「いいね」や「コメント」をできるようにすることで、旅行先への評価の信憑性を高めています。
+さらに動画投稿の形式をとることで、見る側も投稿する側も楽しめるようにしています。
  
 # 必要なライブラリ
  
-"hoge"を動かすのに必要なライブラリなどを列挙する
- 
-* huga 3.5.2
-* hogehuga 1.0.2
- 
-# インストール方法
- 
-Requirementで列挙したライブラリなどのインストール方法を説明する
- 
-```bash
-pip install huga_package
-```
- 
-# デモの実行方法
- 
-DEMOの実行方法など、"hoge"の基本的な使い方を説明する
- 
-```bash
-git clone https://github.com/hoge/~
-cd examples
-python demo.py
-```
+* ruby 2.5.7
+* Rails 5.2.4.1
  
 # 注意点
  
 動画の投稿の際に３０秒程時間がかかることがあります。
  
+# 主な使用Gem
+* "devise"
+* "carrierwave"
+* "refile"
+* "kaminari"
+* "jquery-rails"
+* "pry-byebug"
+* "bullet" など
+
+# 使用した外部API
+
+* Maps JavaScript API
+
+* Geocoding API
+
 # 著者
   
 * 寺田 圭吾
-* DMM WEBCAMP 難波校 2020年1月生　
- 
-# 使用した外部API
-
-Maps JavaScript API
-
-Geocoding API
-
- 
+* DMM WEBCAMP 難波校　2020年1月生　
