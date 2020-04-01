@@ -1,4 +1,6 @@
-スクリーンショット 2020-04-01 23.58.09# Tripper
+![tripper](https://user-images.githubusercontent.com/58387312/78153447-06f67700-7476-11ea-8f17-7895097336ae.jpg)
+
+# Tripper
  
 Tripperは旅行先で撮影した動画をシェアする、動画投稿サイトです。
  
