@@ -48,6 +48,8 @@ python demo.py
  
 # License
 ライセンスを明示する
+
+googleMAPAPI
  
 "hoge" is under [MIT license](https://en.wikipedia.org/wiki/MIT_License).
  
