@@ -1,4 +1,4 @@
-# Tripper
+スクリーンショット 2020-04-01 23.58.09# Tripper
  
 Tripperは旅行先で撮影した動画をシェアする、動画投稿サイトです。
  
@@ -8,7 +8,7 @@ Tripperは旅行先で撮影した動画をシェアする、動画投稿サイ�
  
 # セールスポイント
  
-"hoge"のセールスポイントや差別化などを説明する
+投稿に対してユーザーからのいいねやコメント機能をつけることで、
  
 # 必要なライブラリ
  
@@ -37,22 +37,17 @@ python demo.py
  
 # 注意点
  
-注意点などがあれば書く
+動画の投稿の際に３０秒程時間がかかることがあります。
  
 # 著者
- 
-作成情報を列挙する
- 
+  
 * 寺田 圭吾
 * DMM WEBCAMP 難波校 2020年1月生　
  
-# License
-ライセンスを明示する
+# 使用した外部API
 
-googleMAPAPI
+Maps JavaScript API
+
+Geocoding API
+
  
-"hoge" is under [MIT license](https://en.wikipedia.org/wiki/MIT_License).
- 
-社内向けなら社外秘であることを明示してる
- 
-"hoge" is Confidential.
