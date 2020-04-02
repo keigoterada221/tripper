@@ -2,17 +2,17 @@
 	<h1 class="title mt-5 mb-5 col-lg-12 text-center">Tripper</h1>
 	<div class="about-box col-lg-7 mx-auto">
 		<h3 style="font-weight: bolder;" class="mt-4">『ヘッダー(ログイン後)』</h3>
-		<img class="w-75 mb-2"src="assets/header.jpg">
+		<img class="w-75 mb-2" src="<%= asset_path 'header.jpg' %>"/>
 		<p>・左側に表示されているログインユーザーのアイコンをクリックするとマイページに移動します。<br>またマイページではユーザー情報の変更や、ご自身の投稿一覧、フォロワーなどを確認できます。</p>
 		<p>・真ん中に表示されている「Tripper」(ロゴ)をクリックすると、トップページに移動します。</p>
 		<p>・右側の「メニュー」ボタンをクリックすると、「マイページ」や「トップへ」に加えて「ユーザーを探す」ボタンが出てきます。</p>
-		<img class="ml-5" style="height: 200px;"src="assets/usersearch.jpg">
+		<img class="ml-5" style="height: 200px;"src="<%= asset_path 'usersearch.jpg' %>"/>
 		<p>・「ユーザーを探す」ボタンを押して、友人やお気に入りのユーザーをフォローしてみましょう！</p>
 	</div>
 
 	<div class="about-box col-lg-7 mx-auto">
 		<h3 style="font-weight: bolder;" class="mt-4">『フッター(ログイン後)』</h3>
-		<img class="w-75 mb-2"src="assets/footer.jpg">
+		<img class="w-75 mb-2"src="<%= asset_path 'footer.jpg' %>"/>
 		<p>・<i class="fas fa-home" style="color: #CCCCCC;;"></i>をクリックすると、ご自身の投稿に加えてフォローしているユーザーの投稿一覧を見ることができます。</p>
 		<p>・<i class="fas fa-heart" style="color: #CCCCCC;;"></i>をクリックすると、ご自身がお気に入りに登録<i class="fa fa-heart"style="color: #ff4242;"></i>した投稿一覧を見ることができます。</p>
 		<p>・<i class="fas fa-bell" style="color: #CCCCCC;"></i>をクリックすると、あなたの投稿に対してのお気に入り<i class="fa fa-heart"style="color: #ff4242;"></i>やコメント<i class="fas fa-comment" style="color: rgba(192,192,192);"></i>、あなたをフォローしたユーザーなどの通知一覧を確認することができます。<br>通知が来ていると上の画像のように<span style="color: orange;">●</span>を付けてお知らせしてくれます。</p>
@@ -23,11 +23,11 @@
 		<h3 style="font-weight: bolder;"class="mt-4">『トップ画面』</h3>
 		<h4 class="" style="font-weight: bolder;">・投稿のワード検索・並び替え</h4>
 		<p>・投稿をワードで検索したり、いいね数順などで並び替えを行うことができます。(こちらはログインしていなくても行うことができます)</p>
-		<img class="mb-2 ml-5" style="width: 300px;"src="assets/sort.jpg">
+		<img class="mb-2 ml-5" style="width: 300px;"src="<%= asset_path 'sort.jpg' %>"/>
 
 		<h4 class="mt-4" style="font-weight: bolder;">・投稿を都道府県で絞り込み検索</h4>
 		<p>・「都道府県で絞り込む」ボタンをクリックすると、投稿を都道府県で絞り込むことができます。</p>
-		<img class="w-75 ml-5"src="assets/todouhuken2.jpg">
+		<img class="w-75 ml-5"src="<%= asset_path 'todouhuken2.jpg' %>"/>
 	</div>
 
 	<div class="about-box col-lg-7 mx-auto">
@@ -35,7 +35,7 @@
 		<p>・アイコンの部分は投稿したユーザーのアイコンです。</p>
 		<p>・アイコンの横(画像では「kekeke」)の部分が投稿したユーザーの名前です。クリックすると、そのユーザーのマイページに移動します。</p>
 		<p>・動画はクリックすると再生されます。</p>
-		<img class="ml-5" style="height: 400px;" src="assets/post.jpg">
+		<img class="ml-5" style="height: 400px;" src="<%= asset_path 'post.jpg' %>"/>
 		<p>・<i class="fa fa-heart"style="color: #ff4242;"></i>をクリックすると、お気に入りの投稿一覧に登録されます。(画像はすでにいいねした状態です)</p>
 		<p>・<i class="fas fa-comment" style="color: rgba(192,192,192);"></i>をクリックすると、投稿の詳細画面(『投稿詳細で説明』)に移動してコメントすることができます。</p>
 		<p>・投稿のタイトル(画像では「綺麗な夕焼け」)をクリックすると、投稿の詳細画面(『投稿詳細で説明』)に移動します。</p>
@@ -44,7 +44,7 @@
 
 	<div class="about-box pb-3 col-lg-7 mx-auto">
 		<h3 style="font-weight: bolder;" class="mt-4">『投稿詳細画面』</h3>
-		<img class="ml-5" style="height: 800px;"src="assets/post-show.jpg">
+		<img class="ml-5" style="height: 800px;"src="<%= asset_path 'post-show.jpg' %>"/>
 		<p>・投稿の下にある枠は、投稿についての詳しい情報などです。</p>
 		<p>・投稿に対するコメント一覧やご自身がコメントすることも可能です。<br>また参考になったコメントなどに対していいね<i class="fas fa-thumbs-up" style="color: #ffffff;"></i>することもできます。</p>
 		<p>・コメントフォームの右側には、投稿動画の撮影地をMap<i class="fas fa-map-marker-alt" style="color: red;"></i>で表示させることができます。(投稿の際に表示地点を指定します)</p>
