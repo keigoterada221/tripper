@@ -15,7 +15,7 @@
                 <a class="btn btn-secondary dropdown-toggle"  data-toggle="dropdown" style="margin-right: 50px;" aria-expanded="false">メニュー</a>
                 <div class="dropdown-menu">
                     <%= link_to "ログアウト",destroy_user_session_path,method: :delete, class: "dropdown-item" %>
-                    <%= link_to "アバウト",about_path, class: "dropdown-item" %>
+                    <%= link_to "Tripperについて",about_path, class: "dropdown-item" %>
                     <%= link_to "マイページ",user_path(current_user.id), class: "dropdown-item" %>
                     <%= link_to "ユーザーを探す",user_search_path, class: "dropdown-item" %>
                     <%= link_to "トップへ",root_path, class: "dropdown-item" %>
