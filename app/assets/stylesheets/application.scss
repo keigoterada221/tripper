@@ -36,11 +36,12 @@
   width: 100%;
  }
  input[type=checkbox] {
-   transform: scale(2.0);
+   transform: scale(1.5);
    margin: 5px;
  }
  .container {
 	max-width: 90% !important;
+  margin-top: 100px;
 	margin-bottom: 100px;
 }
 .navbar {
@@ -50,17 +51,11 @@
 header {
 	height: 100px;
 	background-color: #28385E;
-  position: relative;
+  // position: relative;
 }
 header h1 {
 	font-family: 'Liu Jian Mao Cao', cursive;
-	font-size: 60px;
-  width: 20%;
-  position: absolute;
-  top: 5px;
-  right: 0;
-  left: 0;
-  margin: 0 auto;
+	font-size: 3rem;
   color: #DDDDDD;
 }
 h1 a {
@@ -75,7 +70,7 @@ li {
 /*フッター*/
 footer {
 	height: 100px;
-	padding: 20px 100px;
+	padding-top: 25px;
 	background-color: #28385E;
 }
 .footer-text {
