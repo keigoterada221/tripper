@@ -10,7 +10,7 @@
             <%= attachment_image_tag current_user, :profile_image, size: 70, format: "jpeg", fallback: "no_image.jpg",size:70 ,class: "user_image mt-2
             " %>
         <% end %>
-        <h1 class="col-4 text-center mt-3"><%= link_to "Tripper", root_path%></h1>
+        <h1 class="col-4 text-center mt-2"><%= link_to "Tripper", root_path%></h1>
         <div class="nav-item dropdown col-4 text-center pt-5">
             <a class="btn btn-secondary dropdown-toggle"  data-toggle="dropdown" aria-expanded="false">メニュー</a>
             <div class="dropdown-menu">
@@ -23,13 +23,13 @@
         </div>
     <% else %>
         <div class="col-4 text-center mt-3">
-            <h2>ようこそゲストユーザー様</h2>
+            <h2 style="font-size: 2.0vw">ようこそゲストユーザー様</h2>
             <%= link_to new_user_session_path do %>
                 <i class="fas fa-sign-in-alt"></i>
-                <span>ログインして旅先を動画でシェアしよう!!</span>
+                <span style="font-size: 1vw">ログインして旅先を動画でシェア!!</span>
             <% end %>
         </div>
-        <h1 class="col-4 text-center mt-3"><%= link_to "Tripper", root_path %></h1>
+        <h1 class="col-4 text-center mt-2"><%= link_to "Tripper", root_path %></h1>
         <div class="nav-item dropdown col-4 text-center pt-5">
             <a class="btn btn-secondary dropdown-toggle" href="#" data-toggle="dropdown" style="margin-right: 50px;">メニュー</a>
             <div class="dropdown-menu">
