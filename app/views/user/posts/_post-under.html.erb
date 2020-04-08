@@ -5,7 +5,7 @@
 	<span id="favorite-<%= post.id %>" class=""><%= render "user/favorites/favorite",post: post %></span>
 	<!-- コメント数 -->
 	<span class=""><%= render "user/comments/count",post: post %></span>
-	<p><%= link_to post.title,post_path(post.id),style: "font-size: 2.5vw;" %></p>
+	<p><%= link_to post.title,post_path(post.id),style: "font-size: 1.5vw;" %></p>
 	<!-- 投稿に紐づく都道府県名 -->
 	<span><%= link_to post.prefecture.name,prefecture_path(prefecture_code: post.prefecture.id),class: "btn btn-secondary mb-2",style: "height: 30px; padding-top: 3px;" %>
 	</span>
