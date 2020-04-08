@@ -6,8 +6,8 @@
 <div class="sort-search" >
 	<%= form_with url:"/",method: :get,local: true do |f| %>
 		<div class="btn-group mb-4">
-			<%= f.select :sort_select,[["新着順","新着順"],["いいね数順","いいね数順"],["コメント数順","コメント数順"]], {include_blank: '並び替え'} %>
-			<%= f.text_field :word_search, placeholder: "検索ワード入力", class: "form-control", :style=>"width: 200px;" %>
+			<%= f.select :sort_select,[["新着順","新着順"],["いいね数順","いいね数順"],["コメント数順","コメント数順"]], {include_blank: '並び替え'} ,style: "width: 85px;"%>
+			<%= f.text_field :word_search, placeholder: "検索ワード入力", class: "form-control", style: "width: 140px;" %>
 			<%= f.submit "検索する",class: "btn btn-outline-info" %>
 		</div>
 	<% end %>
